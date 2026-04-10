@@ -38,13 +38,13 @@ export async function POST(request: Request) {
     const data = await res.json();
 
     if (data.status === 'COMPLETED') {
-      const customerEmail = data.payer?.email_address || 'hello@clairedoesperfumes.com';
+      const customerEmail = data.payer?.email_address || 'hello@emmasterrariums.com';
       const html = await render(OrderConfirmation({ customerEmail }));
 
       await resend.emails.send({
-        from: 'Claire Beaumont <hello@clairedoesperfumes.com>',
+        from: 'Emma Wilson <hello@emmasterrariums.com>',
         to: customerEmail,
-        replyTo: 'hello@clairedoesperfumes.com',
+        replyTo: 'hello@emmasterrariums.com',
         subject: 'About your course purchase — important update',
         html,
       });

@@ -44,14 +44,14 @@ export async function POST(request: Request) {
       customerEmail = charge.billing_details?.email || null;
     }
 
-    const toEmail = customerEmail || 'hello@clairedoesperfumes.com';
+    const toEmail = customerEmail || 'hello@emmasterrariums.com';
     console.log(`Sending confirmation email to: ${toEmail} (receipt_email was: ${paymentIntent.receipt_email})`);
     const html = await render(OrderConfirmation({ customerEmail: toEmail }));
 
     await resend.emails.send({
-      from: 'Claire Beaumont <hello@clairedoesperfumes.com>',
+      from: 'Emma Wilson <hello@emmasterrariums.com>',
       to: toEmail,
-      replyTo: 'hello@clairedoesperfumes.com',
+      replyTo: 'hello@emmasterrariums.com',
       subject: 'About your course purchase — important update',
       html,
     });

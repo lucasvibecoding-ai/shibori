@@ -5,10 +5,16 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2026-02-25.clover',
 });
 
-export async function POST() {
+export async function POST(request: Request) {
   try {
+    const body = await request.json().catch(() => ({}));
+    const isVolcano = body.product === 'volcano';
+    const productId = isVolcano
+      ? process.env.STRIPE_PRODUCT_ID_VOLCANO!
+      : process.env.STRIPE_PRODUCT_ID_WATERFALL!;
+
     const product = await stripe.products.retrieve(
-      process.env.STRIPE_PRODUCT_ID!,
+      productId,
       { expand: ['default_price'] }
     );
     const price = product.default_price as Stripe.Price;

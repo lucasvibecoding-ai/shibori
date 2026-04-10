@@ -1,11 +1,16 @@
 import type { Metadata } from 'next';
+import { Suspense } from 'react';
 import CheckoutClient from './CheckoutClient';
 
 export const metadata: Metadata = {
-  title: 'Checkout — Claire Does Perfumes',
+  title: 'Checkout — Waterfall Terrariums',
   description: 'Complete your purchase',
 };
 
 export default function CheckoutPage() {
-  return <CheckoutClient />;
+  return (
+    <Suspense fallback={null}>
+      <CheckoutClient />
+    </Suspense>
+  );
 }

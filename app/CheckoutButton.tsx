@@ -9,7 +9,7 @@ declare global {
   }
 }
 
-export default function CheckoutButton() {
+export default function CheckoutButton({ productName = 'Waterfall Terrarium Masterclass' }: { productName?: string }) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -22,14 +22,14 @@ export default function CheckoutButton() {
       window.fbq('track', 'InitiateCheckout', {
         value: 47.00,
         currency: 'USD',
-        content_name: 'Waterfall Terrarium Masterclass',
+        content_name: productName,
         content_category: 'Online Course',
       }, { eventID: eventId });
     }
 
-    navigator.sendBeacon('/api/track-checkout', JSON.stringify({ eventId }));
+    navigator.sendBeacon('/api/track-checkout', JSON.stringify({ eventId, productName }));
 
-    router.push('/checkout');
+    router.push(`/checkout?product=${encodeURIComponent(productName)}`);
   };
 
   return (

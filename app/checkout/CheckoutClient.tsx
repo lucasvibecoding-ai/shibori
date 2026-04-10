@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import StripeForm from './StripeForm';
@@ -9,14 +10,21 @@ const stripePromise = loadStripe(
 );
 
 export default function CheckoutClient() {
+  const searchParams = useSearchParams();
+  const productName = searchParams.get('product') || 'Waterfall Terrarium Masterclass';
+  const isVolcano = productName.toLowerCase().includes('volcano');
   const [clientSecret, setClientSecret] = useState('');
   const [email, setEmail] = useState('');
 
   useEffect(() => {
-    fetch('/api/create-payment-intent', { method: 'POST' })
+    fetch('/api/create-payment-intent', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ product: isVolcano ? 'volcano' : 'waterfall' }),
+    })
       .then((res) => res.json())
       .then((data) => setClientSecret(data.clientSecret));
-  }, []);
+  }, [isVolcano]);
 
   return (
     <>
@@ -377,7 +385,7 @@ export default function CheckoutClient() {
             </a>
 
             <div className="product-name">Permanent Access</div>
-            <div className="product-title"><span className="desktop-title">The Perfume Masterclass</span><span className="mobile-title">Perfume Class</span></div>
+            <div className="product-title"><span className="desktop-title">{productName}</span><span className="mobile-title">{isVolcano ? 'Volcano Class' : 'Terrarium Class'}</span></div>
             <div className="product-price">
               $47.00<span className="currency">USD</span>
             </div>
@@ -385,23 +393,23 @@ export default function CheckoutClient() {
             <div className="summary-divider" />
 
             <div className="line-item">
-              <span className="item-name">The Perfume Masterclass (5 Modules)</span>
+              <span className="item-name">{productName} (5 Modules)</span>
               <span className="item-price">$47.00</span>
             </div>
             <div className="line-item">
-              <span className="item-name">Bottle, Label, Gift</span>
+              <span className="item-name">Maintenance Mastery</span>
               <span className="item-price">FREE</span>
             </div>
             <div className="line-item">
-              <span className="item-name">The Blend Perfector</span>
+              <span className="item-name">The Perfect Balance Guide</span>
               <span className="item-price">FREE</span>
             </div>
             <div className="line-item">
-              <span className="item-name">Your Scent DNA Profile</span>
+              <span className="item-name">The Plant Picker</span>
               <span className="item-price">FREE</span>
             </div>
             <div className="line-item">
-              <span className="item-name">The Dupe Lab: 10 Iconic Perfume Formulas</span>
+              <span className="item-name">The Desert Terrarium Build</span>
               <span className="item-price">FREE</span>
             </div>
 
@@ -440,7 +448,7 @@ export default function CheckoutClient() {
                     },
                   }}
                 >
-                  <StripeForm email={email} onEmailChange={setEmail} paypalEmail={email} />
+                  <StripeForm email={email} onEmailChange={setEmail} paypalEmail={email} productName={productName} />
                 </Elements>
               ) : (
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '180px' }}>

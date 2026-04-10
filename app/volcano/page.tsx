@@ -464,7 +464,7 @@ export default function Home() {
               <div className="price-old">Normally $97</div>
               <p id="get-access" className="now-only" style={{ fontSize: 44, color: 'var(--ink)', fontWeight: 700, marginBottom: 8 }}>Now Only <span style={{ color: '#1a9e8f' }}>$47</span></p>
               <div className="price-note">One time payment. <span className="lifetime-break" />Lifetime access.</div>
-              <div style={{ marginTop: 20 }}><CheckoutButton /></div>
+              <div style={{ marginTop: 20 }}><CheckoutButton productName="Volcano Terrarium Masterclass" /></div>
               <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginTop: 20 }}>
                 <div style={{ flex: 1, height: 1, background: 'rgba(0,0,0,0.12)' }} />
                 <p style={{ margin: 0, fontWeight: 500, fontSize: 16, whiteSpace: 'nowrap', color: 'var(--ink-muted)' }} className="guarantee-text">90 Day Money Back Guarantee</p>
@@ -489,7 +489,7 @@ export default function Home() {
             <h2 style={{ textAlign: 'center' }}>Try it risk-free</h2>
             <p style={{ fontSize: 20 }}><strong>You don&apos;t have to make the final decision now.</strong></p>
             <p style={{ textAlign: 'left', fontSize: 20 }}>Get access to the full course. Choose your first materials. Learn how to build properly. Create your first volcano terrarium. Watch your skills grow with every new build.</p>
-            <p style={{ textAlign: 'left', fontSize: 20 }}>If you don&apos;t love it, email hello@volcanoterrariums.com within 90 days for a full refund. Within 24 hours. <strong>No questions asked.</strong></p>
+            <p style={{ textAlign: 'left', fontSize: 20 }}>If you don&apos;t love it, email hello@emmasterrariums.com within 90 days for a full refund. Within 24 hours. <strong>No questions asked.</strong></p>
           </section>
 
           {/* BONUSES */}
@@ -557,7 +557,7 @@ export default function Home() {
             <div className="price-old">Normally $97</div>
             <p className="now-only" style={{ fontSize: 44, color: 'var(--ink)', fontWeight: 700, marginBottom: 8 }}>Now Only <span style={{ color: '#1a9e8f' }}>$47</span></p>
             <div className="price-note">One time payment. <span className="lifetime-break" />Lifetime access.</div>
-            <div style={{ marginTop: 20 }}><CheckoutButton /></div>
+            <div style={{ marginTop: 20 }}><CheckoutButton productName="Volcano Terrarium Masterclass" /></div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginTop: 20 }}>
               <div style={{ flex: 1, height: 1, background: 'rgba(0,0,0,0.12)' }} />
               <p style={{ margin: 0, fontWeight: 500, fontSize: 16, whiteSpace: 'nowrap', color: 'var(--ink-muted)' }} className="guarantee-text">90 Day Money Back Guarantee</p>
@@ -622,7 +622,7 @@ export default function Home() {
             <div className="price-old">Normally $97</div>
             <p className="now-only" style={{ fontSize: 44, color: 'var(--ink)', fontWeight: 700, marginBottom: 8 }}>Now Only <span style={{ color: '#1a9e8f' }}>$47</span></p>
             <div className="price-note">One time payment. <span className="lifetime-break" />Lifetime access.</div>
-            <div style={{ marginTop: 20 }}><CheckoutButton /></div>
+            <div style={{ marginTop: 20 }}><CheckoutButton productName="Volcano Terrarium Masterclass" /></div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginTop: 20 }}>
               <div style={{ flex: 1, height: 1, background: 'rgba(0,0,0,0.12)' }} />
               <p style={{ margin: 0, fontWeight: 500, fontSize: 16, whiteSpace: 'nowrap', color: 'var(--ink-muted)' }} className="guarantee-text">90 Day Money Back Guarantee</p>

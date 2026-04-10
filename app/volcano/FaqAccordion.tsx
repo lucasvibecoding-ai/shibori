@@ -57,7 +57,7 @@ const faqs = [
   },
   {
     q: 'Have a specific question?',
-    a: "Email us at hello@volcanoterrariums.com and we'll get back to you as soon as possible.",
+    a: "Email us at hello@emmasterrariums.com and we'll get back to you as soon as possible.",
   },
 ];
 

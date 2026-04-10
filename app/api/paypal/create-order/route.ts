@@ -17,8 +17,12 @@ async function getAccessToken() {
   return data.access_token;
 }
 
-export async function POST() {
+export async function POST(request: Request) {
   try {
+    const body = await request.json().catch(() => ({}));
+    const isVolcano = body.product === 'volcano';
+    const description = isVolcano ? 'Volcano Terrarium Masterclass' : 'Waterfall Terrarium Masterclass';
+
     const accessToken = await getAccessToken();
 
     const res = await fetch(`${PAYPAL_API}/v2/checkout/orders`, {
@@ -35,7 +39,7 @@ export async function POST() {
               currency_code: 'USD',
               value: '47.00',
             },
-            description: 'The Bonsai Path',
+            description,
           },
         ],
       }),

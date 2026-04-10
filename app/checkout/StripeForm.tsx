@@ -14,7 +14,7 @@ const isValidEmail = (e: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
 
 const EMAIL_ERROR = 'Please enter a valid email address above to continue.';
 
-export default function StripeForm({ email, onEmailChange, paypalEmail }: { email: string; onEmailChange: (v: string) => void; paypalEmail: string }) {
+export default function StripeForm({ email, onEmailChange, paypalEmail, productName = 'Waterfall Terrarium Masterclass' }: { email: string; onEmailChange: (v: string) => void; paypalEmail: string; productName?: string }) {
   const stripe = useStripe();
   const elements = useElements();
   const [isProcessing, setIsProcessing] = useState(false);
@@ -52,7 +52,7 @@ export default function StripeForm({ email, onEmailChange, paypalEmail }: { emai
     const { error: submitError } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: `${window.location.origin}/success`,
+        return_url: `${window.location.origin}/success?product=${encodeURIComponent(productName)}`,
         receipt_email: email,
       },
     });
@@ -75,7 +75,7 @@ export default function StripeForm({ email, onEmailChange, paypalEmail }: { emai
     const { error: confirmError } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: `${window.location.origin}/success`,
+        return_url: `${window.location.origin}/success?product=${encodeURIComponent(productName)}`,
         receipt_email: email,
       },
     });
@@ -114,7 +114,7 @@ export default function StripeForm({ email, onEmailChange, paypalEmail }: { emai
       />
 
       <div style={{ marginTop: 12 }}>
-        <PayPalForm email={paypalEmail} onEmailError={showExpressEmailError} />
+        <PayPalForm email={paypalEmail} onEmailError={showExpressEmailError} productName={productName} />
       </div>
 
       <div style={{ display: 'flex', alignItems: 'center', gap: 12, margin: '24px 0' }}>
