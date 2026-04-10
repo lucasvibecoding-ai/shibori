@@ -33,7 +33,7 @@ export async function POST(request: Request) {
               custom_data: {
                 value: 47.0,
                 currency: 'USD',
-                content_name: 'Claire Does Perfumes',
+                content_name: 'Waterfall Terrarium Masterclass',
                 content_category: 'Online Course',
               },
             },

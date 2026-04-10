@@ -5,9 +5,9 @@ import CountdownBar from "./CountdownBar";
 import FaqAccordion from "./FaqAccordion";
 
 export const metadata: Metadata = {
-  title: "Create Your Own Signature Perfume at Home in a Single Weekend",
+  title: "Build a Working Waterfall Terrarium That Becomes a Living Jungle Scene",
   description:
-    "Learn to create custom fragrances at home without expensive ingredients or years of trial and error. Even if you're a complete beginner.",
+    "Learn to build stunning miniature waterfall terrariums at home with no experience. Step by step guide to creating a living jungle in glass.",
 };
 
 export default function Home() {
@@ -17,28 +17,29 @@ export default function Home() {
 
       <style dangerouslySetInnerHTML={{ __html: `
         :root {
-          --bg: #f9f6f2;
-          --bg-warm: #f2ede5;
+          --bg: #ffffff;
+          --bg-warm: #f5f5f5;
           --card: #ffffff;
-          --ink: #1e1a14;
-          --ink-soft: rgb(43, 43, 43);
-          --ink-muted: #7d7568;
-          --green: #3a6347;
-          --green-deep: #264432;
-          --green-soft: #5a8f6c;
-          --green-pale: rgba(58,99,71,0.06);
-          --gold: #b08d3a;
-          --gold-light: #d4b35c;
-          --gold-pale: rgba(176,141,58,0.08);
-          --terra: #946b42;
-          --sand: #d9cfc0;
-          --stone: #c4b9a8;
-          --cream: #fdfbf7;
+          --ink: #1a2e1a;
+          --ink-soft: rgb(38, 50, 38);
+          --ink-muted: #687668;
+          --green: #2d7a4f;
+          --green-deep: #1a5c36;
+          --green-soft: #4aa86c;
+          --green-pale: rgba(45,122,79,0.06);
+          --gold: #3a8f7a;
+          --gold-light: #5cb8a0;
+          --gold-pale: rgba(58,143,122,0.08);
+          --terra: #5a8f6c;
+          --sand: #c0d4c4;
+          --stone: #a8c0ac;
+          --cream: #fafafa;
           --radius: 10px;
+          --accent: #2d7a4f;
         }
 
-        /* BASE TYPOGRAPHY — one size for all body text */
-        .bonsai-page { font-family: 'Lora', 'Lora Fallback', serif; color: rgb(43, 43, 43); line-height: 1.8; font-weight: 400; font-size: 20px; }
+        /* BASE TYPOGRAPHY */
+        .bonsai-page { font-family: 'Lora', 'Lora Fallback', serif; color: rgb(38, 50, 38); line-height: 1.8; font-weight: 400; font-size: 20px; }
         .bonsai-page .container { max-width: 1080px; margin: 0 auto; padding: 0 40px; }
 
         /* Headings */
@@ -66,8 +67,6 @@ export default function Home() {
 
         /* Hero */
         .hero-img { width: 100%; max-width: 860px; margin: 0 auto; border-radius: 12px; overflow: hidden; aspect-ratio: 16/9; background: var(--bg-warm); border: 1px solid var(--sand); display: flex; align-items: center; justify-content: center; }
-        .hero-img-ph { text-align: center; padding: 36px; color: var(--ink-muted); font-size: 14px; line-height: 1.5; }
-        .hero-img-ph .em { font-size: 48px; display: block; margin-bottom: 8px; }
         .hero h1 .accent { color: var(--green-deep); font-style: italic; }
 
         /* Philosophy blocks */
@@ -87,7 +86,6 @@ export default function Home() {
 
         /* Students */
         .students { padding: 48px 0; text-align: center; }
-        .students-img { width: 100%; max-width: 860px; margin: 0 auto; border-radius: 12px; aspect-ratio: 2.2/1; background: var(--bg-warm); border: 1px solid var(--sand); display: flex; align-items: center; justify-content: center; color: var(--ink-muted); font-size: 16px; }
 
         /* Objections */
         .objection { padding: 56px 0; }
@@ -95,7 +93,7 @@ export default function Home() {
         /* Module cards */
         .modules-grid { display: flex; flex-direction: column; gap: 16px; }
         .module-card { background: var(--card); border-radius: 12px; padding: 28px; margin-bottom: 16px; border: 1px solid var(--sand); }
-        .module-label { font-size: 12px; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase; color: #E8762B; margin-bottom: 6px; }
+        .module-label { font-size: 12px; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
         .module-sub { font-size: 18px; color: var(--ink); margin-bottom: 14px; }
         .module-body { display: flex; gap: 28px; align-items: flex-start; }
         .module-card ul { list-style: none; padding: 0; flex: 1; }
@@ -127,14 +125,14 @@ export default function Home() {
         .bonus-img { width: 280px; min-width: 280px; height: 260px; border-radius: 8px; background: linear-gradient(135deg, var(--bg-warm), var(--sand)); display: flex; align-items: center; justify-content: center; font-size: 28px; border: 1px solid var(--sand); overflow: hidden; position: relative; }
         .bonus-card ul { flex: 1; }
         .bonus-header { display: flex; align-items: center; gap: 12px; margin-bottom: 6px; }
-        .bonus-label { font-size: 12px; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase; color: #E8762B; }
-        .bonus-value { font-size: 12px; color: var(--green); font-weight: 700; background: rgba(58,99,71,0.1); padding: 2px 10px; border-radius: 100px; letter-spacing: 0.5px; }
+        .bonus-label { font-size: 12px; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase; color: var(--accent); }
+        .bonus-value { font-size: 12px; color: var(--green); font-weight: 700; background: rgba(45,122,79,0.1); padding: 2px 10px; border-radius: 100px; letter-spacing: 0.5px; }
         .bonus-card h3 { font-size: 30px; color: var(--ink); margin-bottom: 4px; }
         .module-card h3 { color: var(--ink); }
         .bonus-desc { font-size: 18px; color: var(--ink-muted); margin-bottom: 14px; }
         .bonus-card ul { list-style: none; padding: 0; }
         .bonus-card li { padding: 6px 0; font-size: 18px; line-height: 1.6; }
-        .mega { border-color: rgba(176,141,58,0.3); background: linear-gradient(135deg, var(--card), var(--gold-pale)); }
+        .mega { border-color: rgba(45,122,79,0.3); background: linear-gradient(135deg, var(--card), var(--gold-pale)); }
 
         /* Stack */
         .stack-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(0,0,0,0.05); max-width: 520px; margin-left: auto; margin-right: auto; }
@@ -143,7 +141,7 @@ export default function Home() {
         .stack-total { font-weight: 700; border-bottom: 2px solid var(--green); padding-bottom: 10px; margin-bottom: 6px; }
         .stack-total .label { color: var(--ink); }
 
-        /* FAQ — individual cards */
+        /* FAQ */
         .faq-list { display: flex; flex-direction: column; gap: 12px; }
         .faq-item { background: var(--cream); border-radius: 12px; padding: 4px 20px; border: 1px solid var(--sand); }
         .faq-q { width: 100%; display: flex; align-items: center; gap: 14px; padding: 18px 0; background: none; border: none; cursor: pointer; text-align: left; font-family: 'Lora', serif; font-size: 18px; }
@@ -161,23 +159,21 @@ export default function Home() {
         .closing-quote { font-size: clamp(1.3rem, 2.5vw, 1.8rem); color: var(--ink); font-style: italic; max-width: 520px; margin: 0 auto 28px; line-height: 1.5; }
 
         /* Footer */
-        .bonsai-footer { padding: 44px 0; text-align: center; font-size: 14px; color: #c4b9a8; background: #1e1a14; margin-top: 48px; }
-        .bonsai-footer a { color: #d4b35c; }
-        .bonsai-footer p { color: #c4b9a8; }
+        .bonsai-footer { padding: 44px 0; text-align: center; font-size: 14px; color: #999; background: #000; margin-top: 48px; }
+        .bonsai-footer a { color: #1a9e8f; }
+        .bonsai-footer p { color: #999; }
 
         /* Split layout */
         .split { display: flex; gap: 40px; align-items: center; padding: 56px 0; }
         .split-text { flex: 1; }
         .split-text h2 { font-size: clamp(1.6rem, 4vw, 2.4rem); }
         .split-img { flex: 1 1 50%; height: 380px; border-radius: 12px; background: transparent; border: none; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-        .split-img-ph { text-align: center; padding: 24px; color: var(--ink-muted); font-size: 14px; line-height: 1.5; }
-        .split-img-ph .em { font-size: 42px; display: block; margin-bottom: 8px; }
 
         @media (max-width: 768px) {
+          .fillpic-grid { grid-template-columns: repeat(2, 1fr) !important; }
           .bonsai-page .container { padding: 0 24px; }
           .bonsai-page section { padding-left: 0; padding-right: 0; }
           .split { flex-direction: column; gap: 24px; }
-          .bonsai-gallery { grid-template-columns: repeat(2, 1fr) !important; }
           .split-img { flex: none; width: 100%; height: auto; }
           .split-text { flex: 1 !important; }
           .module-body { flex-direction: column; }
@@ -219,7 +215,6 @@ export default function Home() {
           .badge { font-size: 10px; letter-spacing: 1.5px; padding: 5px 12px; }
           .payment-method-btn { font-size: 13px; padding: 10px 12px; }
           #hero { width: 100% !important; margin-top: 16px; }
-          .perfume-pic { width: 100% !important; }
           .anyone-section { padding-top: 0px !important; }
           .store-bought-section { padding-bottom: 40px !important; }
           .impossible-section { padding-top: 24px !important; }
@@ -241,32 +236,14 @@ export default function Home() {
 
           {/* HERO */}
           <section style={{ paddingTop: 64, paddingBottom: 48, textAlign: 'center' }}>
-            <p className="no-exp" style={{ fontWeight: 700, textTransform: 'uppercase', color: 'var(--ink-muted)' }}>Even if you&apos;re a complete beginner</p>
-            <h1>Create Your Own <span style={{ color: '#E8762B', filter: 'drop-shadow(0 0 4px rgba(232,118,43,0.2))' }}>Signature Perfume</span> at Home in a Single Weekend</h1>
-            <p className="hero-sub" style={{ color: 'var(--ink-muted)', marginTop: 8, fontStyle: 'italic' }}>That smells just as good as a $150 bottle and lasts just as long.</p>
+            <p className="no-exp" style={{ fontWeight: 700, textTransform: 'uppercase', color: 'var(--ink-muted)' }}>Even if you&apos;ve never built a terrarium before</p>
+            <h1>Build a Working <span style={{ background: 'linear-gradient(135deg, #2d7a4f, #1a9e8f)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', filter: 'drop-shadow(0 0 4px rgba(45,122,79,0.2))' }}>Waterfall Terrarium</span> That Becomes a Living Jungle Scene</h1>
+            <p className="hero-sub" style={{ color: 'var(--ink-muted)', marginTop: 8, fontStyle: 'italic' }}>Make it in a single weekend using materials you can pick up locally.</p>
 
-            <div className="split hero-split" style={{ paddingTop: 28, paddingBottom: 0 }}>
-              <div className="split-text hero-text-desktop" style={{ textAlign: 'left', flex: '2' }}>
-                <p style={{ marginBottom: 0, textAlign: 'left' }}>
-                  Once you create your own scent, <strong>you&apos;ll use it everywhere.</strong>
-                  <br /><br />
-                  On a <strong>date night</strong>. Around the house. In <strong>your car</strong>. Even at <strong>the gym</strong>.
-                  <br /><br />
-                  And then… <strong>you&apos;ll want to create another one.</strong>
-                </p>
+            <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 28 }}>
+              <div id="hero" style={{ width: '75%', maxWidth: 500, aspectRatio: '1/1', borderRadius: 16, overflow: 'hidden', position: 'relative', boxShadow: '0 12px 40px rgba(0,0,0,0.2), 0 4px 12px rgba(0,0,0,0.1)' }}>
+                <Image src="/hero_waterfall2.jpg" alt="Miniature waterfall terrarium" fill style={{ objectFit: 'cover' }} priority />
               </div>
-              <div style={{ flex: '1 1 50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <Image id="hero" src="/hero_98.jpg" alt="Handcrafted perfume bottles" width={600} height={600} style={{ width: '75%', height: 'auto', borderRadius: 16, boxShadow: '0 12px 40px rgba(0,0,0,0.2), 0 4px 12px rgba(0,0,0,0.1)' }} />
-              </div>
-            </div>
-            <div className="hero-text-mobile" style={{ textAlign: 'left', marginTop: 36 }}>
-              <p style={{ marginBottom: 0 }}>
-                  Once you create your own scent, <strong>you&apos;ll use it everywhere.</strong>
-                  <br /><br />
-                  On a <strong>date night</strong>. Around the house. In <strong>your car</strong>. Even at <strong>the gym</strong>.
-                  <br /><br />
-                  And then… <strong>you&apos;ll want to create another one.</strong>
-              </p>
             </div>
           </section>
 
@@ -279,27 +256,27 @@ export default function Home() {
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: 16, fontSize: 'clamp(1.125rem, 2vw, 1.25rem)', lineHeight: 1.75 }}>
                 <div style={{ display: 'flex', alignItems: 'flex-start', gap: 16 }}>
-                  <span style={{ color: '#D4621A', marginTop: 4, flexShrink: 0 }}>→</span>
+                  <span style={{ color: 'var(--accent)', marginTop: 4, flexShrink: 0 }}>&#8594;</span>
                   <p style={{ margin: 0 }}>
-                    <strong style={{ color: '#D4621A' }}>wear a scent that feels completely yours.</strong> And have the best smelling hobby in the world.
+                    <strong style={{ color: 'var(--accent)' }}>build a living miniature jungle with a real flowing waterfall.</strong> Something people stop and stare at.
                   </p>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'flex-start', gap: 16 }}>
-                  <span style={{ color: '#D4621A', marginTop: 4, flexShrink: 0 }}>→</span>
+                  <span style={{ color: 'var(--accent)', marginTop: 4, flexShrink: 0 }}>&#8594;</span>
                   <p style={{ margin: 0 }}>
-                    <strong style={{ color: '#D4621A' }}>make your home, car, or office smell exactly how you want.</strong> Not &quot;close enough.&quot; Exactly.
+                    <strong style={{ color: 'var(--accent)' }}>transform any room with a piece of living art</strong> that grows more beautiful over time.
                   </p>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'flex-start', gap: 16 }}>
-                  <span style={{ color: '#D4621A', marginTop: 4, flexShrink: 0 }}>→</span>
+                  <span style={{ color: 'var(--accent)', marginTop: 4, flexShrink: 0 }}>&#8594;</span>
                   <p style={{ margin: 0 }}>
-                    <strong style={{ color: '#D4621A' }}>know what makes a $200 bottle smell expensive</strong> and replicate it for under $3.
+                    <strong style={{ color: 'var(--accent)' }}>have the most calming, rewarding hobby</strong> that takes you offline and into a tiny world of moss, water, and stone.
                   </p>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'flex-start', gap: 16 }}>
-                  <span style={{ color: '#D4621A', marginTop: 4, flexShrink: 0 }}>→</span>
+                  <span style={{ color: 'var(--accent)', marginTop: 4, flexShrink: 0 }}>&#8594;</span>
                   <p style={{ margin: 0 }}>
-                    <strong style={{ color: '#D4621A' }}>give it to someone you love</strong> and watch their face when they realize you made it yourself.
+                    <strong style={{ color: 'var(--accent)' }}>create a stunning handmade gift</strong> that costs under $40 but looks like it belongs in a boutique.
                   </p>
                 </div>
               </div>
@@ -308,153 +285,165 @@ export default function Home() {
 
           {/* THE MOMENT IT CLICKS */}
           <section className="impossible-section" style={{ padding: '64px 0 24px' }}>
-            <h2 className="bonsai-center" style={{ marginBottom: 44 }}>You might be thinking this is impossible.</h2>
-            <p>Your own perfume? It sounds like something <strong>only professionals can pull off.</strong></p>
-            <p>But what if I told you that <strong>you don&apos;t need lab equipment, expensive ingredients or years of practice.</strong></p>
+            <h2 className="bonsai-center" style={{ marginBottom: 44 }}>You might be thinking this is extremely hard.</h2>
+            <p>A miniature waterfall with real plants? It sounds like something <strong>only artists or professionals can pull off.</strong></p>
+            <p>But what if I told you that <strong>you don&apos;t need artistic talent, expensive tools, or any prior experience?</strong></p>
+            <p>Maybe you&apos;ve tried crafts before and gave up because the results never matched what you saw online.</p>
+            <p>Maybe you&apos;ve never built anything at all, but something about waterfall terrariums pulls you in. You just don&apos;t know where to start.</p>
           </section>
 
           <section style={{ padding: '48px 0 32px' }}>
             <h2 className="bonsai-center" style={{ marginBottom: 44 }}>Here&apos;s what most people don&apos;t realize.</h2>
-            <p><strong>Your perfume doesn&apos;t need to be complicated.</strong></p>
-            <p>Three notes layered well can outperform a $200 bottle with forty ingredients.</p>
-            <p>As long as the balance between top, middle, and base is right, <strong>your nose does the rest.</strong></p>
-            <p>You add one note. Then another. Then another. And the scent comes alive.</p>
+            <p><strong>The best terrariums aren&apos;t complicated.</strong></p>
+            <p>A few layers of stone, the right moss, and a small pump. That&apos;s all it takes to create something breathtaking.</p>
+            <p>As long as the drainage, substrate, and plant placement are right, <strong>nature does the rest.</strong></p>
+            <p>You place one stone. Then some moss. Then the water starts flowing. And suddenly, it&apos;s alive.</p>
           </section>
 
-          <div style={{ maxWidth: 860, margin: '0 auto', paddingTop: 16 }}>
-            <Image className="perfume-pic" src="/perfume_pic.jpg" alt="Perfume crafting" width={1024} height={1024} style={{ width: '60%', height: 'auto', borderRadius: 12, border: '1px solid var(--sand)', display: 'block', margin: '0 auto' }} />
-          </div>
-
           <section style={{ padding: '48px 0 64px', marginTop: 32 }}>
-              <h2 style={{ marginBottom: 44, textAlign: 'center' }}>&quot;Isn&apos;t <span style={{ color: '#E8762B' }}>perfume-making</span> expensive?&quot;</h2>
-              <p><strong>Your first perfume costs less than a coffee.</strong></p>
-              <p>A starter kit of essential oils is <strong>$15-20</strong>. Carrier oil and bottles cost <strong>under $15.</strong></p>
-              <p>That&apos;s it. No $300 niche ingredients. No professional lab equipment.</p>
+              <h2 style={{ marginBottom: 44, textAlign: 'center' }}>&quot;Isn&apos;t <span style={{ color: 'var(--accent)' }}>terrarium building</span> expensive?&quot;</h2>
+              <p><strong>Your first waterfall terrarium costs less than dinner out.</strong></p>
+              <p>A glass container is <strong>$10 to $15</strong>. A small water pump is <strong>$8 to $12</strong> (don&apos;t worry, water pumps are incredibly easy to use). Moss, stones, and plants cost <strong>under $15.</strong></p>
+              <p>That&apos;s it. No $200 specialty supplies. No professional equipment.</p>
+              <p>And once it&apos;s built, <strong>maintenance is practically free</strong>. A terrarium recycles its own water and barely needs attention. Two minutes a week is all it takes to keep it thriving.</p>
           </section>
 
           <section style={{ padding: '0 0 64px' }}>
-              <h2 style={{ marginBottom: 44, textAlign: 'center' }}>&quot;I don&apos;t have a good nose. I&apos;m not a <span style={{ color: '#E8762B' }}>perfumer</span>.&quot;</h2>
-              <p>You&apos;re not trying to identify 47 notes blindfolded. You&apos;re picking from a small set, following a structure, and asking yourself one question: <strong>&quot;Do I like this?&quot;</strong></p>
-              <p>That&apos;s it. Your nose is already good enough for that.</p>
+              <h2 style={{ marginBottom: 44, textAlign: 'center' }}>&quot;I&apos;m not <span style={{ color: 'var(--accent)' }}>creative</span> enough for this.&quot;</h2>
+              <p>You&apos;re not sculpting a masterpiece from scratch. You&apos;re following a proven layout, placing natural materials in the right order, and asking one question: <strong>&quot;Does this look good to me?&quot;</strong></p>
+              <p>That&apos;s it. Your eye is already good enough for that.</p>
           </section>
 
-          <section className="store-bought-section" style={{ padding: '0 0 64px' }}>
-              <h2 style={{ marginBottom: 44, textAlign: 'center' }}>&quot;Will it smell as good as store-bought? Will it last on my skin?&quot;</h2>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 12, marginBottom: 40 }} className="fillpic-grid">
+            <div style={{ borderRadius: 10, overflow: 'hidden', aspectRatio: '1/1', position: 'relative' }}><Image src="/fillpic1_waterfall.jpg" alt="Waterfall terrarium example" fill style={{ objectFit: 'cover' }} /></div>
+            <div style={{ borderRadius: 10, overflow: 'hidden', aspectRatio: '1/1', position: 'relative' }}><Image src="/fillpic2_waterfall.jpg" alt="Waterfall terrarium example" fill style={{ objectFit: 'cover' }} /></div>
+            <div style={{ borderRadius: 10, overflow: 'hidden', aspectRatio: '1/1', position: 'relative' }}><Image src="/fillpic3_waterfall.jpg" alt="Waterfall terrarium example" fill style={{ objectFit: 'cover' }} /></div>
+            <div style={{ borderRadius: 10, overflow: 'hidden', aspectRatio: '1/1', position: 'relative' }}><Image src="/fillpic4_waterfall.jpg" alt="Waterfall terrarium example" fill style={{ objectFit: 'cover' }} /></div>
+          </div>
+
+          <section className="store-bought-section" style={{ padding: '40px 0 64px' }}>
+              <h2 style={{ marginBottom: 44, textAlign: 'center' }}>&quot;Will it actually look like those <span style={{ color: 'var(--accent)' }}>amazing ones</span> I see online?&quot;</h2>
               <p><strong>Yes, and you&apos;ll understand exactly why.</strong></p>
-              <p>Store-bought perfumes aren&apos;t magic. They follow the same principles you&apos;ll learn in this course: <strong>balance, layering, and concentration.</strong></p>
-              <p>The difference between a scent that fades in 20 minutes and one that lasts 8 hours comes down to three things: base notes, ratios, and curing time.</p>
+              <p>Stunning terrariums aren&apos;t magic. They follow the same principles you&apos;ll learn in this course: <strong>layering, water flow, and plant placement.</strong></p>
+              <p>The difference between a terrarium that looks muddy and one that looks like a jungle paradise comes down to three things: substrate layers, water circulation, and moss selection.</p>
           </section>
 
           {/* ANYONE CAN LEARN */}
           <section className="anyone-section" style={{ padding: '48px 0' }}>
-            <h2 className="bonsai-center" style={{ marginBottom: 64 }}>Anyone can make <span style={{ color: '#E8762B' }}>perfume</span>.</h2>
+            <h2 className="bonsai-center" style={{ marginBottom: 64 }}>Anyone can build a <span style={{ color: 'var(--accent)' }}>waterfall terrarium</span>.</h2>
             <div style={{ maxWidth: 640, margin: '0 auto', fontSize: 20 }}>
-              <p><span style={{ color: '#D4621A', fontWeight: 700 }}>&rarr; Even if you&apos;ve never blended anything before.</span> A simple step-by-step method that works with any ingredients, any skill level.</p>
-              <p><span style={{ color: '#D4621A', fontWeight: 700 }}>&rarr; Even if you think perfume-making is too hard.</span> It&apos;s not. You just never had the right method.</p>
-
-              <p><span style={{ color: '#D4621A', fontWeight: 700 }}>&rarr; Even if perfectionism usually stops you.</span> The best scents come from experimenting, not overthinking.</p>
-
-              <p><span style={{ color: '#D4621A', fontWeight: 700 }}>&rarr; Even if you don&apos;t think of yourself as &quot;creative.&quot;</span> A few oils, a dropper, and 20 minutes. That&apos;s it.</p>
+              <p><span style={{ color: 'var(--accent)', fontWeight: 700 }}>&rarr; Even if you&apos;ve never built anything with your hands.</span> A clear step by step method that works with basic materials and zero experience.</p>
+              <p><span style={{ color: 'var(--accent)', fontWeight: 700 }}>&rarr; Even if you think terrariums are too complicated.</span> They&apos;re not. You just never had the right method.</p>
+              <p><span style={{ color: 'var(--accent)', fontWeight: 700 }}>&rarr; Even if you&apos;ve killed every plant you&apos;ve owned.</span> Terrariums are self sustaining ecosystems. They practically take care of themselves.</p>
+              <p><span style={{ color: 'var(--accent)', fontWeight: 700 }}>&rarr; Even if you don&apos;t consider yourself &quot;artistic.&quot;</span> Some rocks, moss, a pump, and a little patience. That&apos;s it.</p>
             </div>
           </section>
 
           {/* INSTRUCTOR */}
           <section className="instructor">
             <div className="instructor-img">
-              <Image src="/hero2.jpg" alt="Claire Beaumont" width={440} height={550} sizes="(max-width: 768px) 400px, 420px" style={{ width: '100%', height: 'auto', borderRadius: 16 }} />
+              <div style={{ width: '100%', aspectRatio: '4/5', borderRadius: 16, overflow: 'hidden', position: 'relative' }}>
+                <Image src="/creator_waterfall_volcano.png" alt="Emma Wilson" fill style={{ objectFit: 'cover' }} />
+              </div>
             </div>
             <div className="instructor-text">
-              <h2>My name is Claire Beaumont.</h2>
-              <p><strong>15+ years in fragrance.</strong> Trained with master perfumers in Grasse, France.<br /><br />Over <strong>200 original formulas</strong> created. Taught <strong>500+ students</strong> in real-life workshops to make their first perfume from scratch.</p>
-              <p>Best part about being a perfumer? Watching someone smell something they made themselves for the first time. <strong>That never gets old.</strong></p>
+              <h2>My name is Emma Wilson.</h2>
+              <p><strong>10+ years building terrariums.</strong> From tiny desk pieces to 3-foot living walls.<br /><br />Over <strong>150 original terrarium designs</strong> created. Taught <strong>400+ students</strong> in workshops to build their first waterfall terrarium from scratch.</p>
+              <p>Best part about building terrariums? Watching someone step back and realize they just built something beautiful with their own hands. <strong>That moment never gets old.</strong></p>
             </div>
           </section>
 
           {/* COURSE INTRO */}
           <section className="bonsai-center course-intro">
-            <h2 style={{ marginBottom: 4, fontSize: 'clamp(2.2rem, 5vw, 3.2rem)', fontWeight: 600 }}>Introducing: The Perfume<br />Masterclass</h2>
-            <p style={{ fontStyle: 'italic', color: 'var(--ink-muted)' }}>L&apos;art du parfum: the art of fragrance</p>
+            <h2 style={{ marginBottom: 4, fontSize: 'clamp(2.2rem, 5vw, 3.2rem)', fontWeight: 600 }}>Introducing: The Waterfall<br />Terrarium Masterclass</h2>
+            <p style={{ fontStyle: 'italic', color: 'var(--ink-muted)' }}>From glass box to living jungle. The complete system</p>
           </section>
+
+          {/* HERESWHATYOUGET IMAGE */}
+          <div className="bonsai-center" style={{ marginBottom: 32 }}>
+            <div className="hereswhatyouget-desktop" style={{ position: 'relative', width: '100%', maxWidth: 700, margin: '0 auto' }}>
+              <Image src="/hereswhatyouget_waterfall.jpg" alt="Everything included in the course" width={700} height={500} style={{ width: '100%', height: 'auto', borderRadius: 12 }} />
+            </div>
+            <div className="hereswhatyouget-mobile" style={{ position: 'relative', width: '100%', margin: '0 auto' }}>
+              <Image src="/hereswhatyouget_waterfall_mobile.jpg" alt="Everything included in the course" width={400} height={600} style={{ width: '100%', height: 'auto', borderRadius: 12 }} />
+            </div>
+          </div>
 
           {/* MODULES */}
           <section style={{ padding: '20px 0 40px' }}>
-            <div className="bonsai-center" style={{ marginBottom: 24 }}>
-              <Image className="hereswhatyouget-desktop" src="/hereiswhatyouget.jpg" alt="Here's what you get" width={800} height={400} sizes="700px" style={{ width: '100%', maxWidth: 700, height: 'auto', margin: '0 auto 24px' }} />
-              <Image className="hereswhatyouget-mobile" src="/hereiswhatyouget_mobile.jpg" alt="Here's what you get" width={400} height={400} sizes="400px" style={{ width: '100%', maxWidth: 400, height: 'auto', margin: '0 auto 24px' }} />
-            </div>
             <h2 className="bonsai-center whats-inside" style={{ marginTop: 86, marginBottom: 24 }}>&#10022; What&apos;s Inside &#10022;</h2>
 
             <div className="module-card">
               <div className="module-label">Module 1</div>
-              <h3><span style={{ color: '#E8762B' }}>Why $200 Perfumes Smell So Good</span> (And How Yours Will Too)</h3>
-              <div className="module-sub">The principles behind every great fragrance, broken down for beginners.</div>
+              <h3><span style={{ color: 'var(--accent)' }}>The Science of Miniature Ecosystems</span> (And Why Yours Will Thrive)</h3>
+              <div className="module-sub">The principles behind every stunning terrarium, broken down for beginners.</div>
               <div className="module-body">
-                <div className="module-img"><Image src="/module1_new4.jpg" alt="Fragrance fundamentals" fill style={{ objectFit: 'cover' }} /></div>
+                <div className="module-img"><Image src="/module1_waterfall_volcano.png" alt="Module 1 - Science of Ecosystems" fill style={{ objectFit: 'cover' }} /></div>
                 <ul>
-                  <li>&#10022; What makes a <strong>$200 perfume smell expensive</strong> and how to replicate it</li>
-                  <li>&#10022; The <strong>fragrance pyramid</strong>: the structure behind every great scent</li>
-                  <li>&#10022; Why <strong>3 notes layered right</strong> can outperform 40 random ingredients</li>
-                  <li>&#10022; How to <strong>train your nose</strong> to pick the right combinations instantly</li>
+                  <li>&#10022; How <strong>self sustaining ecosystems work</strong> and why terrariums practically maintain themselves</li>
+                  <li>&#10022; The <strong>4 layers</strong> every terrarium needs to stay alive and look incredible</li>
+                  <li>&#10022; Why <strong>simple builds with the right foundation</strong> outperform complex ones every time</li>
+                  <li>&#10022; How to <strong>choose the right container</strong> for maximum visual impact</li>
                 </ul>
               </div>
             </div>
 
             <div className="module-card">
               <div className="module-label">Module 2</div>
-              <h3><span style={{ color: '#E8762B' }}>What Ingredients to Buy</span> (And What&apos;s a Waste of Money)</h3>
+              <h3><span style={{ color: 'var(--accent)' }}>What Materials to Buy</span> (And What&apos;s a Waste of Money)</h3>
               <div className="module-sub">Your complete shopping list and workspace setup.</div>
               <div className="module-body">
-                <div className="module-img"><Image src="/module2_brandnew.png" alt="Perfume ingredients and supplies" fill style={{ objectFit: 'cover' }} /></div>
+                <div className="module-img"><Image src="/module2_waterfall.png" alt="Module 2 - Materials" fill style={{ objectFit: 'cover' }} /></div>
                 <ul>
-                  <li>&#10022; The <strong>$30 shopping list</strong> that replaces a $300 collection</li>
-                  <li>&#10022; The <strong>5 essential oils every beginner should have</strong></li>
-                  <li>&#10022; The <strong>drop-by-drop method</strong> that prevents ruining a batch</li>
-                  <li>&#10022; <strong>Natural vs synthetic</strong>, the decision that determines everything</li>
+                  <li>&#10022; The <strong>$35 shopping list</strong> that gives you everything you need</li>
+                  <li>&#10022; The <strong>best moss, stones, and plants for beginners</strong></li>
+                  <li>&#10022; The <strong>only water pump you need</strong> and how to size it correctly</li>
+                  <li>&#10022; <strong>Natural vs artificial elements</strong>. The choice that determines the final look</li>
                 </ul>
               </div>
             </div>
 
             <div className="module-card">
               <div className="module-label">Module 3</div>
-              <h3><span style={{ color: '#E8762B' }}>Your First Perfume:</span> The Method Behind Every $200 Bottle</h3>
-              <div className="module-sub">This is where raw ingredients become YOUR perfume. The moment that hooks you.</div>
+              <h3><span style={{ color: 'var(--accent)' }}>Building the Foundation:</span> Rocks, Layers, and Water Flow</h3>
+              <div className="module-sub">This is where raw materials become YOUR miniature jungle. The moment that hooks you.</div>
               <div className="module-body">
-                <div className="module-img"><Image src="/module3_fresh.png" alt="Blending perfume" fill style={{ objectFit: 'cover' }} /></div>
+                <div className="module-img"><Image src="/module3_waterfall.png" alt="Module 3 - Building the Foundation" fill style={{ objectFit: 'cover' }} /></div>
                 <ul>
-                  <li>&#10022; How to <strong>visualize a fragrance</strong> before you add a single drop</li>
-                  <li>&#10022; Your first <strong>before-and-after transformation</strong> with 3-5 ingredients</li>
-                  <li>&#10022; The <strong>one blending mistake 80% of beginners make</strong> (and the fix)</li>
-                  <li>&#10022; <strong>Quick adjustments</strong> to refine your blend from good to &quot;I can&apos;t believe I made this&quot;</li>
+                  <li>&#10022; How to <strong>design the water path</strong> before placing a single stone</li>
+                  <li>&#10022; <strong>Stacking and sculpting rocks</strong> to create a natural looking cliff face</li>
+                  <li>&#10022; <strong>Installing the pump and tubing</strong> so everything stays hidden and silent</li>
+                  <li>&#10022; <strong>Testing and adjusting flow</strong> until the waterfall sounds and looks exactly right</li>
                 </ul>
               </div>
             </div>
 
             <div className="module-card">
               <div className="module-label">Module 4</div>
-              <h3><span style={{ color: '#E8762B' }}>The 8-Hour Scent:</span> How To Make Your Perfume Last</h3>
-              <div className="module-sub">The technique that gives perfumes their depth and longevity. Easier than it sounds.</div>
+              <h3><span style={{ color: 'var(--accent)' }}>Planting the Jungle:</span> Moss, Ferns, and Living Details</h3>
+              <div className="module-sub">Where rocks and water transform into a living scene that grows more beautiful every week.</div>
               <div className="module-body">
-                <div className="module-img"><Image src="/module4_fresh.png" alt="Layering techniques" fill style={{ objectFit: 'cover' }} /></div>
+                <div className="module-img"><Image src="/module4_waterfall.png" alt="Module 4 - Planting the Jungle" fill style={{ objectFit: 'cover' }} /></div>
                 <ul>
-                  <li>&#10022; How to <strong>layer notes without muddying the scent</strong></li>
-                  <li>&#10022; The right <strong>concentration</strong> for each note</li>
-                  <li>&#10022; The <strong>over-blending mistake</strong> and exactly when to stop</li>
-                  <li>&#10022; Create a scent that <strong>evolves over 8 hours</strong> from a 20-minute formula</li>
+                  <li>&#10022; How to <strong>attach moss to stone</strong> so it grows naturally over time</li>
+                  <li>&#10022; <strong>Choosing and placing ferns, creeping plants, and ground cover</strong> for a jungle look</li>
+                  <li>&#10022; Creating <strong>depth and dimension</strong> that makes your terrarium look 10x bigger than it is</li>
+                  <li>&#10022; The <strong>finishing touches</strong> that make people say &quot;wait, you built that?&quot;</li>
                 </ul>
               </div>
             </div>
 
             <div className="module-card">
               <div className="module-label">Module 5</div>
-              <h3><span style={{ color: '#E8762B' }}>18 Iconic Scent Profiles:</span> From James Bond to Unicorn Farts</h3>
-              <div className="module-sub">Perfume recipes inspired by iconic characters, personalities, and vibes.</div>
+              <h3><span style={{ color: 'var(--accent)' }}>Sealing, Curing, and Long Term Care</span></h3>
+              <div className="module-sub">How to finish your build so it stays alive and beautiful for months and years to come.</div>
               <div className="module-body">
-                <div className="module-img"><Image src="/module5_newnew.jpg" alt="18 Iconic Scent Profiles" fill style={{ objectFit: 'cover' }} /></div>
+                <div className="module-img"><Image src="/module5_waterfall.png" alt="Module 5 - Sealing and Care" fill style={{ objectFit: 'cover' }} /></div>
                 <ul>
-                  <li>&#10022; <strong>8 character-inspired formulas</strong>: James Bond, Barbie, Cleopatra, Gatsby, Wednesday Addams, Tony Montana, Catwoman, and Batman</li>
-                  <li>&#10022; <strong>10 fun &amp; creative recipes</strong>: Unicorn Farts, Low Battery, Sugar Daddy, Old Money, Pillow Talk, Late Night Drive, Do Not Disturb, Stolen Kiss, Whiskey &amp; Wildflowers, and Heaven</li>
-                  <li>&#10022; <strong>Full recipes with ingredient lists</strong> for every scent</li>
-                  <li>&#10022; <strong>Tweak any formula</strong> to make it your own version</li>
+                  <li>&#10022; <strong>How to seal your terrarium</strong> so the humidity cycle runs itself</li>
+                  <li>&#10022; The <strong>first 48 hours</strong> and what to watch for as the ecosystem settles</li>
+                  <li>&#10022; <strong>Water level, light, and temperature</strong> settings that keep everything thriving</li>
+                  <li>&#10022; A <strong>simple weekly routine</strong> that takes 2 minutes and prevents 90% of problems</li>
                 </ul>
               </div>
             </div>
@@ -464,24 +453,24 @@ export default function Home() {
           {/* CTA after modules */}
           <section style={{ padding: '56px 0' }}>
             <div className="bonsai-center" style={{ marginBottom: 32 }}>
-              <p style={{ maxWidth: 720, textAlign: 'left', fontSize: 24, margin: '0 auto 20px' }}>You&apos;ve seen what&apos;s inside. Five modules. A complete system for choosing, blending, and perfecting custom fragrances at home.</p>
+              <p style={{ maxWidth: 720, textAlign: 'left', fontSize: 24, margin: '0 auto 20px' }}>You&apos;ve seen what&apos;s inside. Five modules. A complete system for designing, building, and maintaining waterfall terrariums at home.</p>
               <p style={{ maxWidth: 720, textAlign: 'left', fontSize: 24, margin: '0 auto 20px' }}>The full price for this course is <strong><s>$97</s></strong>.</p>
               <p style={{ maxWidth: 720, textAlign: 'left', fontSize: 24, margin: '0 auto 20px' }}>You&apos;re not going to pay that today. And the reason is simple.</p>
-              <p style={{ maxWidth: 720, textAlign: 'left', fontSize: 24, margin: '0 auto 20px' }}>This is the first time I&apos;ve offered this course to the public. I want <strong>50 people</strong> to go through it. I want to read your emails, answer your questions, see where you get stuck and where you surprise yourself.</p>
-              <p style={{ maxWidth: 720, textAlign: 'left', fontSize: 24, margin: '0 auto 20px' }}>That feedback is worth more to me right now than charging full price. Honestly, I also need to find out if I can handle 50 support inboxes without forgetting to eat.</p>
+              <p style={{ maxWidth: 720, textAlign: 'left', fontSize: 24, margin: '0 auto 20px' }}>This is the first time I&apos;ve offered this course to the public. I want <strong>50 people</strong> to go through it. I want to read your emails, see your builds, find out where you get stuck and where you surprise yourself.</p>
+              <p style={{ maxWidth: 720, textAlign: 'left', fontSize: 24, margin: '0 auto 20px' }}>That feedback is worth more to me right now than charging full price. Honestly, I also need to find out if I can handle 50 support inboxes without forgetting to water my own terrariums.</p>
               <p style={{ maxWidth: 720, textAlign: 'left', fontSize: 24, margin: '0 auto 20px' }}>So for this first group, the price is <strong>dramatically lower</strong>. Once those 50 spots fill, this page comes down and the full price goes live.</p>
             </div>
-            <div className="checkout-box" style={{ maxWidth: 520, margin: '0 auto', padding: '40px 44px', borderRadius: 14, border: '2px solid rgba(58,99,71,0.25)', background: '#ffffff', boxShadow: '0 4px 24px rgba(0,0,0,0.06)', textAlign: 'center' }}>
+            <div className="checkout-box" style={{ maxWidth: 520, margin: '0 auto', padding: '40px 44px', borderRadius: 14, border: '2px solid rgba(45,122,79,0.25)', background: '#ffffff', boxShadow: '0 4px 24px rgba(0,0,0,0.06)', textAlign: 'center' }}>
               <div className="price-old">Normally $97</div>
-              <p id="get-access" className="now-only" style={{ fontSize: 44, color: 'var(--ink)', fontWeight: 700, marginBottom: 8 }}>Now Only <span style={{ color: '#E8762B' }}>$47</span></p>
-              <div className="price-note">One-time payment. <span className="lifetime-break" />Lifetime access.</div>
+              <p id="get-access" className="now-only" style={{ fontSize: 44, color: 'var(--ink)', fontWeight: 700, marginBottom: 8 }}>Now Only <span style={{ color: '#1a9e8f' }}>$47</span></p>
+              <div className="price-note">One time payment. <span className="lifetime-break" />Lifetime access.</div>
               <div style={{ marginTop: 20 }}><CheckoutButton /></div>
               <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginTop: 20 }}>
                 <div style={{ flex: 1, height: 1, background: 'rgba(0,0,0,0.12)' }} />
-                <p style={{ margin: 0, fontWeight: 500, fontSize: 16, whiteSpace: 'nowrap', color: 'var(--ink-muted)' }} className="guarantee-text">90-Day Money-Back Guarantee</p>
+                <p style={{ margin: 0, fontWeight: 500, fontSize: 16, whiteSpace: 'nowrap', color: 'var(--ink-muted)' }} className="guarantee-text">90 Day Money Back Guarantee</p>
                 <div style={{ flex: 1, height: 1, background: 'rgba(0,0,0,0.12)' }} />
               </div>
-              <p style={{ color: 'var(--ink-muted)', marginBottom: 12, marginTop: 20 }}>🔒 Secure payment 🔒</p>
+              <p style={{ color: 'var(--ink-muted)', marginBottom: 12, marginTop: 20 }}>&#128274; Secure payment &#128274;</p>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 16 }}>
                 <Image src="/visa.svg" alt="Visa" width={40} height={26} style={{ height: 26, width: 'auto' }} />
                 <Image src="/mastercard.svg" alt="Mastercard" width={40} height={26} style={{ height: 26, width: 'auto' }} />
@@ -496,11 +485,11 @@ export default function Home() {
 
           {/* GUARANTEE */}
           <section className="guarantee-section">
-            <Image src="/guarantee1.webp" alt="90-Day Money Back Guarantee" width={160} height={160} style={{ width: 130, height: 130, marginBottom: 16, margin: '0 auto 16px', display: 'block' }} />
+            <Image src="/guarantee1.webp" alt="90 Day Money Back Guarantee" width={160} height={160} style={{ width: 130, height: 130, marginBottom: 16, margin: '0 auto 16px', display: 'block' }} />
             <h2 style={{ textAlign: 'center' }}>Try it risk-free</h2>
             <p style={{ fontSize: 20 }}><strong>You don&apos;t have to make the final decision now.</strong></p>
-            <p style={{ textAlign: 'left', fontSize: 20 }}>Get access to the full course. Choose your first ingredients. Learn how to blend properly. Create your first signature scent. Watch your skills sharpen with every new batch.</p>
-            <p style={{ textAlign: 'left', fontSize: 20 }}>If you don&apos;t love it, email hello@clairedoesperfumes.com within 90 days for a full refund. Within 24 hours. <strong>No questions asked.</strong></p>
+            <p style={{ textAlign: 'left', fontSize: 20 }}>Get access to the full course. Choose your first materials. Learn how to build properly. Create your first waterfall terrarium. Watch your skills grow with every new build.</p>
+            <p style={{ textAlign: 'left', fontSize: 20 }}>If you don&apos;t love it, email hello@waterfallterrariums.com within 90 days for a full refund. Within 24 hours. <strong>No questions asked.</strong></p>
           </section>
 
           {/* BONUSES */}
@@ -510,45 +499,45 @@ export default function Home() {
 
             <div className="bonus-card">
               <div className="bonus-header"><div className="bonus-label">Bonus 1</div><div className="bonus-value">$47 value</div></div>
-              <h3><span style={{ color: '#E8762B' }}>Bottle, Label, Gift:</span> Make It Look Boutique</h3>
-              <div className="bonus-desc">The final step that separates amateurs from artisans.</div>
+              <h3><span style={{ color: 'var(--accent)' }}>Maintenance Mastery:</span> Keep It Alive Forever</h3>
+              <div className="bonus-desc">The care guide that keeps your terrarium thriving for years.</div>
               <div className="bonus-body">
-                <div className="bonus-img"><Image src="/module5_fresh.png" alt="Bottling perfume" fill style={{ objectFit: 'cover' }} /></div>
+                <div className="bonus-img"><Image src="/bonus1_waterfall_volcano.png" alt="Bonus 1 - Maintenance Mastery" fill style={{ objectFit: 'cover' }} /></div>
                 <ul>
-                  <li>&#10022; Why <strong>a fresh blend smells nothing like the finished product</strong></li>
-                  <li>&#10022; <strong>Bottling demystified</strong>: preserving your fragrance for months</li>
-                  <li>&#10022; The <strong>signs your blend needs more curing time</strong></li>
-                  <li>&#10022; Choosing the right <strong>bottle and presentation</strong> for a professional finish</li>
+                  <li>&#10022; The <strong>weekly 2-minute check</strong> that prevents 90% of problems</li>
+                  <li>&#10022; <strong>Water level management</strong>: how much, how often, and the signs to watch for</li>
+                  <li>&#10022; How to <strong>handle algae, mold, and yellowing</strong> before they spread</li>
+                  <li>&#10022; <strong>Seasonal adjustments</strong> so your terrarium looks stunning year-round</li>
                 </ul>
               </div>
             </div>
 
             <div className="bonus-card">
               <div className="bonus-header"><div className="bonus-label">Bonus 2</div><div className="bonus-value">$37 value</div></div>
-              <h3>The <span style={{ color: '#E8762B' }}>Blend</span> Perfector</h3>
-              <div className="bonus-desc">Fine-tune any scent until it&apos;s exactly right.</div>
+              <h3>The <span style={{ color: 'var(--accent)' }}>Perfect Balance</span> Guide</h3>
+              <div className="bonus-desc">Fine tune every element so your terrarium looks and runs flawlessly.</div>
               <div className="bonus-body">
-                <div className="bonus-img"><Image src="/bonus2_fresh.jpg" alt="The Blend Perfector" fill style={{ objectFit: 'cover' }} /></div>
+                <div className="bonus-img"><Image src="/bonus2_waterfall_volcano.png" alt="Bonus 2 - The Perfect Balance Guide" fill style={{ objectFit: 'cover' }} /></div>
                 <ul>
-                  <li>&#10022; <strong>Scent fades in an hour?</strong> The 4 possible causes and fixes</li>
-                  <li>&#10022; <strong>Smells different on skin vs paper?</strong> How to tell why in 30 seconds</li>
-                  <li>&#10022; <strong>Top notes disappeared?</strong> The adjustment that restores them</li>
-                  <li>&#10022; <strong>15+ common problems</strong> with step-by-step solutions</li>
+                  <li>&#10022; How to <strong>get the perfect water flow rate</strong> for a natural sounding cascade</li>
+                  <li>&#10022; <strong>Dialing in humidity</strong> so your glass stays crystal clear</li>
+                  <li>&#10022; The <strong>light and temperature sweet spot</strong> that keeps plants lush and vibrant</li>
+                  <li>&#10022; <strong>15+ pro adjustments</strong> that take a good build and make it stunning</li>
                 </ul>
               </div>
             </div>
 
             <div className="bonus-card">
               <div className="bonus-header"><div className="bonus-label">Bonus 3</div><div className="bonus-value">$27 value</div></div>
-              <h3>Your <span style={{ color: '#E8762B' }}>Scent DNA</span> Profile</h3>
-              <div className="bonus-desc">Discover your scent personality and build a fragrance that&apos;s unmistakably yours.</div>
+              <h3>The <span style={{ color: 'var(--accent)' }}>Plant Picker</span></h3>
+              <div className="bonus-desc">A visual guide to the 20 best terrarium plants so you always know exactly what to use.</div>
               <div className="bonus-body">
-                <div className="bonus-img"><Image src="/bonus3_newnew.png" alt="Your Scent DNA Profile" fill style={{ objectFit: 'cover' }} /></div>
+                <div className="bonus-img"><Image src="/bonus3_waterfall_volcano.png" alt="Bonus 3 - The Plant Picker" fill style={{ objectFit: 'cover' }} /></div>
                 <ul>
-                  <li>&#10022; <strong>The scent personality quiz</strong> to find your 3 ideal fragrance families</li>
-                  <li>&#10022; How to <strong>build your &quot;scent DNA&quot; profile</strong> from everyday smells</li>
-                  <li>&#10022; The <strong>signature scent formula</strong>, a repeatable method that feels like &quot;you&quot;</li>
-                  <li>&#10022; How to <strong>evolve your signature</strong> so it never feels stale</li>
+                  <li>&#10022; <strong>20 plants ranked by difficulty</strong> so you start with the ones that are hardest to kill</li>
+                  <li>&#10022; <strong>Photos of each plant</strong> at 1 week, 1 month, and 3 months inside a terrarium</li>
+                  <li>&#10022; Which plants <strong>grow fast vs stay small</strong> so your build looks right long term</li>
+                  <li>&#10022; The <strong>5 combinations that always look good together</strong> no matter the container</li>
                 </ul>
               </div>
             </div>
@@ -558,23 +547,23 @@ export default function Home() {
           <section style={{ padding: '36px 0' }} id="pricing">
             <h2 className="bonsai-center" style={{ marginBottom: 18 }}>Here&apos;s everything you get:</h2>
             <div className="stack-row stack-total"><span className="label">&#10003; 5 Core Modules</span><span className="val">$139</span></div>
-            <div className="stack-row"><span className="label">&#10003; Bottle, Label, Gift</span><span className="val">$47</span></div>
-            <div className="stack-row"><span className="label">&#10003; The Blend Perfector</span><span className="val">$37</span></div>
-            <div className="stack-row"><span className="label">&#10003; Your Scent DNA Profile</span><span className="val">$27</span></div>
+            <div className="stack-row"><span className="label">&#10003; Maintenance Mastery</span><span className="val">$47</span></div>
+            <div className="stack-row"><span className="label">&#10003; The Perfect Balance Guide</span><span className="val">$37</span></div>
+            <div className="stack-row"><span className="label">&#10003; The Plant Picker</span><span className="val">$27</span></div>
             <div className="stack-row" style={{ borderBottom: 'none' }}><span className="label" style={{ fontWeight: 700, color: 'var(--ink)' }}>Total Value</span><span className="val" style={{ fontSize: 16 }}>$250</span></div>
           </section>
 
-          <div className="checkout-box" style={{ maxWidth: 520, margin: '0 auto', padding: '40px 44px', borderRadius: 14, border: '2px solid rgba(58,99,71,0.25)', background: '#ffffff', boxShadow: '0 4px 24px rgba(0,0,0,0.06)', textAlign: 'center' }}>
+          <div className="checkout-box" style={{ maxWidth: 520, margin: '0 auto', padding: '40px 44px', borderRadius: 14, border: '2px solid rgba(45,122,79,0.25)', background: '#ffffff', boxShadow: '0 4px 24px rgba(0,0,0,0.06)', textAlign: 'center' }}>
             <div className="price-old">Normally $97</div>
-            <p className="now-only" style={{ fontSize: 44, color: 'var(--ink)', fontWeight: 700, marginBottom: 8 }}>Now Only <span style={{ color: '#E8762B' }}>$47</span></p>
-            <div className="price-note">One-time payment. <span className="lifetime-break" />Lifetime access.</div>
+            <p className="now-only" style={{ fontSize: 44, color: 'var(--ink)', fontWeight: 700, marginBottom: 8 }}>Now Only <span style={{ color: '#1a9e8f' }}>$47</span></p>
+            <div className="price-note">One time payment. <span className="lifetime-break" />Lifetime access.</div>
             <div style={{ marginTop: 20 }}><CheckoutButton /></div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginTop: 20 }}>
               <div style={{ flex: 1, height: 1, background: 'rgba(0,0,0,0.12)' }} />
-              <p style={{ margin: 0, fontWeight: 500, fontSize: 16, whiteSpace: 'nowrap', color: 'var(--ink-muted)' }} className="guarantee-text">90-Day Money-Back Guarantee</p>
+              <p style={{ margin: 0, fontWeight: 500, fontSize: 16, whiteSpace: 'nowrap', color: 'var(--ink-muted)' }} className="guarantee-text">90 Day Money Back Guarantee</p>
               <div style={{ flex: 1, height: 1, background: 'rgba(0,0,0,0.12)' }} />
             </div>
-            <p style={{ color: 'var(--ink-muted)', marginBottom: 12, marginTop: 20 }}>🔒 Secure payment 🔒</p>
+            <p style={{ color: 'var(--ink-muted)', marginBottom: 12, marginTop: 20 }}>&#128274; Secure payment &#128274;</p>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 16 }}>
               <Image src="/visa.svg" alt="Visa" width={40} height={26} style={{ height: 26, width: 'auto' }} />
               <Image src="/mastercard.svg" alt="Mastercard" width={40} height={26} style={{ height: 26, width: 'auto' }} />
@@ -593,15 +582,16 @@ export default function Home() {
 
             <div className="bonus-card mega">
               <div className="bonus-header"><div className="bonus-label">Mega Bonus</div><div className="bonus-value">$79 value</div></div>
-              <h3><span style={{ color: '#E8762B' }}>The Dupe Lab:</span> Recreate 10 Iconic Perfumes at Home</h3>
-              <div className="bonus-desc">The exact formulas to recreate the world&apos;s most popular fragrances for under $10 a bottle.</div>
+              <h3><span style={{ color: 'var(--accent)' }}>The Desert Terrarium:</span> A Complete Second Build</h3>
+              <div className="bonus-desc">A full step by step guide to building a miniature desert landscape with sand, succulents, and dry rock formations.</div>
               <div className="bonus-body">
-                <div className="bonus-img"><Image src="/megabonus.jpg" alt="The Dupe Lab" fill style={{ objectFit: 'cover' }} /></div>
+                <div className="bonus-img"><Image src="/megabonus_waterfall_volcano.png" alt="Mega Bonus - Desert Terrarium" fill style={{ objectFit: 'cover' }} /></div>
                 <ul>
-                  <li>&#10022; <strong>5 iconic women&apos;s fragrances</strong> inspired by Baccarat Rouge 540, Miss Dior, Chanel No. 5, and more</li>
-                  <li>&#10022; <strong>5 iconic men&apos;s fragrances</strong> inspired by Dior Sauvage, Bleu de Chanel, Tom Ford Oud Wood, and more</li>
-                  <li>&#10022; <strong>Full ingredient lists and cost breakdowns</strong> for each formula</li>
-                  <li>&#10022; How to <strong>tweak each recipe to make it your own</strong></li>
+                  <li>&#10022; <strong>Complete build guide</strong> from container selection to finished desert scene</li>
+                  <li>&#10022; How to <strong>layer sand and gravel</strong> for a natural canyon look</li>
+                  <li>&#10022; <strong>Choosing and placing succulents, cacti, and air plants</strong> that thrive with zero effort</li>
+                  <li>&#10022; Adding <strong>driftwood, dry stones, and pebble paths</strong> for realistic detail</li>
+                  <li>&#10022; <strong>Full material list and cost breakdown</strong> for the entire build</li>
                 </ul>
               </div>
             </div>
@@ -621,24 +611,24 @@ export default function Home() {
           <section style={{ padding: '36px 0' }}>
             <h2 className="bonsai-center" style={{ marginBottom: 18 }}>Here&apos;s everything you get:</h2>
             <div className="stack-row stack-total"><span className="label">&#10003; 5 Core Modules</span><span className="val">$139</span></div>
-            <div className="stack-row"><span className="label">&#10003; Bottle, Label, Gift</span><span className="val">$47</span></div>
-            <div className="stack-row"><span className="label">&#10003; The Blend Perfector</span><span className="val">$37</span></div>
-            <div className="stack-row"><span className="label">&#10003; Your Scent DNA Profile</span><span className="val">$27</span></div>
-            <div className="stack-row"><span className="label">&#10003; The Dupe Lab: 10 Iconic Perfume Formulas</span><span className="val">$79</span></div>
+            <div className="stack-row"><span className="label">&#10003; Maintenance Mastery</span><span className="val">$47</span></div>
+            <div className="stack-row"><span className="label">&#10003; The Perfect Balance Guide</span><span className="val">$37</span></div>
+            <div className="stack-row"><span className="label">&#10003; The Plant Picker</span><span className="val">$27</span></div>
+            <div className="stack-row"><span className="label">&#10003; The Desert Terrarium Build</span><span className="val">$79</span></div>
             <div className="stack-row" style={{ borderBottom: 'none' }}><span className="label" style={{ fontWeight: 700, color: 'var(--ink)' }}>Total Value</span><span className="val" style={{ fontSize: 16 }}>$329</span></div>
           </section>
 
-          <div className="checkout-box" style={{ maxWidth: 520, margin: '0 auto', padding: '40px 44px', borderRadius: 14, border: '2px solid rgba(58,99,71,0.25)', background: '#ffffff', boxShadow: '0 4px 24px rgba(0,0,0,0.06)', textAlign: 'center' }}>
+          <div className="checkout-box" style={{ maxWidth: 520, margin: '0 auto', padding: '40px 44px', borderRadius: 14, border: '2px solid rgba(45,122,79,0.25)', background: '#ffffff', boxShadow: '0 4px 24px rgba(0,0,0,0.06)', textAlign: 'center' }}>
             <div className="price-old">Normally $97</div>
-            <p className="now-only" style={{ fontSize: 44, color: 'var(--ink)', fontWeight: 700, marginBottom: 8 }}>Now Only <span style={{ color: '#E8762B' }}>$47</span></p>
-            <div className="price-note">One-time payment. <span className="lifetime-break" />Lifetime access.</div>
+            <p className="now-only" style={{ fontSize: 44, color: 'var(--ink)', fontWeight: 700, marginBottom: 8 }}>Now Only <span style={{ color: '#1a9e8f' }}>$47</span></p>
+            <div className="price-note">One time payment. <span className="lifetime-break" />Lifetime access.</div>
             <div style={{ marginTop: 20 }}><CheckoutButton /></div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginTop: 20 }}>
               <div style={{ flex: 1, height: 1, background: 'rgba(0,0,0,0.12)' }} />
-              <p style={{ margin: 0, fontWeight: 500, fontSize: 16, whiteSpace: 'nowrap', color: 'var(--ink-muted)' }} className="guarantee-text">90-Day Money-Back Guarantee</p>
+              <p style={{ margin: 0, fontWeight: 500, fontSize: 16, whiteSpace: 'nowrap', color: 'var(--ink-muted)' }} className="guarantee-text">90 Day Money Back Guarantee</p>
               <div style={{ flex: 1, height: 1, background: 'rgba(0,0,0,0.12)' }} />
             </div>
-            <p style={{ color: 'var(--ink-muted)', marginBottom: 12, marginTop: 20 }}>🔒 Secure payment 🔒</p>
+            <p style={{ color: 'var(--ink-muted)', marginBottom: 12, marginTop: 20 }}>&#128274; Secure payment &#128274;</p>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 16 }}>
               <Image src="/visa.svg" alt="Visa" width={40} height={26} style={{ height: 26, width: 'auto' }} />
               <Image src="/mastercard.svg" alt="Mastercard" width={40} height={26} style={{ height: 26, width: 'auto' }} />
@@ -656,11 +646,11 @@ export default function Home() {
         </div>
       </div>
 
-      {/* FOOTER */}
+{/* FOOTER */}
       <footer className="bonsai-footer" style={{ paddingBottom: 100 }}>
-        <p>&copy; 2026 Claire Does Perfumes. All rights reserved.</p>
+        <p>&copy; 2026 Waterfall Terrariums. All rights reserved.</p>
         <p style={{ marginTop: 5 }}><a href="/privacy">Privacy</a> &middot; <a href="/terms">Terms</a></p>
-        <p style={{ marginTop: 16, fontSize: 11, color: '#8a7f72', maxWidth: 600, margin: '16px auto 0', lineHeight: 1.5 }}>This site is not a part of the Facebook website or Facebook Inc. Additionally, this site is NOT endorsed by Facebook in any way. FACEBOOK is a trademark of FACEBOOK, Inc.</p>
+        <p style={{ marginTop: 16, fontSize: 11, color: '#666', maxWidth: 600, margin: '16px auto 0', lineHeight: 1.5 }}>This site is not a part of the Facebook website or Facebook Inc. Additionally, this site is NOT endorsed by Facebook in any way. FACEBOOK is a trademark of FACEBOOK, Inc.</p>
       </footer>
     </main>
   );

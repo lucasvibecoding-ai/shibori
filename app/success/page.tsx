@@ -4,7 +4,7 @@ import PurchaseFlag from "./PurchaseFlag";
 import PurchaseTracker from "./PurchaseTracker";
 
 export const metadata: Metadata = {
-  title: "You're In! — Claire Does Perfumes",
+  title: "You're In! — Waterfall Terrariums",
 };
 
 export default function Success() {
@@ -50,7 +50,7 @@ export default function Success() {
             </li>
             <li className="flex items-start gap-3">
               <span className="text-gold font-bold flex-shrink-0">2.</span>
-              <span>Start with <strong className="text-cream">Module 1</strong> — learn how fragrance works and prepare for your first blend</span>
+              <span>Start with <strong className="text-cream">Module 1</strong> — learn how terrarium ecosystems work and prepare for your first build</span>
             </li>
             <li className="flex items-start gap-3">
               <span className="text-gold font-bold flex-shrink-0">3.</span>
@@ -61,25 +61,17 @@ export default function Success() {
 
         <p className="text-sm" style={{ color: 'rgba(125,117,104,0.6)' }}>
           Didn&apos;t get the email? Check your spam folder or contact us at{" "}
-          <a href="mailto:hello@clairedoesperfumes.com" className="text-gold underline">
-            hello@clairedoesperfumes.com
+          <a href="mailto:hello@waterfallterrariums.com" className="text-gold underline">
+            hello@waterfallterrariums.com
           </a>
         </p>
 
         <div className="pt-4">
           <p className="text-muted text-lg font-medium">
-            Welcome to the best smelling hobby
+            Welcome to the most rewarding hobby
           </p>
         </div>
 
-        <div className="pt-4">
-          <a
-            href="/"
-            className="text-gold hover:underline text-sm"
-          >
-            &larr; Back to home
-          </a>
-        </div>
       </div>
     </main>
   );

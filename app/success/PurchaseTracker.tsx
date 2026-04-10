@@ -27,7 +27,7 @@ export default function PurchaseTracker() {
       window.fbq('track', 'Purchase', {
         value: 47.00,
         currency: 'USD',
-        content_name: 'The Bonsai Path',
+        content_name: 'Waterfall Terrarium Masterclass',
         content_type: 'product',
       }, { eventID: sessionId });
     }

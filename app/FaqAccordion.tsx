@@ -4,48 +4,48 @@ import { useState } from 'react';
 
 const faqs = [
   {
-    q: 'Do I need any experience with perfume or fragrance?',
-    a: "None at all. This course is built for complete beginners, including people who've never smelled an essential oil outside of a candle store. Module 1 starts by teaching you how scent works and walks you through your very first blend step by step.",
+    q: 'Do I need any experience with terrariums or plants?',
+    a: "None at all. This course is built for complete beginners, including people who've never kept a plant alive. Module 1 starts by teaching you how terrarium ecosystems work and walks you through your very first build step by step.",
   },
   {
     q: 'How much does everything cost to get started?',
-    a: "Under $35 total. A starter set of essential oils ($15-20), carrier oil ($5-8), and a few small bottles ($5-7). The course includes a complete shopping guide with links. You do NOT need expensive niche ingredients or professional lab equipment.",
+    a: "Under $40 total. A glass container ($10 to $15), a small water pump ($8 to $12), substrate materials ($5 to $8), and moss/plants ($8 to $12). The course includes a complete shopping guide with links. You do NOT need expensive specialty supplies.",
   },
   {
-    q: 'Will you tell me which ingredients to buy and where to get them?',
-    a: "Yes. Module 2 walks you through exactly which oils to start with based on the scent profiles you're drawn to. It also includes a shopping guide with specific links so you know exactly where to buy everything and what to avoid.",
+    q: 'Will you tell me which materials to buy and where to get them?',
+    a: "Yes. Module 2 walks you through exactly which materials to start with based on the design you want to build. It also includes a shopping guide with specific links so you know exactly where to buy everything and what to avoid.",
   },
   {
-    q: 'What ingredients do I need for my first perfume?',
-    a: "Everything you need costs under $30. A basic starter kit includes: 5-7 essential oils (lavender, vanilla, bergamot, sandalwood, cedarwood, ylang ylang, and lemon), a carrier oil like jojoba, small glass bottles, and a dropper. Module 2 covers exactly what to buy and where.",
+    q: 'What materials do I need for my first terrarium?',
+    a: "Everything you need costs under $40. A basic starter kit includes: a glass container, small aquarium pump, tubing, river rocks, activated charcoal, sphagnum moss, and 2-3 small ferns or tropical plants. Module 2 covers exactly what to buy and where.",
   },
   {
-    q: 'Can I make perfume in a small apartment with no special setup?',
-    a: "Yes. All you need is a table, good ventilation (an open window works), and the ingredients. No lab, no special room, no expensive equipment. Most of our students blend at their kitchen table or desk.",
+    q: 'Can I build this in a small apartment?',
+    a: "Absolutely. All you need is a table and the materials. No garage, no workshop, no power tools. Most of our students build at their kitchen table or desk. The finished terrarium can be as small as a shoebox.",
   },
   {
-    q: 'Will this work with ingredients available in my country?',
-    a: "Yes. The essential oils and carrier oils used in this course are available worldwide through online retailers. The course covers both natural and synthetic options, and the shopping guide includes international suppliers. If you can order online, you can get everything you need.",
+    q: 'Will this work with materials available in my country?',
+    a: "Yes. The materials used in this course are available worldwide through online retailers and local garden centers. The course covers alternatives for hard to find items, and the shopping guide includes international suppliers. If you can order online, you can get everything you need.",
   },
   {
-    q: 'How much time does each blending session take?',
-    a: "Your first blend takes about 30-45 minutes including setup. After that, most sessions are 15-20 minutes. Curing happens on its own over 48 hours — you just let it sit. It's one of the most rewarding creative hobbies for the time invested.",
+    q: 'How much time does the build take?',
+    a: "Your first waterfall terrarium takes about 2 to 3 hours from start to finish. After that, most builds take 1 to 2 hours. The ecosystem establishes itself over the following weeks.you just watch it grow. It's one of the most rewarding creative hobbies for the time invested.",
   },
   {
-    q: 'How long until my perfume actually smells professional?',
-    a: 'Your first blending session produces something you\'ll want to wear. That happens in one afternoon, not one year. Going from "random mix of oils" to "people ask what I\'m wearing" can happen on day one with the right formula. Depth and complexity build with practice, but the initial "wow" moment is immediate.',
+    q: 'How long until it actually looks like the ones I see online?',
+    a: 'Your build will look stunning the moment you finish. That happens in one afternoon. The moss fills in and the plants establish over 2 to 4 weeks, and it only gets more beautiful from there. The initial "wow" moment is immediate. The long term beauty is a bonus.',
   },
   {
-    q: "I have a terrible sense of smell. Can I still do this?",
-    a: "Unless you have a medical condition affecting your smell, your nose is far more capable than you think. Most people simply haven't trained it. The Scent Journal bonus includes daily exercises that sharpen your ability to detect and distinguish notes. Within a week, you'll notice scents you never picked up before.",
+    q: "I've killed every plant I've ever owned. Can I still do this?",
+    a: "Terrariums are fundamentally different from potted plants. They're self sustaining ecosystems.the sealed environment recycles moisture and nutrients. Once built correctly, they practically take care of themselves. If you can build it right (which this course ensures), keeping it alive is the easy part.",
   },
   {
-    q: 'What if my blend turns out terrible?',
-    a: "The Troubleshooting Guide covers every common mistake so you can fix or salvage almost any blend. But honestly, even experienced perfumers create duds. It's part of the process. That's exactly why we start you with affordable ingredients. A failed $3 experiment is a lesson, not a disaster. And the next one will be better because of what you learned.",
+    q: 'What if my build turns out terrible?',
+    a: "The Troubleshooting Guide covers every common mistake so you can fix almost any issue. But honestly, even experienced builders have off days. That's why we start you with affordable materials. A failed $30 experiment is a lesson, not a disaster. And the next one will be better because of what you learned.",
   },
   {
     q: "What's the refund policy?",
-    a: "90-day money-back guarantee. Try the entire course. Choose your ingredients. Make your first blends. If you don't love it, email us within 90 days and we'll refund you in full. No questions asked. No hoops.",
+    a: "90-day money back guarantee. Try the entire course. Choose your materials. Build your first terrarium. If you don't love it, email us within 90 days and we'll refund you in full. No questions asked. No hoops.",
   },
   {
     q: 'How is the content delivered?',
@@ -57,7 +57,7 @@ const faqs = [
   },
   {
     q: 'Have a specific question?',
-    a: "Email us at hello@clairedoesperfumes.com and we'll get back to you as soon as possible.",
+    a: "Email us at hello@waterfallterrariums.com and we'll get back to you as soon as possible.",
   },
 ];
 

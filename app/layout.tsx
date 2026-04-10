@@ -15,14 +15,21 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "Create Your Own Perfume at Home in a Single Weekend",
+  title: "Build a Working Waterfall Terrarium That Becomes a Living Jungle Scene",
   description:
-    "Learn to create custom fragrances at home without expensive ingredients or years of trial and error. Even if you're a complete beginner.",
+    "Learn to build stunning miniature waterfall terrariums at home with no experience. Step-by-step guide to creating a living jungle in glass.",
   icons: {
-    icon: "/favicon.png",
+    icon: "/favicon.jpg",
   },
-  viewport: "width=device-width, initial-scale=1, viewport-fit=cover",
 };
+
+export function generateViewport() {
+  return {
+    width: "device-width",
+    initialScale: 1,
+    viewportFit: "cover" as const,
+  };
+}
 
 export default function RootLayout({
   children,
