@@ -303,7 +303,7 @@ export default function Home() {
           <section style={{ padding: '48px 0 64px', marginTop: 32 }}>
               <h2 style={{ marginBottom: 44, textAlign: 'center' }}>&quot;Isn&apos;t <span style={{ color: 'var(--accent)' }}>terrarium building</span> expensive?&quot;</h2>
               <p><strong>Your first volcano terrarium costs less than dinner out.</strong></p>
-              <p>A glass container is <strong>$10 to $15</strong>. A small LED lava kit is <strong>$8 to $12</strong> (don&apos;t worry, LED lava modules are incredibly easy to use). Moss, stones, and plants cost <strong>under $15.</strong></p>
+              <p>A glass container is <strong>$10 to $15</strong>. A small water pump is <strong>$8 to $12</strong> (don&apos;t worry, water pumps are incredibly easy to use). Moss, stones, and plants cost <strong>under $15.</strong></p>
               <p>That&apos;s it. No $200 specialty supplies. No professional equipment.</p>
               <p>And once it&apos;s built, <strong>maintenance is practically free</strong>. A terrarium recycles its own water and barely needs attention. Two minutes a week is all it takes to keep it thriving.</p>
           </section>
