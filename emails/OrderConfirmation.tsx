@@ -21,7 +21,7 @@ export default function OrderConfirmation({ customerEmail }: OrderConfirmationPr
       <Body style={body}>
         <Container style={container}>
 
-          <Heading style={heading}>Thank you for your purchase 🌸</Heading>
+          <Heading style={heading}>Thank you for your purchase 🌿</Heading>
 
           <Text style={text}>
             Hi there,
@@ -44,7 +44,7 @@ export default function OrderConfirmation({ customerEmail }: OrderConfirmationPr
           </Text>
 
           <Text style={optionText}>
-            <strong>Option 2 — Wait for the updated version.</strong> It&apos;s coming end of April. It&apos;s going to be incredible. As a thank you for your patience, I&apos;ll give you a <strong>steep discount</strong> on our private community once it opens — it&apos;s going to be a space for fragrance enthusiasts, and you&apos;ll get in at a fraction of the price.
+            <strong>Option 2 — Wait for the updated version.</strong> It&apos;s coming end of April. It&apos;s going to be incredible. As a thank you for your patience, I&apos;ll give you a <strong>steep discount</strong> on our private community once it opens — it&apos;s going to be a space for terrarium enthusiasts, and you&apos;ll get in at a fraction of the price.
           </Text>
 
           <Hr style={divider} />
@@ -54,7 +54,7 @@ export default function OrderConfirmation({ customerEmail }: OrderConfirmationPr
           </Text>
 
           <Text style={signature}>
-            — Claire Beaumont
+            — Emma Wilson
           </Text>
 
           <Hr style={divider} />
@@ -72,7 +72,7 @@ export default function OrderConfirmation({ customerEmail }: OrderConfirmationPr
           </Text>
 
           <Text style={spamStep}>
-            <strong>2. Add me to your contacts.</strong> Save <strong>hello@clairedoesperfumes.com</strong> as a contact and future emails will go straight to your inbox.
+            <strong>2. Add me to your contacts.</strong> Save <strong>hello@emmasterrariums.com</strong> as a contact and future emails will go straight to your inbox.
           </Text>
 
           <Text style={spamStep}>

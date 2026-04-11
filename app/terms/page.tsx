@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Terms of Service — The Bonsai Path",
+  title: "Terms of Service — Emma's Terrariums",
 };
 
 export default function TermsPage() {
@@ -16,7 +16,7 @@ export default function TermsPage() {
         <section>
           <h2 className="text-2xl font-serif mb-3 text-cream">1. Overview</h2>
           <p>
-            By purchasing and accessing The Bonsai Path (&quot;the Course&quot;),
+            By purchasing and accessing Emma's Terrariums (&quot;the Course&quot;),
             you agree to be bound by these Terms of Service. If you do not agree to these
             terms, please do not purchase or use the Course.
           </p>
@@ -60,7 +60,7 @@ export default function TermsPage() {
           <h2 className="text-2xl font-serif mb-3 text-cream">5. Intellectual Property</h2>
           <p>
             All Course content &mdash; including videos, text, images, templates, and
-            downloadable materials &mdash; is the intellectual property of The Bonsai Path
+            downloadable materials &mdash; is the intellectual property of Emma's Terrariums
             and is protected by copyright law. Purchasing the Course does not
             transfer ownership of any intellectual property.
           </p>
@@ -79,9 +79,9 @@ export default function TermsPage() {
         <section>
           <h2 className="text-2xl font-serif mb-3 text-cream">7. Liability</h2>
           <p>
-            Bonsai cultivation involves working with living plants and tools.
+            Terrarium building involves working with living plants, water, and tools.
             You are solely responsible for following proper safety procedures.
-            The Bonsai Path is not liable for any issues that may arise from
+            Emma&apos;s Terrariums is not liable for any issues that may arise from
             following the techniques taught in the Course.
           </p>
         </section>
