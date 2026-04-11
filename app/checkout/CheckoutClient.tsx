@@ -398,7 +398,7 @@ export default function CheckoutClient() {
               <span className="item-price">FREE</span>
             </div>
             <div className="line-item">
-              <span className="item-name">Pattern Library: 30 Designs</span>
+              <span className="item-name">Pattern Library: 15 Designs</span>
               <span className="item-price">FREE</span>
             </div>
 

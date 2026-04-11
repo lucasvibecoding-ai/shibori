@@ -215,9 +215,11 @@ export default function Home() {
           .badge { font-size: 10px; letter-spacing: 1.5px; padding: 5px 12px; }
           .payment-method-btn { font-size: 13px; padding: 10px 12px; }
           #hero { width: 100% !important; margin-top: 16px; }
+          .below-hero-row { width: 100% !important; }
           .anyone-section { padding-top: 0px !important; }
           .store-bought-section { padding-bottom: 40px !important; }
           .impossible-section { padding-top: 24px !important; }
+          .stunning-section { padding-top: 16px !important; margin-top: 0 !important; }
           .whats-inside { font-size: 32px !important; }
           .module-card h3, .bonus-card h3 { font-size: 24px !important; }
           .now-only { font-size: 36px !important; }
@@ -306,14 +308,6 @@ export default function Home() {
             <p>You bind the fabric. You dip it. You unfold it. And suddenly, you&apos;re holding a piece of art.</p>
           </section>
 
-          <section style={{ padding: '48px 0 64px', marginTop: 32 }}>
-              <h2 style={{ marginBottom: 44, textAlign: 'center' }}>&quot;Will my <span style={{ color: 'var(--accent)' }}>shibori</span> look as stunning as yours, even if I&apos;m not artistic?&quot;</h2>
-              <p><strong>Yes.</strong></p>
-              <p>You&apos;re not drawing or painting. The <strong>technique</strong> creates the pattern. You just fold, bind, and dip.</p>
-              <p>If you can twist a rubber band, you can do this.</p>
-              <p>This course teaches you the three things that matter:<br />how you fold, how long you dip, and how tightly you bind.</p>
-          </section>
-
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 12, marginBottom: 40 }} className="fillpic-grid">
             <div style={{ borderRadius: 10, overflow: 'hidden', aspectRatio: '1/1', position: 'relative' }}>
               <Image src="/fill_pic1.png" alt="Shibori example 1" fill style={{ objectFit: 'cover' }} />
@@ -328,6 +322,14 @@ export default function Home() {
               <Image src="/fill_pic4.png" alt="Shibori example 4" fill style={{ objectFit: 'cover' }} />
             </div>
           </div>
+
+          <section className="stunning-section" style={{ padding: '48px 0 64px', marginTop: 32 }}>
+              <h2 style={{ marginBottom: 44, textAlign: 'center' }}>&quot;Will my <span style={{ color: 'var(--accent)' }}>shibori</span> look as stunning as yours, even if I&apos;m not artistic?&quot;</h2>
+              <p><strong>Yes.</strong></p>
+              <p>You&apos;re not drawing or painting. The <strong>technique</strong> creates the pattern. You just fold, bind, and dip.</p>
+              <p>If you can twist a rubber band, you can do this.</p>
+              <p>This course teaches you the three things that matter:<br />how you fold, how long you dip, and how tightly you bind.</p>
+          </section>
 
           {/* ANYONE CAN LEARN */}
           <section className="anyone-section" style={{ padding: '48px 0' }}>
@@ -349,28 +351,28 @@ export default function Home() {
               <div className="phil-kanji">一期一会</div>
               <div className="phil-title">Ichigo Ichie</div>
               <div className="phil-rom">Once in a lifetime</div>
-              <p>No two pieces are ever the same. Every fold, every bind, every second in the dye creates something that has never existed before and never will again. That&apos;s not a limitation. That&apos;s the entire point.</p>
+              <p>No two pieces are ever the same. That&apos;s not a limitation. That&apos;s the entire point.</p>
             </div>
 
             <div className="phil-block">
               <div className="phil-kanji">侘寂</div>
               <div className="phil-title">Wabi-Sabi</div>
               <div className="phil-rom">Beauty in imperfection</div>
-              <p>The uneven edge where the dye bled through. The slightly off-center circle. The place where the binding slipped. These aren&apos;t flaws. They&apos;re what make your piece alive. A machine can print a perfect pattern. Only your hands can create something with soul.</p>
+              <p>The uneven edges, the off-center circles. These aren&apos;t flaws. They&apos;re what make your piece alive.</p>
             </div>
 
             <div className="phil-block">
               <div className="phil-kanji">無心</div>
               <div className="phil-title">Mushin</div>
               <div className="phil-rom">The mind without mind</div>
-              <p>When you fold and bind fabric, your phone stops mattering. Your to-do list fades. Your hands take over and your mind gets quiet. The repetitive act of folding and binding is the practice. The beautiful fabric is just the reward.</p>
+              <p>Your hands take over. Your mind gets quiet. The folding is the practice. The fabric is just the reward.</p>
             </div>
 
             <div className="phil-block">
               <div className="phil-kanji">手仕事</div>
               <div className="phil-title">Teshigoto</div>
               <div className="phil-rom">The work of hands</div>
-              <p>No machine, no algorithm, no shortcut. Just you, fabric, and indigo. Teshigoto is the Japanese belief that handwork carries the spirit of the maker. Every piece you create holds a part of you in it.</p>
+              <p>Just you, fabric, and indigo. Every piece you create holds a part of you in it.</p>
             </div>
           </section>
 
@@ -618,12 +620,12 @@ export default function Home() {
 
             <div className="bonus-card mega">
               <div className="bonus-header"><div className="bonus-label">Mega Bonus</div><div className="bonus-value">$79 value</div></div>
-              <h3><span style={{ color: 'var(--accent)' }}>Pattern Library:</span> 30 Traditional Shibori Designs</h3>
-              <div className="bonus-desc">A visual reference guide with step-by-step folding diagrams for 30 authentic patterns.</div>
+              <h3><span style={{ color: 'var(--accent)' }}>Pattern Library:</span> 15 Traditional Shibori Designs</h3>
+              <div className="bonus-desc">A visual reference guide with step-by-step folding diagrams for 15 authentic patterns.</div>
               <div className="bonus-body">
-                <div className="bonus-img"><Image src="/megabonus.png" alt="Mega Bonus - Pattern Library: 30 Designs" fill style={{ objectFit: 'cover' }} /></div>
+                <div className="bonus-img"><Image src="/megabonus.png" alt="Mega Bonus - Pattern Library: 15 Designs" fill style={{ objectFit: 'cover' }} /></div>
                 <ul>
-                  <li>&#10022; <strong>30 patterns ranked by difficulty</strong> so you start with the ones you can nail on your first try</li>
+                  <li>&#10022; <strong>15 patterns ranked by difficulty</strong> so you start with the ones you can nail on your first try</li>
                   <li>&#10022; <strong>Step-by-step folding diagrams</strong> for each pattern so you never have to guess</li>
                   <li>&#10022; <strong>Photos of each pattern</strong> at different dye intensities so you know what to expect</li>
                   <li>&#10022; <strong>Combination charts</strong> showing which patterns work beautifully together on one piece</li>
@@ -650,7 +652,7 @@ export default function Home() {
             <div className="stack-row"><span className="label">&#10003; The Fabric Guide</span><span className="val">$47</span></div>
             <div className="stack-row"><span className="label">&#10003; The Mindful Practice Guide</span><span className="val">$37</span></div>
             <div className="stack-row"><span className="label">&#10003; The Project Lookbook</span><span className="val">$27</span></div>
-            <div className="stack-row"><span className="label">&#10003; Pattern Library: 30 Designs</span><span className="val">$79</span></div>
+            <div className="stack-row"><span className="label">&#10003; Pattern Library: 15 Designs</span><span className="val">$79</span></div>
             <div className="stack-row" style={{ borderBottom: 'none' }}><span className="label" style={{ fontWeight: 700, color: 'var(--ink)' }}>Total Value</span><span className="val" style={{ fontSize: 16 }}>$329</span></div>
           </section>
 
