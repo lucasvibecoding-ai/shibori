@@ -15,7 +15,7 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "Shibori: Learn The 1,300-Year Old Japanese Art Of Hand-Dyeing Stunning Fabric Patterns",
+  title: "Shibori: Learn The 1,300-Year Old Japanese Art Of Hand-Dyeing Fabric Patterns",
   description:
     "Learn the ancient Japanese art of shibori hand-dyeing at home with no experience. Create stunning indigo fabric patterns in under 1 hour.",
   icons: {
