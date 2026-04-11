@@ -59,12 +59,34 @@ export default function Success() {
           </ol>
         </div>
 
-        <p className="text-sm" style={{ color: 'rgba(125,117,104,0.6)' }}>
-          Didn&apos;t get the email? Check your spam folder or contact us at{" "}
-          <a href="mailto:hello@shiboriclass.com" className="text-gold underline">
-            hello@shiboriclass.com
-          </a>
-        </p>
+        <div className="rounded-xl p-6 sm:p-8 text-left space-y-3" style={{ background: '#fff', border: '1px solid rgba(45,74,143,0.15)' }}>
+          <h2 className="text-lg font-serif font-bold text-cream">
+            Please check your spam folder
+          </h2>
+          <p className="text-muted text-base leading-relaxed">
+            Email providers sometimes filter course emails into spam or promotions. To make sure you get everything:
+          </p>
+          <ol className="space-y-2 text-muted text-base">
+            <li className="flex items-start gap-3">
+              <span className="font-bold flex-shrink-0" style={{ color: '#2d4a8f' }}>1.</span>
+              <span><strong className="text-cream">Check your spam/promotions folder.</strong> If my email landed there, move it to your inbox and mark it &quot;Not spam.&quot;</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="font-bold flex-shrink-0" style={{ color: '#2d4a8f' }}>2.</span>
+              <span><strong className="text-cream">Add me to your contacts.</strong> Save <strong>hello@shiboriclass.com</strong> as a contact so future emails go straight to your inbox.</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="font-bold flex-shrink-0" style={{ color: '#2d4a8f' }}>3.</span>
+              <span><strong className="text-cream">Reply to my email.</strong> Even just &quot;Got it&quot; works. This tells your email provider you know me.</span>
+            </li>
+          </ol>
+          <p className="text-muted text-sm" style={{ opacity: 0.7 }}>
+            Still nothing? Contact me at{" "}
+            <a href="mailto:hello@shiboriclass.com" className="text-gold underline">
+              hello@shiboriclass.com
+            </a>
+          </p>
+        </div>
 
         <div className="pt-4">
           <p className="text-muted text-lg font-medium">
