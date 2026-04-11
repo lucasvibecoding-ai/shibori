@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
   try {
-    const { eventId, productName = 'Waterfall Terrarium Masterclass' } = await request.json();
+    const { eventId, productName = 'Shibori Masterclass' } = await request.json();
 
     if (!eventId) {
       return NextResponse.json({ error: 'Missing eventId' }, { status: 400 });
@@ -12,7 +12,7 @@ export async function POST(request: Request) {
     const accessToken = process.env.META_CAPI_ACCESS_TOKEN;
 
     if (!accessToken) {
-      // CAPI not configured yet — silently skip
+      // CAPI not configured yet, silently skip
       return NextResponse.json({ ok: true, capi: false });
     }
 

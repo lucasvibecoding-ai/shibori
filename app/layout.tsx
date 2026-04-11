@@ -15,11 +15,11 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "Build a Working Waterfall Terrarium That Becomes a Living Jungle Scene",
+  title: "Shibori: Learn The 1,300-Year Old Japanese Art Of Hand-Dyeing Stunning Fabric Patterns",
   description:
-    "Learn to build stunning miniature waterfall terrariums at home with no experience. Step-by-step guide to creating a living jungle in glass.",
+    "Learn the ancient Japanese art of shibori hand-dyeing at home with no experience. Create stunning indigo fabric patterns in under 1 hour.",
   icons: {
-    icon: "/favicon.jpg",
+    icon: "/favicon.png",
   },
 };
 

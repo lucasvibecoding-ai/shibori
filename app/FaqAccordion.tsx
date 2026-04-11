@@ -4,48 +4,48 @@ import { useState } from 'react';
 
 const faqs = [
   {
-    q: 'Do I need any experience with terrariums or plants?',
-    a: "None at all. This course is built for complete beginners, including people who've never kept a plant alive. Module 1 starts by teaching you how terrarium ecosystems work and walks you through your very first build step by step.",
+    q: 'Do I need any experience with dyeing or textiles?',
+    a: "None at all. This course is built for complete beginners, including people who've never touched fabric dye. Module 1 starts with the fundamentals of shibori and walks you through your very first piece step by step.",
   },
   {
     q: 'How much does everything cost to get started?',
-    a: "Under $40 total. A glass container ($10 to $15), a small water pump ($8 to $12), substrate materials ($5 to $8), and moss/plants ($8 to $12). The course includes a complete shopping guide with links. You do NOT need expensive specialty supplies.",
+    a: "Under $30 total. A pre-reduced indigo dye kit ($12 to $15), rubber bands and string ($3 to $5), and plain white cotton fabric ($5 to $10). The course includes a complete shopping guide with links. You do NOT need expensive specialty supplies.",
   },
   {
     q: 'Will you tell me which materials to buy and where to get them?',
-    a: "Yes. Module 2 walks you through exactly which materials to start with based on the design you want to build. It also includes a shopping guide with specific links so you know exactly where to buy everything and what to avoid.",
+    a: "Yes. Module 2 walks you through exactly which materials to start with based on the technique you want to learn first. It also includes a shopping guide with specific links so you know exactly where to buy everything and what to avoid.",
   },
   {
-    q: 'What materials do I need for my first terrarium?',
-    a: "Everything you need costs under $40. A basic starter kit includes: a glass container, small aquarium pump, tubing, river rocks, activated charcoal, sphagnum moss, and 2-3 small ferns or tropical plants. Module 2 covers exactly what to buy and where.",
+    q: 'What materials do I need for my first piece?',
+    a: "Everything you need costs under $30. A basic starter kit includes: pre-reduced indigo dye, a plastic bucket, rubber bands or string, rubber gloves, plain white cotton fabric, and water. Module 2 covers exactly what to buy and where.",
   },
   {
-    q: 'Can I build this in a small apartment?',
-    a: "Absolutely. All you need is a table and the materials. No garage, no workshop, no power tools. Most of our students build at their kitchen table or desk. The finished terrarium can be as small as a shoebox.",
+    q: 'Can I do this in a small apartment?',
+    a: "Absolutely. All you need is a kitchen counter or table, a bucket, and access to water. No studio, no workshop, no special equipment. Most of our students dye at their kitchen sink. You can even do it on a balcony.",
   },
   {
     q: 'Will this work with materials available in my country?',
-    a: "Yes. The materials used in this course are available worldwide through online retailers and local garden centers. The course covers alternatives for hard to find items, and the shopping guide includes international suppliers. If you can order online, you can get everything you need.",
+    a: "Yes. The materials used in this course are available worldwide through online retailers. Indigo dye kits ship internationally, and most other supplies (rubber bands, string, cotton fabric) are available anywhere. The course covers alternatives for hard-to-find items.",
   },
   {
-    q: 'How much time does the build take?',
-    a: "Your first waterfall terrarium takes about 2 to 3 hours from start to finish. After that, most builds take 1 to 2 hours. The ecosystem establishes itself over the following weeks.you just watch it grow. It's one of the most rewarding creative hobbies for the time invested.",
+    q: 'How much time does a piece take?',
+    a: "Your first shibori piece takes about 45 minutes to 1 hour from folding to finished. The folding and binding takes 15 to 20 minutes, dyeing takes 10 to 20 minutes, and unfolding plus rinsing takes another 10 minutes. It's one of the most rewarding creative hobbies for the time invested.",
   },
   {
-    q: 'How long until it actually looks like the ones I see online?',
-    a: 'Your build will look stunning the moment you finish. That happens in one afternoon. The moss fills in and the plants establish over 2 to 4 weeks, and it only gets more beautiful from there. The initial "wow" moment is immediate. The long term beauty is a bonus.',
+    q: 'How long until my work looks like the stunning pieces I see online?',
+    a: "Your very first piece will have that signature shibori look. That happens in under an hour. The patterns are created by the folding technique, not years of practice. The initial \"wow\" moment is immediate. Every piece after that just gets more refined.",
   },
   {
-    q: "I've killed every plant I've ever owned. Can I still do this?",
-    a: "Terrariums are fundamentally different from potted plants. They're self sustaining ecosystems.the sealed environment recycles moisture and nutrients. Once built correctly, they practically take care of themselves. If you can build it right (which this course ensures), keeping it alive is the easy part.",
+    q: "I'm not artistic at all. Can I still do this?",
+    a: "Shibori is fundamentally different from freehand art. The patterns are created by folding, binding, and dipping, not by drawing or painting. If you can fold a piece of fabric and wrap a rubber band around it, you can create stunning shibori. The technique does the artistry for you.",
   },
   {
-    q: 'What if my build turns out terrible?',
-    a: "The Troubleshooting Guide covers every common mistake so you can fix almost any issue. But honestly, even experienced builders have off days. That's why we start you with affordable materials. A failed $30 experiment is a lesson, not a disaster. And the next one will be better because of what you learned.",
+    q: 'What if my first piece doesn\'t turn out well?',
+    a: "The Troubleshooting Guide covers every common mistake so you can fix almost any issue on your next piece. But honestly, even imperfect shibori looks beautiful. That's the magic of this art form. Each piece is unique. And with fabric costing a few dollars, a learning experience is never a disaster.",
   },
   {
     q: "What's the refund policy?",
-    a: "90-day money back guarantee. Try the entire course. Choose your materials. Build your first terrarium. If you don't love it, email us within 90 days and we'll refund you in full. No questions asked. No hoops.",
+    a: "90-day money-back guarantee. Try the entire course. Get your materials. Dye your first piece. If you don't love it, email us within 90 days and we'll refund you in full. No questions asked. No hoops.",
   },
   {
     q: 'How is the content delivered?',
@@ -56,8 +56,12 @@ const faqs = [
     a: "Yes. Payments are processed through Stripe, the same secure payment platform used by millions of businesses worldwide (including Amazon, Google, and Shopify). We never see your card details.",
   },
   {
+    q: 'Is the dye dangerous or harmful to my skin?',
+    a: "No. Natural indigo is non-toxic and has been used safely for over a thousand years. It can temporarily stain your hands blue, but it washes off within a day or two. The course recommends wearing rubber gloves to keep things clean, but even direct skin contact is completely harmless. There are no harsh chemicals involved.",
+  },
+  {
     q: 'Have a specific question?',
-    a: "Email us at hello@emmasterrariums.com and we'll get back to you as soon as possible.",
+    a: "Email us at hello@shiboricraft.com and we'll get back to you as soon as possible.",
   },
 ];
 

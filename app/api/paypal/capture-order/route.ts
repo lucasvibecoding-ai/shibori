@@ -38,14 +38,14 @@ export async function POST(request: Request) {
     const data = await res.json();
 
     if (data.status === 'COMPLETED') {
-      const customerEmail = data.payer?.email_address || 'hello@emmasterrariums.com';
+      const customerEmail = data.payer?.email_address || 'hello@shiboricraft.com';
       const html = await render(OrderConfirmation({ customerEmail }));
 
       await resend.emails.send({
-        from: 'Emma Wilson <hello@emmasterrariums.com>',
+        from: 'Aiko Mori <hello@shiboricraft.com>',
         to: customerEmail,
-        replyTo: 'hello@emmasterrariums.com',
-        subject: 'About your course purchase — important update',
+        replyTo: 'hello@shiboricraft.com',
+        subject: 'About your course purchase. Important update',
         html,
       });
 

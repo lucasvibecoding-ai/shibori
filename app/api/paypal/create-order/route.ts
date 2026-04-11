@@ -20,8 +20,7 @@ async function getAccessToken() {
 export async function POST(request: Request) {
   try {
     const body = await request.json().catch(() => ({}));
-    const isVolcano = body.product === 'volcano';
-    const description = isVolcano ? 'Volcano Terrarium Masterclass' : 'Waterfall Terrarium Masterclass';
+    const description = 'Shibori Masterclass';
 
     const accessToken = await getAccessToken();
 

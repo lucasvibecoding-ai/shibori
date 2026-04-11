@@ -8,10 +8,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 export async function POST(request: Request) {
   try {
     const body = await request.json().catch(() => ({}));
-    const isVolcano = body.product === 'volcano';
-    const productId = isVolcano
-      ? process.env.STRIPE_PRODUCT_ID_VOLCANO!
-      : process.env.STRIPE_PRODUCT_ID_WATERFALL!;
+    const productId = process.env.STRIPE_PRODUCT_ID!;
 
     const product = await stripe.products.retrieve(
       productId,

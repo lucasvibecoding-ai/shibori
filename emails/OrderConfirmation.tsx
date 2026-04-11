@@ -21,14 +21,14 @@ export default function OrderConfirmation({ customerEmail }: OrderConfirmationPr
       <Body style={body}>
         <Container style={container}>
 
-          <Heading style={heading}>Thank you for your purchase 🌿</Heading>
+          <Heading style={heading}>Thank you for your purchase</Heading>
 
           <Text style={text}>
             Hi there,
           </Text>
 
           <Text style={text}>
-            I wanted to personally reach out about your recent purchase. First — thank you so much, it genuinely means a lot.
+            I wanted to personally reach out about your recent purchase. First, thank you so much, it genuinely means a lot.
           </Text>
 
           <Text style={text}>
@@ -40,11 +40,11 @@ export default function OrderConfirmation({ customerEmail }: OrderConfirmationPr
           </Text>
 
           <Text style={optionText}>
-            <strong>Option 1 — Full refund.</strong> If you&apos;d rather not wait, just reply to this email and I&apos;ll process a full refund immediately. No questions asked.
+            <strong>Option 1: Full refund.</strong> If you&apos;d rather not wait, just reply to this email and I&apos;ll process a full refund immediately. No questions asked.
           </Text>
 
           <Text style={optionText}>
-            <strong>Option 2 — Wait for the updated version.</strong> It&apos;s coming end of April. It&apos;s going to be incredible. As a thank you for your patience, I&apos;ll give you a <strong>steep discount</strong> on our private community once it opens — it&apos;s going to be a space for terrarium enthusiasts, and you&apos;ll get in at a fraction of the price.
+            <strong>Option 2: Wait for the updated version.</strong> It&apos;s coming end of April. It&apos;s going to be incredible. As a thank you for your patience, I&apos;ll give you a <strong>steep discount</strong> on our private community once it opens. It&apos;s going to be a space for shibori enthusiasts, and you&apos;ll get in at a fraction of the price.
           </Text>
 
           <Hr style={divider} />
@@ -54,13 +54,13 @@ export default function OrderConfirmation({ customerEmail }: OrderConfirmationPr
           </Text>
 
           <Text style={signature}>
-            — Emma Wilson
+            Aiko Mori
           </Text>
 
           <Hr style={divider} />
 
           <Text style={spamHeading}>
-            📬 Make sure my emails actually reach you
+            Make sure my emails actually reach you
           </Text>
 
           <Text style={spamText}>
@@ -68,11 +68,11 @@ export default function OrderConfirmation({ customerEmail }: OrderConfirmationPr
           </Text>
 
           <Text style={spamStep}>
-            <strong>1. Reply to this email.</strong> Even just &quot;Ok&quot; works. Doing this once tells your email provider you know me — and it&apos;s often all you need.
+            <strong>1. Reply to this email.</strong> Even just &quot;Ok&quot; works. Doing this once tells your email provider you know me, and it&apos;s often all you need.
           </Text>
 
           <Text style={spamStep}>
-            <strong>2. Add me to your contacts.</strong> Save <strong>hello@emmasterrariums.com</strong> as a contact and future emails will go straight to your inbox.
+            <strong>2. Add me to your contacts.</strong> Save <strong>hello@shiboricraft.com</strong> as a contact and future emails will go straight to your inbox.
           </Text>
 
           <Text style={spamStep}>
@@ -80,7 +80,7 @@ export default function OrderConfirmation({ customerEmail }: OrderConfirmationPr
           </Text>
 
           <Text style={spamText}>
-            Takes 30 seconds and saves a lot of missed emails down the line. 🙏
+            Takes 30 seconds and saves a lot of missed emails down the line.
           </Text>
 
         </Container>
@@ -90,7 +90,7 @@ export default function OrderConfirmation({ customerEmail }: OrderConfirmationPr
 }
 
 const body = {
-  backgroundColor: '#f8f5f0',
+  backgroundColor: '#f8f6f3',
   fontFamily: "'Georgia', serif",
 };
 
@@ -102,7 +102,7 @@ const container = {
 
 const heading = {
   fontSize: '24px',
-  color: '#1e1a14',
+  color: '#1a1f3d',
   marginBottom: '24px',
 };
 
@@ -119,7 +119,7 @@ const optionText = {
   color: '#4a4237',
   marginBottom: '16px',
   paddingLeft: '16px',
-  borderLeft: '3px solid #3a6347',
+  borderLeft: '3px solid #2d4a8f',
 };
 
 const divider = {
@@ -137,7 +137,7 @@ const signature = {
 const spamHeading = {
   fontSize: '15px',
   fontWeight: '700' as const,
-  color: '#1e1a14',
+  color: '#1a1f3d',
   marginBottom: '8px',
 };
 

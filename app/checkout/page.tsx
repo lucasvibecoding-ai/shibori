@@ -3,7 +3,7 @@ import { Suspense } from 'react';
 import CheckoutClient from './CheckoutClient';
 
 export const metadata: Metadata = {
-  title: 'Checkout — Waterfall Terrariums',
+  title: 'Checkout - Shibori Masterclass',
   description: 'Complete your purchase',
 };
 

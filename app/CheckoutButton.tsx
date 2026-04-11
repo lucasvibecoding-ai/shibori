@@ -9,7 +9,7 @@ declare global {
   }
 }
 
-export default function CheckoutButton({ productName = 'Waterfall Terrarium Masterclass' }: { productName?: string }) {
+export default function CheckoutButton({ productName = 'Shibori Masterclass' }: { productName?: string }) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 

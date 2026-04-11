@@ -4,18 +4,18 @@ import PurchaseFlag from "./PurchaseFlag";
 import PurchaseTracker from "./PurchaseTracker";
 
 export const metadata: Metadata = {
-  title: "You're In! — Waterfall Terrariums",
+  title: "You're In! - Shibori Masterclass",
 };
 
 export default function Success() {
   return (
-    <main className="min-h-screen flex items-center justify-center px-6 py-20" style={{ background: '#f8f5f0' }}>
+    <main className="min-h-screen flex items-center justify-center px-6 py-20" style={{ background: '#f8f6f3' }}>
       <PurchaseFlag />
       <Suspense fallback={null}>
         <PurchaseTracker />
       </Suspense>
       <div className="max-w-lg w-full text-center space-y-8">
-        <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto" style={{ background: 'rgba(58,99,71,0.1)' }}>
+        <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto" style={{ background: 'rgba(45,74,143,0.1)' }}>
           <svg
             viewBox="0 0 24 24"
             fill="none"
@@ -24,7 +24,7 @@ export default function Success() {
             strokeLinecap="round"
             strokeLinejoin="round"
             className="w-10 h-10"
-            style={{ color: '#3a6347' }}
+            style={{ color: '#2d4a8f' }}
           >
             <polyline points="20 6 9 17 4 12" />
           </svg>
@@ -39,7 +39,7 @@ export default function Success() {
           <strong className="text-cream">lifetime access</strong> to the course.
         </p>
 
-        <div className="rounded-xl p-6 sm:p-8 text-left space-y-4 shadow-sm" style={{ background: '#f8f5f0', border: '1px solid rgba(58,99,71,0.15)' }}>
+        <div className="rounded-xl p-6 sm:p-8 text-left space-y-4 shadow-sm" style={{ background: '#f8f6f3', border: '1px solid rgba(45,74,143,0.15)' }}>
           <h2 className="text-xl font-serif font-bold text-cream">
             What happens next:
           </h2>
@@ -50,25 +50,25 @@ export default function Success() {
             </li>
             <li className="flex items-start gap-3">
               <span className="text-gold font-bold flex-shrink-0">2.</span>
-              <span>Start with <strong className="text-cream">Module 1</strong> — learn how terrarium ecosystems work and prepare for your first build</span>
+              <span>Start with <strong className="text-cream">Module 1</strong> to learn the history and foundations of shibori</span>
             </li>
             <li className="flex items-start gap-3">
               <span className="text-gold font-bold flex-shrink-0">3.</span>
-              <span>Follow along at your own pace — <strong className="text-cream">no deadlines, no pressure</strong></span>
+              <span>Follow along at your own pace. <strong className="text-cream">No deadlines, no pressure</strong></span>
             </li>
           </ol>
         </div>
 
         <p className="text-sm" style={{ color: 'rgba(125,117,104,0.6)' }}>
           Didn&apos;t get the email? Check your spam folder or contact us at{" "}
-          <a href="mailto:hello@emmasterrariums.com" className="text-gold underline">
-            hello@emmasterrariums.com
+          <a href="mailto:hello@shiboricraft.com" className="text-gold underline">
+            hello@shiboricraft.com
           </a>
         </p>
 
         <div className="pt-4">
           <p className="text-muted text-lg font-medium">
-            Welcome to the most rewarding hobby
+            Welcome to the most rewarding craft
           </p>
         </div>
 

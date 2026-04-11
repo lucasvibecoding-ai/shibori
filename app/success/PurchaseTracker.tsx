@@ -12,7 +12,7 @@ declare global {
 export default function PurchaseTracker() {
   const searchParams = useSearchParams();
   const sessionId = searchParams.get('session_id');
-  const productName = searchParams.get('product') || 'Waterfall Terrarium Masterclass';
+  const productName = searchParams.get('product') || 'Shibori Masterclass';
   const hasFiredRef = useRef(false);
 
   useEffect(() => {

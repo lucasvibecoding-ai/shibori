@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — Emma's Terrariums",
+  title: "Privacy Policy - Shibori Craft",
 };
 
 export default function PrivacyPage() {
@@ -21,7 +21,7 @@ export default function PrivacyPage() {
           </p>
           <ul className="list-disc pl-6 mt-3 space-y-2">
             <li>Name and email address (when you make a purchase)</li>
-            <li>Payment information (processed securely through Stripe or PayPal &mdash; we never store your card details)</li>
+            <li>Payment information (processed securely through Stripe or PayPal. We never store your card details)</li>
             <li>Usage data such as pages visited, time spent on site, and referring URLs</li>
             <li>Device and browser information collected automatically</li>
           </ul>
@@ -31,7 +31,7 @@ export default function PrivacyPage() {
           <h2 className="text-2xl font-serif mb-3 text-cream">2. How We Use Your Information</h2>
           <ul className="list-disc pl-6 space-y-2">
             <li>To process your purchase and deliver course access</li>
-            <li>To send you purchase confirmations and account-related emails</li>
+            <li>To send you purchase confirmations and account related emails</li>
             <li>To improve our website and course content</li>
             <li>To respond to customer support requests</li>
           </ul>
@@ -84,8 +84,8 @@ export default function PrivacyPage() {
           <h2 className="text-2xl font-serif mb-3 text-cream">7. Contact</h2>
           <p>
             If you have any questions about this Privacy Policy, please contact us at{" "}
-            <a href="mailto:hello@emmasterrariums.com" className="text-gold underline">
-              hello@emmasterrariums.com
+            <a href="mailto:hello@shiboricraft.com" className="text-gold underline">
+              hello@shiboricraft.com
             </a>
           </p>
         </section>

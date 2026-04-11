@@ -11,8 +11,7 @@ const stripePromise = loadStripe(
 
 export default function CheckoutClient() {
   const searchParams = useSearchParams();
-  const productName = searchParams.get('product') || 'Waterfall Terrarium Masterclass';
-  const isVolcano = productName.toLowerCase().includes('volcano');
+  const productName = searchParams.get('product') || 'Shibori Masterclass';
   const [clientSecret, setClientSecret] = useState('');
   const [email, setEmail] = useState('');
 
@@ -20,11 +19,11 @@ export default function CheckoutClient() {
     fetch('/api/create-payment-intent', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ product: isVolcano ? 'volcano' : 'waterfall' }),
+      body: JSON.stringify({ product: 'shibori' }),
     })
       .then((res) => res.json())
       .then((data) => setClientSecret(data.clientSecret));
-  }, [isVolcano]);
+  }, []);
 
   return (
     <>
@@ -385,7 +384,7 @@ export default function CheckoutClient() {
             </a>
 
             <div className="product-name">Permanent Access</div>
-            <div className="product-title"><span className="desktop-title">{productName}</span><span className="mobile-title">{isVolcano ? 'Volcano Class' : 'Terrarium Class'}</span></div>
+            <div className="product-title"><span className="desktop-title">{productName}</span><span className="mobile-title">Shibori Masterclass</span></div>
             <div className="product-price">
               $47.00<span className="currency">USD</span>
             </div>
@@ -393,23 +392,23 @@ export default function CheckoutClient() {
             <div className="summary-divider" />
 
             <div className="line-item">
-              <span className="item-name">{productName} (5 Modules)</span>
+              <span className="item-name">Shibori Masterclass (5 Modules)</span>
               <span className="item-price">$47.00</span>
             </div>
             <div className="line-item">
-              <span className="item-name">Maintenance Mastery</span>
+              <span className="item-name">The Fabric Guide</span>
               <span className="item-price">FREE</span>
             </div>
             <div className="line-item">
-              <span className="item-name">The Perfect Balance Guide</span>
+              <span className="item-name">The Mindful Practice Guide</span>
               <span className="item-price">FREE</span>
             </div>
             <div className="line-item">
-              <span className="item-name">The Plant Picker</span>
+              <span className="item-name">The Project Lookbook</span>
               <span className="item-price">FREE</span>
             </div>
             <div className="line-item">
-              <span className="item-name">The Desert Terrarium Build</span>
+              <span className="item-name">Pattern Library: 30 Designs</span>
               <span className="item-price">FREE</span>
             </div>
 
