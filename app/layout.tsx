@@ -48,7 +48,7 @@ export default function RootLayout({
                 c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
                 t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
                 y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-            })(window, document, "clarity", "script", "w7p3pupp7w");
+            })(window, document, "clarity", "script", "w9r6cep196");
           `}
         </Script>
         <Script id="facebook-pixel" strategy="afterInteractive">
@@ -61,7 +61,7 @@ export default function RootLayout({
             t.src=v;s=b.getElementsByTagName(e)[0];
             s.parentNode.insertBefore(t,s)}(window, document,'script',
             'https://connect.facebook.net/en_US/fbevents.js');
-            fbq('init', '26697213726568830');
+            fbq('init', '2779828799045473');
             fbq('track', 'PageView');
           `}
         </Script>
@@ -70,7 +70,7 @@ export default function RootLayout({
             height="1"
             width="1"
             style={{ display: 'none' }}
-            src="https://www.facebook.com/tr?id=26697213726568830&ev=PageView&noscript=1"
+            src="https://www.facebook.com/tr?id=2779828799045473&ev=PageView&noscript=1"
           />
         </noscript>
       </head>
