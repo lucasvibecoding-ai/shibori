@@ -5,7 +5,7 @@ import CountdownBar from "./CountdownBar";
 import FaqAccordion from "./FaqAccordion";
 
 export const metadata: Metadata = {
-  title: "Shibori: Learn The 1,300-Year Old Japanese Art Of Hand-Dyeing Fabric Patterns",
+  title: "Shibori: Learn The 1,300-Year Old Japanese Art Of Hand-Dyeing Fabric",
   description:
     "Learn the ancient Japanese art of shibori hand-dyeing at home with no experience. Create beautiful indigo fabric patterns in under 2 hours.",
 };
@@ -237,7 +237,7 @@ export default function Home() {
           {/* HERO */}
           <section style={{ paddingTop: 64, paddingBottom: 48, textAlign: 'center' }}>
             <p className="no-exp" style={{ fontWeight: 700, textTransform: 'uppercase', color: 'var(--ink-muted)' }}>For The First Time Online</p>
-            <h1><span style={{ background: 'linear-gradient(135deg, #2d4a8f, #4a6db5)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', filter: 'drop-shadow(0 0 4px rgba(45,74,143,0.2))' }}>Shibori:</span> Learn The 1,300-Year Old Japanese Art Of Hand-Dyeing Fabric Patterns</h1>
+            <h1><span style={{ background: 'linear-gradient(135deg, #2d4a8f, #4a6db5)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', filter: 'drop-shadow(0 0 4px rgba(45,74,143,0.2))' }}>Shibori:</span> Learn The 1,300-Year Old Japanese Art Of Hand-Dyeing Fabric</h1>
             <p className="hero-sub" style={{ color: 'var(--ink-muted)', marginTop: 8, fontStyle: 'italic' }}>Your first masterpiece in under 2 hours even if you&apos;re a complete beginner.</p>
 
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 28, gap: 12 }}>
