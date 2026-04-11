@@ -8,6 +8,10 @@ const faqs = [
     a: "None at all. This course is built for complete beginners, including people who've never kept a plant alive. Module 1 starts by teaching you how terrarium ecosystems work and walks you through your very first build step by step.",
   },
   {
+    q: 'How do you create the lava effect?',
+    a: "We color the water orange using safe, non-toxic dye. You can also add a thickener to slow the flow and give it that real lava look. Toss in some small orange stones or beads along the path and it catches the light beautifully. The course walks you through exactly how to get the effect right.",
+  },
+  {
     q: 'How much does everything cost to get started?',
     a: "Under $40 total. A glass container ($10 to $15), a small LED lava kit ($8 to $12), substrate materials ($5 to $8), and moss/plants ($8 to $12). The course includes a complete shopping guide with links. You do NOT need expensive specialty supplies.",
   },
