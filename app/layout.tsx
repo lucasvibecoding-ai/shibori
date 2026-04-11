@@ -17,7 +17,7 @@ const outfit = Outfit({
 export const metadata: Metadata = {
   title: "Shibori: Learn The 1,300-Year Old Japanese Art Of Hand-Dyeing Fabric Patterns",
   description:
-    "Learn the ancient Japanese art of shibori hand-dyeing at home with no experience. Create stunning indigo fabric patterns in under 1 hour.",
+    "Learn the ancient Japanese art of shibori hand-dyeing at home with no experience. Create beautiful indigo fabric patterns in under 2 hours.",
   icons: {
     icon: "/favicon.png",
   },
@@ -48,7 +48,7 @@ export default function RootLayout({
                 c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
                 t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
                 y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-            })(window, document, "clarity", "script", "w9r6cep196");
+            })(window, document, "clarity", "script", "wa8agm6285");
           `}
         </Script>
         <Script id="facebook-pixel" strategy="afterInteractive">

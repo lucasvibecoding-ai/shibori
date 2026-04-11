@@ -44,17 +44,50 @@ export async function POST(request: Request) {
       customerEmail = charge.billing_details?.email || null;
     }
 
-    const toEmail = customerEmail || 'hello@shiboricraft.com';
+    const toEmail = customerEmail || 'hello@shiboriclass.com';
     console.log(`Sending confirmation email to: ${toEmail} (receipt_email was: ${paymentIntent.receipt_email})`);
     const html = await render(OrderConfirmation({ customerEmail: toEmail }));
 
     await resend.emails.send({
-      from: 'Aiko Mori <hello@shiboricraft.com>',
+      from: 'Aiko Mori <hello@shiboriclass.com>',
       to: toEmail,
-      replyTo: 'hello@shiboricraft.com',
+      replyTo: 'hello@shiboriclass.com',
       subject: 'About your course purchase. Important update',
       html,
     });
+
+    // Server-side CAPI Purchase event
+    const capiToken = process.env.META_CAPI_ACCESS_TOKEN;
+    if (capiToken) {
+      const pixelId = '2779828799045473';
+      const eventId = paymentIntent.id;
+      await fetch(
+        `https://graph.facebook.com/v21.0/${pixelId}/events?access_token=${capiToken}`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            data: [
+              {
+                event_name: 'Purchase',
+                event_time: Math.floor(Date.now() / 1000),
+                event_id: eventId,
+                action_source: 'website',
+                user_data: {
+                  em: [toEmail],
+                },
+                custom_data: {
+                  value: 47.0,
+                  currency: 'USD',
+                  content_name: 'Shibori Masterclass',
+                  content_type: 'product',
+                },
+              },
+            ],
+          }),
+        }
+      ).catch((err) => console.error('CAPI Purchase error:', err));
+    }
   }
 
   return new Response('ok', { status: 200 });

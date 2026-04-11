@@ -61,8 +61,8 @@ export default function Success() {
 
         <p className="text-sm" style={{ color: 'rgba(125,117,104,0.6)' }}>
           Didn&apos;t get the email? Check your spam folder or contact us at{" "}
-          <a href="mailto:hello@shiboricraft.com" className="text-gold underline">
-            hello@shiboricraft.com
+          <a href="mailto:hello@shiboriclass.com" className="text-gold underline">
+            hello@shiboriclass.com
           </a>
         </p>
 

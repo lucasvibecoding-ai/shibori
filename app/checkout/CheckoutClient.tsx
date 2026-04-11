@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useSearchParams } from 'next/navigation';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import StripeForm from './StripeForm';
@@ -10,8 +9,6 @@ const stripePromise = loadStripe(
 );
 
 export default function CheckoutClient() {
-  const searchParams = useSearchParams();
-  const productName = searchParams.get('product') || 'Shibori Masterclass';
   const [clientSecret, setClientSecret] = useState('');
   const [email, setEmail] = useState('');
 
@@ -19,7 +16,7 @@ export default function CheckoutClient() {
     fetch('/api/create-payment-intent', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ product: 'shibori' }),
+      body: JSON.stringify({}),
     })
       .then((res) => res.json())
       .then((data) => setClientSecret(data.clientSecret));
@@ -94,13 +91,6 @@ export default function CheckoutClient() {
           color: #f5f0e8;
           margin-bottom: 8px;
           line-height: 1.3;
-        }
-
-        .checkout-summary .mobile-title { display: none; }
-
-        @media (max-width: 768px) {
-          .checkout-summary .desktop-title { display: none; }
-          .checkout-summary .mobile-title { display: inline; }
         }
 
         .checkout-summary .product-price {
@@ -384,7 +374,7 @@ export default function CheckoutClient() {
             </a>
 
             <div className="product-name">Permanent Access</div>
-            <div className="product-title"><span className="desktop-title">{productName}</span><span className="mobile-title">Shibori Masterclass</span></div>
+            <div className="product-title">Shibori Masterclass</div>
             <div className="product-price">
               $47.00<span className="currency">USD</span>
             </div>
@@ -447,7 +437,7 @@ export default function CheckoutClient() {
                     },
                   }}
                 >
-                  <StripeForm email={email} onEmailChange={setEmail} paypalEmail={email} productName={productName} />
+                  <StripeForm email={email} onEmailChange={setEmail} paypalEmail={email} />
                 </Elements>
               ) : (
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '180px' }}>

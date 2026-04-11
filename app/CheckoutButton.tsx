@@ -9,7 +9,7 @@ declare global {
   }
 }
 
-export default function CheckoutButton({ productName = 'Shibori Masterclass' }: { productName?: string }) {
+export default function CheckoutButton() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -22,14 +22,14 @@ export default function CheckoutButton({ productName = 'Shibori Masterclass' }: 
       window.fbq('track', 'InitiateCheckout', {
         value: 47.00,
         currency: 'USD',
-        content_name: productName,
+        content_name: 'Shibori Masterclass',
         content_category: 'Online Course',
       }, { eventID: eventId });
     }
 
-    navigator.sendBeacon('/api/track-checkout', JSON.stringify({ eventId, productName }));
+    navigator.sendBeacon('/api/track-checkout', JSON.stringify({ eventId }));
 
-    router.push(`/checkout?product=${encodeURIComponent(productName)}`);
+    router.push('/checkout');
   };
 
   return (

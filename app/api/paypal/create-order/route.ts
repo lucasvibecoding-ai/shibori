@@ -19,7 +19,7 @@ async function getAccessToken() {
 
 export async function POST(request: Request) {
   try {
-    const body = await request.json().catch(() => ({}));
+    await request.json().catch(() => ({}));
     const description = 'Shibori Masterclass';
 
     const accessToken = await getAccessToken();

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Terms of Service - Shibori Craft",
+  title: "Terms of Service - Shibori Class",
 };
 
 export default function TermsPage() {
@@ -60,7 +60,7 @@ export default function TermsPage() {
           <h2 className="text-2xl font-serif mb-3 text-cream">5. Intellectual Property</h2>
           <p>
             All Course content, including videos, text, images, templates, and
-            downloadable materials, is the intellectual property of Shibori Craft
+            downloadable materials, is the intellectual property of Shibori Class
             and is protected by copyright law. Purchasing the Course does not
             transfer ownership of any intellectual property.
           </p>
@@ -81,7 +81,7 @@ export default function TermsPage() {
           <p>
             Shibori involves working with fabric dyes and related materials.
             You are solely responsible for following proper safety procedures.
-            Shibori Craft is not liable for any issues that may arise from
+            Shibori Class is not liable for any issues that may arise from
             following the techniques taught in the Course.
           </p>
         </section>
@@ -99,8 +99,8 @@ export default function TermsPage() {
           <h2 className="text-2xl font-serif mb-3 text-cream">9. Contact</h2>
           <p>
             If you have any questions about these Terms, please contact us at{" "}
-            <a href="mailto:hello@shiboricraft.com" className="text-gold underline">
-              hello@shiboricraft.com
+            <a href="mailto:hello@shiboriclass.com" className="text-gold underline">
+              hello@shiboriclass.com
             </a>
           </p>
         </section>

@@ -12,7 +12,6 @@ declare global {
 export default function PurchaseTracker() {
   const searchParams = useSearchParams();
   const sessionId = searchParams.get('session_id');
-  const productName = searchParams.get('product') || 'Shibori Masterclass';
   const hasFiredRef = useRef(false);
 
   useEffect(() => {
@@ -28,7 +27,7 @@ export default function PurchaseTracker() {
       window.fbq('track', 'Purchase', {
         value: 47.00,
         currency: 'USD',
-        content_name: productName,
+        content_name: 'Shibori Masterclass',
         content_type: 'product',
       }, { eventID: sessionId });
     }

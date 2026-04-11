@@ -7,7 +7,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 
 export async function POST(request: Request) {
   try {
-    const body = await request.json().catch(() => ({}));
+    await request.json().catch(() => ({}));
     const productId = process.env.STRIPE_PRODUCT_ID!;
 
     const product = await stripe.products.retrieve(

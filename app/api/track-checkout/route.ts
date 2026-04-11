@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
   try {
-    const { eventId, productName = 'Shibori Masterclass' } = await request.json();
+    const { eventId } = await request.json();
 
     if (!eventId) {
       return NextResponse.json({ error: 'Missing eventId' }, { status: 400 });
@@ -33,7 +33,7 @@ export async function POST(request: Request) {
               custom_data: {
                 value: 47.0,
                 currency: 'USD',
-                content_name: productName,
+                content_name: 'Shibori Masterclass',
                 content_category: 'Online Course',
               },
             },

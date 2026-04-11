@@ -7,7 +7,7 @@ import FaqAccordion from "./FaqAccordion";
 export const metadata: Metadata = {
   title: "Shibori: Learn The 1,300-Year Old Japanese Art Of Hand-Dyeing Fabric Patterns",
   description:
-    "Learn the ancient Japanese art of shibori hand-dyeing at home with no experience. Create stunning indigo fabric patterns in under 1 hour.",
+    "Learn the ancient Japanese art of shibori hand-dyeing at home with no experience. Create beautiful indigo fabric patterns in under 2 hours.",
 };
 
 export default function Home() {
@@ -23,10 +23,10 @@ export default function Home() {
           --ink: #1a1f3d;
           --ink-soft: rgb(26, 31, 61);
           --ink-muted: #6b7089;
-          --green: #2d4a8f;
-          --green-deep: #1a2d6b;
-          --green-soft: #4a6db5;
-          --green-pale: rgba(45,74,143,0.06);
+          --indigo: #2d4a8f;
+          --indigo-deep: #1a2d6b;
+          --indigo-soft: #4a6db5;
+          --indigo-pale: rgba(45,74,143,0.06);
           --gold: #c7915b;
           --gold-light: #d4a574;
           --gold-pale: rgba(199,145,91,0.08);
@@ -46,13 +46,13 @@ export default function Home() {
         .bonsai-page h1, .bonsai-page h2, .bonsai-page h3 { font-family: 'Lora', serif; color: var(--ink); line-height: 1.25; }
         .bonsai-page h1 { font-size: clamp(2.4rem, 6vw, 3.6rem); font-weight: 600; letter-spacing: -0.5px; text-align: center; margin-bottom: 20px; }
         .bonsai-page h2 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-weight: 500; margin-bottom: 24px; }
-        .bonsai-page h3 { font-size: 30px; font-weight: 600; color: var(--green-deep); margin-bottom: 8px; }
+        .bonsai-page h3 { font-size: 30px; font-weight: 600; color: var(--indigo-deep); margin-bottom: 8px; }
 
         /* Body text */
         .bonsai-page p { margin-bottom: 24px; }
         .bonsai-page strong { color: var(--ink); font-weight: 600; }
         .bonsai-page em { font-style: italic; }
-        .bonsai-page a { color: var(--green); text-decoration: none; }
+        .bonsai-page a { color: var(--indigo); text-decoration: none; }
 
         /* Utilities */
         .bonsai-divider { width: 100%; height: 1px; background: linear-gradient(90deg, transparent, var(--sand), transparent); margin: 20px 0; }
@@ -60,14 +60,14 @@ export default function Home() {
         .bonsai-center { text-align: center; }
 
         /* Badge */
-        .badge { display: inline-block; padding: 6px 16px; border: 1.5px solid var(--green); border-radius: 100px; font-size: 12px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--green); margin-bottom: 20px; }
+        .badge { display: inline-block; padding: 6px 16px; border: 1.5px solid var(--indigo); border-radius: 100px; font-size: 12px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--indigo); margin-bottom: 20px; }
         .no-exp { font-size: 16px; letter-spacing: 2.5px; margin-bottom: 20px; }
         .hero-sub { font-size: clamp(1.1rem, 2.5vw, 1.5rem); }
         .course-intro { padding: 80px 0 0; }
 
         /* Hero */
         .hero-img { width: 100%; max-width: 860px; margin: 0 auto; border-radius: 12px; overflow: hidden; aspect-ratio: 16/9; background: var(--bg-warm); border: 1px solid var(--sand); display: flex; align-items: center; justify-content: center; }
-        .hero h1 .accent { color: var(--green-deep); font-style: italic; }
+        .hero h1 .accent { color: var(--indigo-deep); font-style: italic; }
 
         /* Philosophy blocks */
         .phil-block { margin-bottom: 32px; padding: 28px 32px; background: var(--card); border-radius: 12px; border: 1px solid var(--sand); }
@@ -106,7 +106,7 @@ export default function Home() {
         /* CTA */
         .cta-block { text-align: center; padding: 56px 0; }
         .price-old { font-size: 34px; color: var(--ink-muted); text-decoration: line-through; margin-bottom: 4px; }
-        .price { font-size: 56px; color: var(--green-deep); margin-bottom: 4px; font-weight: 700; }
+        .price { font-size: 56px; color: var(--indigo-deep); margin-bottom: 4px; font-weight: 700; }
         .price-note { font-size: 20px; color: var(--ink-muted); margin-bottom: 24px; font-weight: 400; }
         .lifetime-break { display: none; }
         .guarantee-badge { display: flex; align-items: center; gap: 10px; justify-content: center; margin-top: 20px; font-size: 15px; color: var(--ink-muted); }
@@ -126,7 +126,7 @@ export default function Home() {
         .bonus-card ul { flex: 1; }
         .bonus-header { display: flex; align-items: center; gap: 12px; margin-bottom: 6px; }
         .bonus-label { font-size: 12px; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase; color: var(--accent); }
-        .bonus-value { font-size: 12px; color: var(--green); font-weight: 700; background: rgba(45,74,143,0.1); padding: 2px 10px; border-radius: 100px; letter-spacing: 0.5px; }
+        .bonus-value { font-size: 12px; color: var(--indigo); font-weight: 700; background: rgba(45,74,143,0.1); padding: 2px 10px; border-radius: 100px; letter-spacing: 0.5px; }
         .bonus-card h3 { font-size: 30px; color: var(--ink); margin-bottom: 4px; }
         .module-card h3 { color: var(--ink); }
         .bonus-desc { font-size: 18px; color: var(--ink-muted); margin-bottom: 14px; }
@@ -137,17 +137,17 @@ export default function Home() {
         /* Stack */
         .stack-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(0,0,0,0.05); max-width: 520px; margin-left: auto; margin-right: auto; }
         .stack-row .label { color: var(--ink-soft); }
-        .stack-row .val { color: var(--green-deep); font-weight: 800; font-size: 17px; }
-        .stack-total { font-weight: 700; border-bottom: 2px solid var(--green); padding-bottom: 10px; margin-bottom: 6px; }
+        .stack-row .val { color: var(--indigo-deep); font-weight: 800; font-size: 17px; }
+        .stack-total { font-weight: 700; border-bottom: 2px solid var(--indigo); padding-bottom: 10px; margin-bottom: 6px; }
         .stack-total .label { color: var(--ink); }
 
         /* FAQ */
         .faq-list { display: flex; flex-direction: column; gap: 12px; }
         .faq-item { background: var(--cream); border-radius: 12px; padding: 4px 20px; border: 1px solid var(--sand); }
         .faq-q { width: 100%; display: flex; align-items: center; gap: 14px; padding: 18px 0; background: none; border: none; cursor: pointer; text-align: left; font-family: 'Lora', serif; font-size: 18px; }
-        .faq-badge { width: 28px; height: 28px; border-radius: 50%; background: var(--green-pale); color: var(--green); font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .faq-badge { width: 28px; height: 28px; border-radius: 50%; background: var(--indigo-pale); color: var(--indigo); font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
         .faq-q-text { flex: 1; font-weight: 700; color: var(--ink); }
-        .faq-icon { color: var(--green); font-size: 20px; transition: transform 0.2s; flex-shrink: 0; }
+        .faq-icon { color: var(--indigo); font-size: 20px; transition: transform 0.2s; flex-shrink: 0; }
         .faq-icon.open { transform: rotate(45deg); }
         .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s; }
         .faq-answer.open { max-height: 400px; padding-bottom: 18px; }
@@ -272,7 +272,7 @@ export default function Home() {
                 <div style={{ display: 'flex', alignItems: 'flex-start', gap: 16 }}>
                   <span style={{ color: 'var(--accent)', marginTop: 4, flexShrink: 0 }}>&#8594;</span>
                   <p style={{ margin: 0 }}>
-                    <strong style={{ color: 'var(--accent)' }}>transform plain white fabric into stunning indigo art</strong> that you can wear, hang on your wall, or gift to someone you love.
+                    <strong style={{ color: 'var(--accent)' }}>transform plain white fabric into beautiful indigo art</strong> that you can wear, hang on your wall, or gift to someone you love.
                   </p>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'flex-start', gap: 16 }}>
@@ -300,7 +300,7 @@ export default function Home() {
 
           <section style={{ padding: '48px 0 32px' }}>
             <h2 className="bonsai-center" style={{ marginBottom: 44 }}>Here&apos;s what most people don&apos;t realize.</h2>
-            <p><strong>The most stunning shibori patterns come from the simplest techniques.</strong></p>
+            <p><strong>The most beautiful shibori patterns come from the simplest techniques.</strong></p>
             <p>A fold, a few rubber bands, and a dip in indigo. $30 of materials. That&apos;s all it takes to create something breathtaking.</p>
             <p>As long as the folding is right and the dye is prepared correctly, <strong>the fabric reveals its own beauty.</strong></p>
             <p>You bind the fabric. You dip it. You unfold it. And suddenly, you&apos;re holding a piece of art.</p>
@@ -412,12 +412,12 @@ export default function Home() {
             <div className="module-card">
               <div className="module-label">Module 1</div>
               <h3><span style={{ color: 'var(--accent)' }}>The Living Tradition</span> (Understanding Shibori)</h3>
-              <div className="module-sub">The history, philosophy, and principles behind every stunning shibori piece.</div>
+              <div className="module-sub">The history, philosophy, and principles behind every beautiful shibori piece.</div>
               <div className="module-body">
                 <div className="module-img"><Image src="/module1.png" alt="Module 1 - The Living Tradition" fill style={{ objectFit: 'cover' }} /></div>
                 <ul>
                   <li>&#10022; The <strong>1,300-year history of shibori</strong> and why this art form has endured across centuries</li>
-                  <li>&#10022; The <strong>6 traditional shibori techniques</strong> and which ones create the most stunning results for beginners</li>
+                  <li>&#10022; The <strong>6 traditional shibori techniques</strong> and which ones create the most striking results for beginners</li>
                   <li>&#10022; Why <strong>simple folds with the right binding</strong> produce more beautiful patterns than complex methods</li>
                   <li>&#10022; How to <strong>read and understand shibori patterns</strong> so you can design your own</li>
                 </ul>
@@ -447,7 +447,7 @@ export default function Home() {
                 <div className="module-img"><Image src="/module3.png" alt="Module 3 - Core Techniques" fill style={{ objectFit: 'cover' }} /></div>
                 <ul>
                   <li>&#10022; <strong>Kanoko shibori:</strong> the binding technique that creates those iconic circular resist patterns</li>
-                  <li>&#10022; <strong>Kumo shibori:</strong> the pleating method that produces stunning spider-web designs</li>
+                  <li>&#10022; <strong>Kumo shibori:</strong> the pleating method that produces intricate spider-web designs</li>
                   <li>&#10022; <strong>Nui shibori:</strong> the stitching technique for precise lines and intricate shapes</li>
                   <li>&#10022; How to <strong>combine techniques</strong> to create complex, layered patterns on a single piece</li>
                 </ul>
@@ -525,7 +525,7 @@ export default function Home() {
             <h2 style={{ textAlign: 'center' }}>Try it risk-free</h2>
             <p style={{ fontSize: 20 }}><strong>You don&apos;t have to make the final decision now.</strong></p>
             <p style={{ textAlign: 'left', fontSize: 20 }}>Get access to the full course. Get your materials. Learn the techniques. Create your first shibori masterpiece. Watch your skills grow with every new piece.</p>
-            <p style={{ textAlign: 'left', fontSize: 20 }}>If you don&apos;t love it, email hello@shiboricraft.com within 90 days for a full refund. Within 24 hours. <strong>No questions asked.</strong></p>
+            <p style={{ textAlign: 'left', fontSize: 20 }}>If you don&apos;t love it, email hello@shiboriclass.com within 90 days for a full refund. Within 24 hours. <strong>No questions asked.</strong></p>
           </section>
 
           {/* BONUSES */}
@@ -535,7 +535,7 @@ export default function Home() {
 
             <div className="bonus-card">
               <div className="bonus-header"><div className="bonus-label">Bonus 1</div><div className="bonus-value">$47 value</div></div>
-              <h3><span style={{ color: 'var(--accent)' }}>The Fabric Guide:</span> Which Fabrics Produce The Most Stunning Results</h3>
+              <h3><span style={{ color: 'var(--accent)' }}>The Fabric Guide:</span> Which Fabrics Produce The Best Results</h3>
               <div className="bonus-desc">The same fold looks completely different on cotton, silk, linen, and rayon. This guide shows you exactly what to expect from each.</div>
               <div className="bonus-body">
                 <div className="bonus-img"><Image src="/bonus1.png" alt="Bonus 1 - The Fabric Guide" fill style={{ objectFit: 'cover' }} /></div>
@@ -684,7 +684,7 @@ export default function Home() {
 
 {/* FOOTER */}
       <footer className="bonsai-footer" style={{ paddingBottom: 100 }}>
-        <p>&copy; 2026 Shibori Craft. All rights reserved.</p>
+        <p>&copy; 2026 Shibori Class. All rights reserved.</p>
         <p style={{ marginTop: 5 }}><a href="/privacy">Privacy</a> &middot; <a href="/terms">Terms</a></p>
         <p style={{ marginTop: 16, fontSize: 11, color: '#666', maxWidth: 600, margin: '16px auto 0', lineHeight: 1.5 }}>This site is not a part of the Facebook website or Facebook Inc. Additionally, this site is NOT endorsed by Facebook in any way. FACEBOOK is a trademark of FACEBOOK, Inc.</p>
       </footer>

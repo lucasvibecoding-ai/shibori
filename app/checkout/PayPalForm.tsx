@@ -5,7 +5,7 @@ import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
 
 const isValidEmail = (e: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
 
-export default function PayPalForm({ email, onEmailError, productName = 'Shibori Masterclass' }: { email: string; onEmailError: () => void; productName?: string }) {
+export default function PayPalForm({ email, onEmailError }: { email: string; onEmailError: () => void }) {
   const clientId = process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID;
   const rejectedForEmail = useRef(false);
 
@@ -42,7 +42,7 @@ export default function PayPalForm({ email, onEmailError, productName = 'Shibori
           const res = await fetch('/api/paypal/create-order', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ product: 'shibori' }),
+            body: JSON.stringify({}),
           });
           const data = await res.json();
           return data.id;
@@ -55,7 +55,7 @@ export default function PayPalForm({ email, onEmailError, productName = 'Shibori
           });
           const result = await res.json();
           if (result.success) {
-            window.location.href = `/success?product=${encodeURIComponent(productName)}`;
+            window.location.href = '/success';
           } else {
             alert('Payment failed. Please try again.');
           }
