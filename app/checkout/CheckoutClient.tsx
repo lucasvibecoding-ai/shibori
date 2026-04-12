@@ -10,16 +10,21 @@ const stripePromise = loadStripe(
 
 export default function CheckoutClient() {
   const [clientSecret, setClientSecret] = useState('');
+  const [ready, setReady] = useState(false);
   const [email, setEmail] = useState('');
 
   useEffect(() => {
-    fetch('/api/create-payment-intent', {
+    const minDelay = new Promise((r) => setTimeout(r, 1500));
+    const fetchSecret = fetch('/api/create-payment-intent', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({}),
-    })
-      .then((res) => res.json())
-      .then((data) => setClientSecret(data.clientSecret));
+    }).then((res) => res.json());
+
+    Promise.all([fetchSecret, minDelay]).then(([data]) => {
+      setClientSecret(data.clientSecret);
+      setReady(true);
+    });
   }, []);
 
   return (
@@ -422,7 +427,7 @@ export default function CheckoutClient() {
             <div className="section-title">Express checkout</div>
 
             <div className="payment-form-area">
-              {clientSecret ? (
+              {clientSecret && ready ? (
                 <Elements
                   stripe={stripePromise}
                   options={{
