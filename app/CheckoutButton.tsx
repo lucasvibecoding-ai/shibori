@@ -29,7 +29,7 @@ export default function CheckoutButton() {
 
     navigator.sendBeacon('/api/track-checkout', JSON.stringify({ eventId }));
 
-    router.push('/checkout');
+    setTimeout(() => router.push('/checkout'), 1500);
   };
 
   return (
@@ -38,7 +38,7 @@ export default function CheckoutButton() {
         <div className="fixed inset-0 z-50 flex items-center justify-center" style={{ background: 'rgba(26,46,26,0.8)', backdropFilter: 'blur(4px)' }}>
           <div style={{ background: '#f5f8f5', padding: '32px 40px', borderRadius: 16, boxShadow: '0 8px 32px rgba(0,0,0,0.2)', textAlign: 'center', maxWidth: 320, margin: '0 16px' }}>
             <div style={{ width: 48, height: 48, border: '4px solid #e5e7eb', borderTopColor: '#2d7a4f', borderRadius: '50%', animation: 'spin 0.8s linear infinite', margin: '0 auto 20px' }} />
-            <p style={{ color: '#1a2e1a', fontSize: 20, fontWeight: 500 }}>&#128274; Loading Secure Checkout... &#128274;</p>
+            <p style={{ color: '#1a2e1a', fontSize: 20, fontWeight: 500, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}><span>&#128274;</span><span>Loading Secure Checkout...</span><span>&#128274;</span></p>
             <style dangerouslySetInnerHTML={{ __html: '@keyframes spin { to { transform: rotate(360deg); } }' }} />
           </div>
         </div>
