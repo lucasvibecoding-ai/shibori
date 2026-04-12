@@ -20,6 +20,14 @@ export default function CheckoutClient() {
 
     const mountTime = Date.now();
 
+    const cached = sessionStorage.getItem('pi_secret');
+    if (cached) {
+      sessionStorage.removeItem('pi_secret');
+      setClientSecret(cached);
+      setTimeout(() => setVisible(true), 2000);
+      return;
+    }
+
     fetch('/api/create-payment-intent', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

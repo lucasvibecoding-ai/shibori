@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
 declare global {
@@ -12,6 +12,10 @@ declare global {
 export default function CheckoutButton() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    router.prefetch('/checkout');
+  }, [router]);
 
   const handleClick = () => {
     setIsLoading(true);
@@ -28,6 +32,17 @@ export default function CheckoutButton() {
     }
 
     navigator.sendBeacon('/api/track-checkout', JSON.stringify({ eventId }));
+
+    // Start fetching payment intent now so checkout page can use it
+    fetch('/api/create-payment-intent', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({}),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        sessionStorage.setItem('pi_secret', data.clientSecret);
+      });
 
     setTimeout(() => router.push('/checkout'), 1500);
   };
