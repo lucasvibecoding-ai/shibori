@@ -412,28 +412,31 @@ export default function CheckoutClient() {
             </div>
           </div>
 
-          <div className="checkout-form-panel">
-            <label className="email-label">Email</label>
-            <input
-              type="email"
-              className="email-input"
-              placeholder="you@example.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <div className="form-divider" />
-
-            <div className="section-title">Express checkout</div>
-
-            <div className="payment-form-area" style={{ position: 'relative' }}>
-              {!visible && (
-                <div style={{ position: 'absolute', inset: 0, zIndex: 10, background: '#fafafa', display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '180px' }}>
-                  <div style={{ width: '24px', height: '24px', border: '3px solid #e5e7eb', borderTopColor: '#635BFF', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} />
+          <div className="checkout-form-panel" style={{ position: 'relative', overflow: 'hidden' }}>
+            {!visible && (
+              <div style={{ position: 'absolute', inset: 0, zIndex: 10, background: '#fafafa', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <div style={{ textAlign: 'center' }}>
+                  <div style={{ width: '24px', height: '24px', border: '3px solid #e5e7eb', borderTopColor: '#635BFF', borderRadius: '50%', animation: 'spin 0.8s linear infinite', margin: '0 auto 12px' }} />
+                  <p style={{ fontSize: '14px', color: '#6b7c93' }}>Loading payment methods...</p>
                   <style dangerouslySetInnerHTML={{ __html: '@keyframes spin { to { transform: rotate(360deg); } }' }} />
                 </div>
-              )}
-              {clientSecret && (
-                <div style={{ visibility: visible ? 'visible' : 'hidden' }}>
+              </div>
+            )}
+            <div style={{ opacity: visible ? 1 : 0, transition: 'opacity 0.3s' }}>
+              <label className="email-label">Email</label>
+              <input
+                type="email"
+                className="email-input"
+                placeholder="you@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <div className="form-divider" />
+
+              <div className="section-title">Express checkout</div>
+
+              <div className="payment-form-area">
+                {clientSecret && (
                   <Elements
                     stripe={stripePromise}
                     options={{
@@ -450,22 +453,22 @@ export default function CheckoutClient() {
                   >
                     <StripeForm email={email} onEmailChange={setEmail} paypalEmail={email} />
                   </Elements>
-                </div>
-              )}
-            </div>
+                )}
+              </div>
 
-            <div className="footer-row">
-              Powered by <a href="https://stripe.com" target="_blank" rel="noopener noreferrer" style={{ fontWeight: 600 }}>Stripe</a>
-              <span className="footer-sep">|</span>
-              <a href="https://stripe.com/legal/consumer" target="_blank" rel="noopener noreferrer">Terms</a>
-              <span style={{ width: '12px', display: 'inline-block' }} />
-              <a href="https://stripe.com/privacy" target="_blank" rel="noopener noreferrer">Privacy</a>
-            </div>
-            <div className="secure-footer">
-              <svg viewBox="0 0 12 12" fill="none">
-                <path d="M9.5 5.5V4a3.5 3.5 0 00-7 0v1.5M3 5.5h6a1 1 0 011 1V10a1 1 0 01-1 1H3a1 1 0 01-1-1V6.5a1 1 0 011-1z" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-              Your payment is secure and encrypted
+              <div className="footer-row">
+                Powered by <a href="https://stripe.com" target="_blank" rel="noopener noreferrer" style={{ fontWeight: 600 }}>Stripe</a>
+                <span className="footer-sep">|</span>
+                <a href="https://stripe.com/legal/consumer" target="_blank" rel="noopener noreferrer">Terms</a>
+                <span style={{ width: '12px', display: 'inline-block' }} />
+                <a href="https://stripe.com/privacy" target="_blank" rel="noopener noreferrer">Privacy</a>
+              </div>
+              <div className="secure-footer">
+                <svg viewBox="0 0 12 12" fill="none">
+                  <path d="M9.5 5.5V4a3.5 3.5 0 00-7 0v1.5M3 5.5h6a1 1 0 011 1V10a1 1 0 01-1 1H3a1 1 0 01-1-1V6.5a1 1 0 011-1z" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                Your payment is secure and encrypted
+              </div>
             </div>
           </div>
         </div>
