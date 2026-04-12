@@ -29,7 +29,7 @@ export default function CheckoutClient() {
       .then((data) => {
         setClientSecret(data.clientSecret);
         const elapsed = Date.now() - mountTime;
-        const remaining = Math.max(3000 - elapsed, 0);
+        const remaining = Math.max(2000 - elapsed, 0);
         setTimeout(() => setVisible(true), remaining);
       });
   }, []);
