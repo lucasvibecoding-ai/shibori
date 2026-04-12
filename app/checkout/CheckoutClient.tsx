@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import StripeForm from './StripeForm';
@@ -12,8 +12,14 @@ export default function CheckoutClient() {
   const [clientSecret, setClientSecret] = useState('');
   const [visible, setVisible] = useState(false);
   const [email, setEmail] = useState('');
+  const fetched = useRef(false);
 
   useEffect(() => {
+    if (fetched.current) return;
+    fetched.current = true;
+
+    const mountTime = Date.now();
+
     fetch('/api/create-payment-intent', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -22,7 +28,9 @@ export default function CheckoutClient() {
       .then((res) => res.json())
       .then((data) => {
         setClientSecret(data.clientSecret);
-        setTimeout(() => setVisible(true), 2000);
+        const elapsed = Date.now() - mountTime;
+        const remaining = Math.max(3000 - elapsed, 0);
+        setTimeout(() => setVisible(true), remaining);
       });
   }, []);
 
