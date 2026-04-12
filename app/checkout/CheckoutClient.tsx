@@ -10,21 +10,20 @@ const stripePromise = loadStripe(
 
 export default function CheckoutClient() {
   const [clientSecret, setClientSecret] = useState('');
-  const [ready, setReady] = useState(false);
+  const [visible, setVisible] = useState(false);
   const [email, setEmail] = useState('');
 
   useEffect(() => {
-    const minDelay = new Promise((r) => setTimeout(r, 1500));
-    const fetchSecret = fetch('/api/create-payment-intent', {
+    fetch('/api/create-payment-intent', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({}),
-    }).then((res) => res.json());
-
-    Promise.all([fetchSecret, minDelay]).then(([data]) => {
-      setClientSecret(data.clientSecret);
-      setReady(true);
-    });
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setClientSecret(data.clientSecret);
+        setTimeout(() => setVisible(true), 2000);
+      });
   }, []);
 
   return (
@@ -426,28 +425,31 @@ export default function CheckoutClient() {
 
             <div className="section-title">Express checkout</div>
 
-            <div className="payment-form-area">
-              {clientSecret && ready ? (
-                <Elements
-                  stripe={stripePromise}
-                  options={{
-                    clientSecret,
-                    appearance: {
-                      theme: 'stripe',
-                      variables: {
-                        fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
-                        colorPrimary: '#635BFF',
-                        borderRadius: '6px',
-                      },
-                    },
-                  }}
-                >
-                  <StripeForm email={email} onEmailChange={setEmail} paypalEmail={email} />
-                </Elements>
-              ) : (
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '180px' }}>
+            <div className="payment-form-area" style={{ position: 'relative' }}>
+              {!visible && (
+                <div style={{ position: 'absolute', inset: 0, zIndex: 10, background: '#fafafa', display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '180px' }}>
                   <div style={{ width: '24px', height: '24px', border: '3px solid #e5e7eb', borderTopColor: '#635BFF', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} />
                   <style dangerouslySetInnerHTML={{ __html: '@keyframes spin { to { transform: rotate(360deg); } }' }} />
+                </div>
+              )}
+              {clientSecret && (
+                <div style={{ visibility: visible ? 'visible' : 'hidden' }}>
+                  <Elements
+                    stripe={stripePromise}
+                    options={{
+                      clientSecret,
+                      appearance: {
+                        theme: 'stripe',
+                        variables: {
+                          fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
+                          colorPrimary: '#635BFF',
+                          borderRadius: '6px',
+                        },
+                      },
+                    }}
+                  >
+                    <StripeForm email={email} onEmailChange={setEmail} paypalEmail={email} />
+                  </Elements>
                 </div>
               )}
             </div>
