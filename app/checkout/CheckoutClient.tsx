@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import StripeForm from './StripeForm';
@@ -331,11 +332,11 @@ export default function CheckoutClient() {
             padding: 20px 20px 16px;
           }
 
-          .checkout-summary .product-name,
           .checkout-summary .back-link,
           .checkout-summary .summary-divider,
           .checkout-summary .line-item,
-          .checkout-summary .total-row {
+          .checkout-summary .total-row,
+          .checkout-desktop-info {
             display: none;
           }
 
@@ -346,7 +347,15 @@ export default function CheckoutClient() {
 
           .checkout-summary .product-price {
             font-size: 28px;
-            margin-bottom: 0;
+            margin-bottom: 8px;
+          }
+
+          .checkout-mobile-info {
+            display: flex !important;
+            justify-content: center;
+            gap: 8px;
+            font-size: 12px;
+            color: rgba(245,240,232,0.5);
           }
 
           .checkout-form-panel {
@@ -394,10 +403,16 @@ export default function CheckoutClient() {
               Back
             </a>
 
-            <div className="product-name">Permanent Access</div>
             <div className="product-title">Shibori Masterclass</div>
             <div className="product-price">
               $47.00<span className="currency">USD</span>
+            </div>
+            <div className="checkout-desktop-info" style={{ fontSize: 13, color: 'rgba(245,240,232,0.5)', lineHeight: 1.8, marginBottom: 32 }}>
+              Lifetime Access &middot; One-Time Payment<br />90-Day Money-Back Guarantee
+            </div>
+            <div className="checkout-mobile-info" style={{ display: 'none', flexDirection: 'column', alignItems: 'flex-start', gap: 2 }}>
+              <span>Lifetime Access &middot; One-Time Payment</span>
+              <span>90-Day Money-Back Guarantee</span>
             </div>
 
             <div className="summary-divider" />
@@ -427,6 +442,7 @@ export default function CheckoutClient() {
               <span className="total-label">Total due today</span>
               <span className="total-amount">$47.00</span>
             </div>
+
           </div>
 
           <div className="checkout-form-panel">
