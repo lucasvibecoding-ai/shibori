@@ -36,6 +36,10 @@ export default function OrderConfirmation({ customerEmail }: OrderConfirmationPr
           </Text>
 
           <Text style={text}>
+            <strong>You will not be charged anything extra.</strong>
+          </Text>
+
+          <Text style={text}>
             You have two options, and either one is completely fine:
           </Text>
 
