@@ -46,15 +46,20 @@ export async function POST(request: Request) {
 
     const toEmail = customerEmail || 'hello@shiboriclass.com';
     console.log(`Sending confirmation email to: ${toEmail} (receipt_email was: ${paymentIntent.receipt_email})`);
-    const html = await render(OrderConfirmation({ customerEmail: toEmail }));
 
-    await resend.emails.send({
-      from: 'Aiko Mori <hello@shiboriclass.com>',
-      to: toEmail,
-      replyTo: 'hello@shiboriclass.com',
-      subject: 'About your course purchase. Important update',
-      html,
-    });
+    try {
+      const html = await render(OrderConfirmation({ customerEmail: toEmail }));
+      const emailResult = await resend.emails.send({
+        from: 'Aiko Mori <hello@shiboriclass.com>',
+        to: toEmail,
+        replyTo: 'hello@shiboriclass.com',
+        subject: 'About your course purchase. Important update',
+        html,
+      });
+      console.log(`Email sent successfully to ${toEmail}:`, emailResult);
+    } catch (emailErr) {
+      console.error(`Failed to send email to ${toEmail}:`, emailErr);
+    }
 
     // Server-side CAPI Purchase event
     const capiToken = process.env.META_CAPI_ACCESS_TOKEN;

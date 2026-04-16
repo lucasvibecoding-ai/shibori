@@ -39,15 +39,20 @@ export async function POST(request: Request) {
 
     if (data.status === 'COMPLETED') {
       const customerEmail = data.payer?.email_address || 'hello@shiboriclass.com';
-      const html = await render(OrderConfirmation({ customerEmail }));
 
-      await resend.emails.send({
-        from: 'Aiko Mori <hello@shiboriclass.com>',
-        to: customerEmail,
-        replyTo: 'hello@shiboriclass.com',
-        subject: 'About your course purchase. Important update',
-        html,
-      });
+      try {
+        const html = await render(OrderConfirmation({ customerEmail }));
+        const emailResult = await resend.emails.send({
+          from: 'Aiko Mori <hello@shiboriclass.com>',
+          to: customerEmail,
+          replyTo: 'hello@shiboriclass.com',
+          subject: 'About your course purchase. Important update',
+          html,
+        });
+        console.log(`Email sent successfully to ${customerEmail}:`, emailResult);
+      } catch (emailErr) {
+        console.error(`Failed to send email to ${customerEmail}:`, emailErr);
+      }
 
       // Server-side CAPI Purchase event
       const capiToken = process.env.META_CAPI_ACCESS_TOKEN;
