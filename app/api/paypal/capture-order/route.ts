@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { render } from '@react-email/render';
 import OrderConfirmation from '../../../../emails/OrderConfirmation';
+import { recordPurchase } from '../../../../lib/airtable';
 
 const resend = new Resend(process.env.RESEND_API_KEY!);
 
@@ -52,6 +53,20 @@ export async function POST(request: Request) {
         console.log(`Email sent successfully to ${customerEmail}:`, emailResult);
       } catch (emailErr) {
         console.error(`Failed to send email to ${customerEmail}:`, emailErr);
+      }
+
+      if (data.payer?.email_address) {
+        const capture = data.purchase_units?.[0]?.payments?.captures?.[0];
+        const amountStr = capture?.amount?.value;
+        const amount = amountStr ? Number(amountStr) : 47;
+        await recordPurchase({
+          transactionId: orderID,
+          date: new Date(),
+          amount,
+          provider: 'PayPal',
+          email: data.payer.email_address,
+          firstName: data.payer.name?.given_name,
+        });
       }
 
       // Server-side CAPI Purchase event
