@@ -39,22 +39,14 @@ export default function OrderConfirmation({ customerEmail }: OrderConfirmationPr
             <strong>You will not be charged anything extra.</strong>
           </Text>
 
-          <Text style={text}>
-            You have two options, and either one is completely fine:
-          </Text>
-
           <Text style={optionText}>
-            <strong>Option 1: Full refund.</strong> If you&apos;d rather not wait, just reply to this email and I&apos;ll process a full refund immediately. No questions asked.
-          </Text>
-
-          <Text style={optionText}>
-            <strong>Option 2: Wait for the updated version.</strong> It&apos;s coming end of April. It&apos;s going to be incredible. As a thank you for your patience, I&apos;ll give you a <strong>steep discount</strong> on our private community once it opens. It&apos;s going to be a space for shibori enthusiasts, and you&apos;ll get in at a fraction of the price.
+            <strong>The updated course will be available May 10th.</strong> It&apos;s going to be incredible. As a thank you for your patience, I&apos;ll give you a <strong>steep discount</strong> on our private community once it opens. It&apos;s going to be a space for shibori enthusiasts, and you&apos;ll get in at a fraction of the price.
           </Text>
 
           <Hr style={divider} />
 
           <Text style={text}>
-            Just reply to this email and let me know which you&apos;d prefer. If I don&apos;t hear back, I&apos;ll assume you&apos;re happy to wait and I&apos;ll send you access as soon as the updated version is live.
+            I&apos;ll send you access as soon as the updated version is live.
           </Text>
 
           <Text style={signature}>
