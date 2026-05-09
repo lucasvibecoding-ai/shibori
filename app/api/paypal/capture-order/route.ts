@@ -1,10 +1,14 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { render } from '@react-email/render';
+import { createHash } from 'crypto';
 import OrderConfirmation from '../../../../emails/OrderConfirmation';
 import { recordPurchase } from '../../../../lib/airtable';
 
 const resend = new Resend(process.env.RESEND_API_KEY!);
+
+const sha256 = (value: string) =>
+  createHash('sha256').update(value.trim().toLowerCase()).digest('hex');
 
 const PAYPAL_API = process.env.PAYPAL_MODE === 'live'
   ? 'https://api-m.paypal.com'
@@ -74,6 +78,12 @@ export async function POST(request: Request) {
       if (capiToken) {
         const pixelId = '1660544041796187';
         const eventId = orderID;
+        const forwardedFor = request.headers.get('x-forwarded-for') || '';
+        const clientIp = forwardedFor.split(',')[0]?.trim() || undefined;
+        const userAgent = request.headers.get('user-agent') || undefined;
+        const cookieHeader = request.headers.get('cookie') || '';
+        const fbp = cookieHeader.match(/(?:^|;\s*)_fbp=([^;]+)/)?.[1];
+        const fbc = cookieHeader.match(/(?:^|;\s*)_fbc=([^;]+)/)?.[1];
         await fetch(
           `https://graph.facebook.com/v21.0/${pixelId}/events?access_token=${capiToken}`,
           {
@@ -87,7 +97,11 @@ export async function POST(request: Request) {
                   event_id: eventId,
                   action_source: 'website',
                   user_data: {
-                    em: [customerEmail],
+                    em: [sha256(customerEmail)],
+                    ...(clientIp ? { client_ip_address: clientIp } : {}),
+                    ...(userAgent ? { client_user_agent: userAgent } : {}),
+                    ...(fbp ? { fbp } : {}),
+                    ...(fbc ? { fbc } : {}),
                   },
                   custom_data: {
                     value: 47.0,

@@ -11,14 +11,19 @@ declare global {
 
 export default function PurchaseTracker() {
   const searchParams = useSearchParams();
-  const sessionId = searchParams.get('session_id');
+  const paymentIntent = searchParams.get('payment_intent');
+  const redirectStatus = searchParams.get('redirect_status');
+  const paypalOrder = searchParams.get('paypal_order');
   const hasFiredRef = useRef(false);
+
+  const stripeSucceeded = paymentIntent && redirectStatus === 'succeeded';
+  const eventId = stripeSucceeded ? paymentIntent : paypalOrder;
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    if (!sessionId) return;
+    if (!eventId) return;
 
-    const storageKey = `purchase_tracked_${sessionId}`;
+    const storageKey = `purchase_tracked_${eventId}`;
     if (sessionStorage.getItem(storageKey) || hasFiredRef.current) return;
 
     hasFiredRef.current = true;
@@ -29,11 +34,11 @@ export default function PurchaseTracker() {
         currency: 'USD',
         content_name: 'Shibori Masterclass',
         content_type: 'product',
-      }, { eventID: sessionId });
+      }, { eventID: eventId });
     }
 
     sessionStorage.setItem(storageKey, 'true');
-  }, [sessionId]);
+  }, [eventId]);
 
   return null;
 }

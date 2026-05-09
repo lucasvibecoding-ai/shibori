@@ -1,6 +1,7 @@
 import Stripe from 'stripe';
 import { Resend } from 'resend';
 import { render } from '@react-email/render';
+import { createHash } from 'crypto';
 import OrderConfirmation from '../../../emails/OrderConfirmation';
 import { recordPurchase } from '../../../lib/airtable';
 
@@ -9,6 +10,9 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 });
 
 const resend = new Resend(process.env.RESEND_API_KEY!);
+
+const sha256 = (value: string) =>
+  createHash('sha256').update(value.trim().toLowerCase()).digest('hex');
 
 export async function POST(request: Request) {
   const rawBody = await request.text();
@@ -94,7 +98,7 @@ export async function POST(request: Request) {
                 event_id: eventId,
                 action_source: 'website',
                 user_data: {
-                  em: [toEmail],
+                  em: [sha256(toEmail)],
                 },
                 custom_data: {
                   value: 47.0,

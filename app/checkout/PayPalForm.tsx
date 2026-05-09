@@ -55,7 +55,7 @@ export default function PayPalForm({ email, onEmailError }: { email: string; onE
           });
           const result = await res.json();
           if (result.success) {
-            window.location.href = '/success';
+            window.location.href = `/success?paypal_order=${encodeURIComponent(data.orderID)}`;
           } else {
             alert('Payment failed. Please try again.');
           }
