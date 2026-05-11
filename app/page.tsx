@@ -248,10 +248,10 @@ export default function Home() {
               </div>
               <div className="below-hero-row" style={{ display: 'flex', gap: 12, width: '90%', maxWidth: 640 }}>
                 <div style={{ flex: 1, aspectRatio: '1/1', borderRadius: 12, overflow: 'hidden', position: 'relative', boxShadow: '0 6px 20px rgba(26,45,107,0.2)' }}>
-                  <Image src="/below_hero1.jpg" alt="Shibori example" fill style={{ objectFit: 'cover' }} />
+                  <Image src="/below_hero1.png" alt="Shibori example" fill style={{ objectFit: 'cover' }} />
                 </div>
                 <div style={{ flex: 1, aspectRatio: '1/1', borderRadius: 12, overflow: 'hidden', position: 'relative', boxShadow: '0 6px 20px rgba(26,45,107,0.2)' }}>
-                  <Image src="/below_hero2.jpg" alt="Shibori example" fill style={{ objectFit: 'cover' }} />
+                  <Image src="/below_hero2.png" alt="Shibori example" fill style={{ objectFit: 'cover' }} />
                 </div>
               </div>
             </div>
@@ -320,6 +320,18 @@ export default function Home() {
             </div>
             <div style={{ borderRadius: 10, overflow: 'hidden', aspectRatio: '1/1', position: 'relative' }}>
               <Image src="/fill_pic4.png" alt="Shibori example 4" fill style={{ objectFit: 'cover' }} />
+            </div>
+            <div style={{ borderRadius: 10, overflow: 'hidden', aspectRatio: '1/1', position: 'relative' }}>
+              <Image src="/fill_pic5.png" alt="Shibori example 5" fill style={{ objectFit: 'cover' }} />
+            </div>
+            <div style={{ borderRadius: 10, overflow: 'hidden', aspectRatio: '1/1', position: 'relative' }}>
+              <Image src="/fill_pic6.jpg" alt="Shibori example 6" fill style={{ objectFit: 'cover' }} />
+            </div>
+            <div style={{ borderRadius: 10, overflow: 'hidden', aspectRatio: '1/1', position: 'relative' }}>
+              <Image src="/fill_pic7.png" alt="Shibori example 7" fill style={{ objectFit: 'cover' }} />
+            </div>
+            <div style={{ borderRadius: 10, overflow: 'hidden', aspectRatio: '1/1', position: 'relative' }}>
+              <Image src="/fill_pic8.jpg" alt="Shibori example 8" fill style={{ objectFit: 'cover' }} />
             </div>
           </div>
 
