@@ -632,12 +632,12 @@ export default function Home() {
 
             <div className="bonus-card mega">
               <div className="bonus-header"><div className="bonus-label">Mega Bonus</div><div className="bonus-value">$79 value</div></div>
-              <h3><span style={{ color: 'var(--accent)' }}>Pattern Library:</span> 15 Traditional Shibori Designs</h3>
-              <div className="bonus-desc">A visual reference guide with step-by-step folding diagrams for 15 authentic patterns.</div>
+              <h3><span style={{ color: 'var(--accent)' }}>Pattern Library:</span> 8 Traditional Shibori Designs</h3>
+              <div className="bonus-desc">A visual reference guide with step-by-step folding diagrams for 8 authentic patterns.</div>
               <div className="bonus-body">
-                <div className="bonus-img"><Image src="/megabonus.png" alt="Mega Bonus - Pattern Library: 15 Designs" fill style={{ objectFit: 'cover' }} /></div>
+                <div className="bonus-img"><Image src="/megabonus.png" alt="Mega Bonus - Pattern Library: 8 Designs" fill style={{ objectFit: 'cover' }} /></div>
                 <ul>
-                  <li>&#10022; <strong>15 patterns ranked by difficulty</strong> so you start with the ones you can nail on your first try</li>
+                  <li>&#10022; <strong>8 patterns ranked by difficulty</strong> so you start with the ones you can nail on your first try</li>
                   <li>&#10022; <strong>Step-by-step folding diagrams</strong> for each pattern so you never have to guess</li>
                   <li>&#10022; <strong>Photos of each pattern</strong> at different dye intensities so you know what to expect</li>
                   <li>&#10022; <strong>Combination charts</strong> showing which patterns work beautifully together on one piece</li>
@@ -664,7 +664,7 @@ export default function Home() {
             <div className="stack-row"><span className="label">&#10003; The Fabric Guide</span><span className="val">$47</span></div>
             <div className="stack-row"><span className="label">&#10003; The Mindful Practice Guide</span><span className="val">$37</span></div>
             <div className="stack-row"><span className="label">&#10003; The Project Lookbook</span><span className="val">$27</span></div>
-            <div className="stack-row"><span className="label">&#10003; Pattern Library: 15 Designs</span><span className="val">$79</span></div>
+            <div className="stack-row"><span className="label">&#10003; Pattern Library: 8 Designs</span><span className="val">$79</span></div>
             <div className="stack-row" style={{ borderBottom: 'none' }}><span className="label" style={{ fontWeight: 700, color: 'var(--ink)' }}>Total Value</span><span className="val" style={{ fontSize: 16 }}>$329</span></div>
           </section>
 
