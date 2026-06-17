@@ -102,7 +102,7 @@ export async function POST(request: Request) {
         from: 'Aiko Mori <hello@shiboriclass.com>',
         to: toEmail,
         replyTo: 'hello@shiboriclass.com',
-        subject: 'About your course purchase. Important update',
+        subject: 'Your Shibori course is ready!',
         html,
       });
       console.log(`Email sent successfully to ${toEmail}:`, emailResult);
