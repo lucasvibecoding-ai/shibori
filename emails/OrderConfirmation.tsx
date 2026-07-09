@@ -28,89 +28,47 @@ export default function OrderConfirmation({
   const accessUrl = setupUrl ?? loginUrl;
   const isNewUser = !!setupUrl;
 
-  if (accessUrl) {
-    return (
-      <Html>
-        <Head />
-        <Preview>Your shibori course is ready</Preview>
-        <Body style={body}>
-          <Container style={container}>
-
-            <Heading style={heading}>Welcome to your course</Heading>
-
-            <Text style={text}>Hi there,</Text>
-
-            <Text style={text}>
-              Thank you so much for your purchase, it genuinely means a lot. Your shibori course is ready and waiting for you.
-            </Text>
-
-            <Button href={accessUrl} style={button}>
-              {isNewUser ? 'Set up your account' : 'Log in to your course'}
-            </Button>
-
-            {isNewUser ? (
-              <Text style={smallText}>
-                Click the button above to set your password. Your login email is <strong>{customerEmail}</strong> — use this same address every time you sign in.
-              </Text>
-            ) : (
-              <Text style={smallText}>
-                You already have an account with us — sign in with <strong>{customerEmail}</strong>.
-              </Text>
-            )}
-
-            <Hr style={divider} />
-
-            <Text style={text}>
-              If you run into any trouble, just reply to this email and I&apos;ll help you out.
-            </Text>
-
-            <Text style={signature}>
-              Aiko Mori
-            </Text>
-
-            <Hr style={divider} />
-
-            <SpamSection />
-
-          </Container>
-        </Body>
-      </Html>
-    );
-  }
-
   return (
     <Html>
       <Head />
-      <Preview>Important update about your course purchase</Preview>
+      <Preview>Your shibori course is ready</Preview>
       <Body style={body}>
         <Container style={container}>
 
-          <Heading style={heading}>Thank you for your purchase</Heading>
+          <Heading style={heading}>Welcome to your course</Heading>
+
+          <Text style={text}>Hi there,</Text>
 
           <Text style={text}>
-            Hi there,
+            Thank you so much for your purchase, it genuinely means a lot. Your shibori course is ready and waiting for you.
           </Text>
 
-          <Text style={text}>
-            I wanted to personally reach out about your recent purchase. First, thank you so much, it genuinely means a lot.
-          </Text>
+          {accessUrl ? (
+            <>
+              <Button href={accessUrl} style={button}>
+                {isNewUser ? 'Set up your account' : 'Log in to your course'}
+              </Button>
 
-          <Text style={text}>
-            Here&apos;s what&apos;s happening: based on student feedback, the course is currently being rebuilt and expanded to give you even more value. I want to make sure what you get is worth every penny.
-          </Text>
-
-          <Text style={text}>
-            <strong>You will not be charged anything extra.</strong>
-          </Text>
-
-          <Text style={optionText}>
-            <strong>The updated course will be available May 10th.</strong> It&apos;s going to be incredible. As a thank you for your patience, I&apos;ll give you a <strong>steep discount</strong> on our private community once it opens. It&apos;s going to be a space for shibori enthusiasts, and you&apos;ll get in at a fraction of the price.
-          </Text>
+              {isNewUser ? (
+                <Text style={smallText}>
+                  Click the button above to set your password. Your login email is <strong>{customerEmail}</strong> — use this same address every time you sign in.
+                </Text>
+              ) : (
+                <Text style={smallText}>
+                  You already have an account with us — sign in with <strong>{customerEmail}</strong>.
+                </Text>
+              )}
+            </>
+          ) : (
+            <Text style={smallText}>
+              Log in with <strong>{customerEmail}</strong>, the email you used to purchase.
+            </Text>
+          )}
 
           <Hr style={divider} />
 
           <Text style={text}>
-            I&apos;ll send you access as soon as the updated version is live.
+            If you run into any trouble, just reply to this email and I&apos;ll help you out.
           </Text>
 
           <Text style={signature}>
@@ -179,15 +137,6 @@ const text = {
   lineHeight: '1.7',
   color: '#4a4237',
   marginBottom: '16px',
-};
-
-const optionText = {
-  fontSize: '16px',
-  lineHeight: '1.7',
-  color: '#4a4237',
-  marginBottom: '16px',
-  paddingLeft: '16px',
-  borderLeft: '3px solid #2d4a8f',
 };
 
 const button = {

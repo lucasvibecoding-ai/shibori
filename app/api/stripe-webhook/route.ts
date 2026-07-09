@@ -96,11 +96,16 @@ export async function POST(request: Request) {
       console.error('grant-access error:', err);
     }
 
+    // Course platform configured but grant returned no per-buyer link (e.g. /success page
+    // granted access first) -> fall back to the generic sign-in page so the buyer still gets
+    // the "ready" email.
+    if (!setupUrl && !loginUrl && process.env.COURSE_PLATFORM_URL && process.env.COURSE_PLATFORM_SECRET) {
+      loginUrl = `${process.env.COURSE_PLATFORM_URL}/sign-in`;
+    }
+
     try {
       const html = await render(OrderConfirmation({ customerEmail: toEmail, setupUrl, loginUrl }));
-      const subject = setupUrl || loginUrl
-        ? 'Your Shibori Course is ready!'
-        : 'About your course purchase. Important update';
+      const subject = 'Your Shibori Course is ready!';
       const emailResult = await resend.emails.send({
         from: 'Aiko Mori <hello@shiboriclass.com>',
         to: toEmail,
