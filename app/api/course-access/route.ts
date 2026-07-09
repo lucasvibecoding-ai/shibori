@@ -82,12 +82,24 @@ export async function POST(request: Request) {
       },
       body: JSON.stringify({ email, courseSlug: 'shibori-masterclass' }),
     });
-    if (!grantRes.ok) return NextResponse.json({ ready: false });
+    // The account may already exist because the Stripe webhook / PayPal capture granted access
+    // first — in that race grant-access returns no per-buyer link. Since the payment is verified
+    // and the course is live, still show the button, pointing at the generic sign-in page, so it
+    // never silently disappears on the buyer.
+    if (grantRes.ok) {
+      const data = (await grantRes.json()) as { actionUrl?: string; isNewUser?: boolean };
+      if (data.actionUrl) {
+        return NextResponse.json({ actionUrl: data.actionUrl, isNewUser: !!data.isNewUser, email });
+      }
+    } else {
+      console.error('grant-access failed:', grantRes.status, await grantRes.text());
+    }
 
-    const data = (await grantRes.json()) as { actionUrl?: string; isNewUser?: boolean };
-    if (!data.actionUrl) return NextResponse.json({ ready: false });
-
-    return NextResponse.json({ actionUrl: data.actionUrl, isNewUser: !!data.isNewUser, email });
+    return NextResponse.json({
+      actionUrl: `${process.env.COURSE_PLATFORM_URL}/sign-in`,
+      isNewUser: false,
+      email,
+    });
   } catch (err) {
     console.error('course-access error:', err);
     return NextResponse.json({ ready: false });
