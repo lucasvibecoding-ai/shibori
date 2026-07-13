@@ -8,13 +8,12 @@ import {
   useElements,
 } from '@stripe/react-stripe-js';
 import type { StripeExpressCheckoutElementClickEvent } from '@stripe/stripe-js';
-import PayPalForm from './PayPalForm';
 
 const isValidEmail = (e: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
 
 const EMAIL_ERROR = 'Please enter a valid email address above to continue.';
 
-export default function StripeForm({ email, onEmailChange, paypalEmail }: { email: string; onEmailChange: (v: string) => void; paypalEmail: string }) {
+export default function StripeForm({ email, onEmailChange }: { email: string; onEmailChange: (v: string) => void }) {
   const stripe = useStripe();
   const elements = useElements();
   const [isProcessing, setIsProcessing] = useState(false);
@@ -115,6 +114,11 @@ export default function StripeForm({ email, onEmailChange, paypalEmail }: { emai
         onConfirm={onExpressCheckoutConfirm}
         onClick={onExpressCheckoutClick}
         options={{
+          // PayPal is offered inside the Payment Element below (a redirect method
+          // processed by Stripe), so keep it out of the express row to avoid duplicates.
+          paymentMethods: {
+            paypal: 'never',
+          },
           buttonType: {
             applePay: 'buy',
             googlePay: 'buy',
@@ -122,13 +126,9 @@ export default function StripeForm({ email, onEmailChange, paypalEmail }: { emai
         }}
       />
 
-      <div style={{ marginTop: 12 }}>
-        <PayPalForm email={paypalEmail} onEmailError={showExpressEmailError} />
-      </div>
-
       <div style={{ display: 'flex', alignItems: 'center', gap: 12, margin: '24px 0' }}>
         <div style={{ flex: 1, height: 1, background: '#e5e7eb' }} />
-        <span style={{ fontSize: 13, color: '#9a9689', whiteSpace: 'nowrap' }}>Or pay with card</span>
+        <span style={{ fontSize: 13, color: '#9a9689', whiteSpace: 'nowrap' }}>Or pay with card or PayPal</span>
         <div style={{ flex: 1, height: 1, background: '#e5e7eb' }} />
       </div>
 
