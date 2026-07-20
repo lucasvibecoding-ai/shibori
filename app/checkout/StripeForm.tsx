@@ -13,7 +13,7 @@ const isValidEmail = (e: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
 
 const EMAIL_ERROR = 'Please enter a valid email address above to continue.';
 
-export default function StripeForm({ email, onEmailChange }: { email: string; onEmailChange: (v: string) => void }) {
+export default function StripeForm({ email, onEmailChange, priceLabel }: { email: string; onEmailChange: (v: string) => void; priceLabel: string }) {
   const stripe = useStripe();
   const elements = useElements();
   const [isProcessing, setIsProcessing] = useState(false);
@@ -177,7 +177,7 @@ export default function StripeForm({ email, onEmailChange }: { email: string; on
             letterSpacing: '0.01em',
           }}
         >
-          {isProcessing ? 'Processing...' : 'Pay $47.00'}
+          {isProcessing ? 'Processing...' : `Pay ${priceLabel}`}
         </button>
       </form>
     </div>

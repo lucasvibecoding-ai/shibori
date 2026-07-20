@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
+import { currencyForCountry } from '../../../lib/pricing';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2026-02-25.clover',
@@ -33,9 +34,12 @@ export async function POST(request: Request) {
     if (ipCityRaw) metadata.ip_city = decodeURIComponent(ipCityRaw);
     if (ipAddress) metadata.ip_address = ipAddress;
 
+    // Price in USD for the Americas + AU/NZ + dollar countries; EUR for everyone else.
+    const currency = currencyForCountry(ipCountry);
+
     const paymentIntent = await stripe.paymentIntents.create({
       amount: price.unit_amount!,
-      currency: price.currency,
+      currency,
       automatic_payment_methods: {
         enabled: true,
         allow_redirects: 'always',
@@ -43,7 +47,7 @@ export async function POST(request: Request) {
       metadata,
     });
 
-    return NextResponse.json({ clientSecret: paymentIntent.client_secret });
+    return NextResponse.json({ clientSecret: paymentIntent.client_secret, currency });
   } catch (error) {
     console.error('Payment intent error:', error);
     return NextResponse.json(

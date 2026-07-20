@@ -13,6 +13,7 @@ export default function CheckoutClient() {
   const [clientSecret, setClientSecret] = useState('');
   const [visible, setVisible] = useState(false);
   const [email, setEmail] = useState('');
+  const [currency, setCurrency] = useState('usd');
   const fetched = useRef(false);
 
   useEffect(() => {
@@ -29,11 +30,16 @@ export default function CheckoutClient() {
       .then((res) => res.json())
       .then((data) => {
         setClientSecret(data.clientSecret);
+        setCurrency(data.currency ?? 'usd');
         const elapsed = Date.now() - mountTime;
         const remaining = Math.max(2000 - elapsed, 0);
         setTimeout(() => setVisible(true), remaining);
       });
   }, []);
+
+  const symbol = currency === 'eur' ? '€' : '$';
+  const code = currency === 'eur' ? 'EUR' : 'USD';
+  const priceLabel = `${symbol}47.00`;
 
   return (
     <>
@@ -405,7 +411,7 @@ export default function CheckoutClient() {
 
             <div className="product-title">Shibori Masterclass</div>
             <div className="product-price">
-              $47.00<span className="currency">USD</span>
+              {priceLabel}<span className="currency">{code}</span>
             </div>
             <div className="checkout-desktop-info" style={{ fontSize: 13, color: 'rgba(245,240,232,0.5)', lineHeight: 1.8, marginBottom: 32 }}>
               Lifetime Access &middot; One-Time Payment<br />90-Day Money-Back Guarantee
@@ -419,7 +425,7 @@ export default function CheckoutClient() {
 
             <div className="line-item">
               <span className="item-name">Shibori Masterclass (5 Modules)</span>
-              <span className="item-price">$47.00</span>
+              <span className="item-price">{priceLabel}</span>
             </div>
             <div className="line-item">
               <span className="item-name">The Fabric Guide</span>
@@ -440,7 +446,7 @@ export default function CheckoutClient() {
 
             <div className="total-row">
               <span className="total-label">Total due today</span>
-              <span className="total-amount">$47.00</span>
+              <span className="total-amount">{priceLabel}</span>
             </div>
 
           </div>
@@ -475,7 +481,7 @@ export default function CheckoutClient() {
                       },
                     }}
                   >
-                    <StripeForm email={email} onEmailChange={setEmail} />
+                    <StripeForm email={email} onEmailChange={setEmail} priceLabel={priceLabel} />
                   </Elements>
                 )}
               </div>

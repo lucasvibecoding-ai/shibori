@@ -3,6 +3,8 @@ import Image from "next/image";
 import CheckoutButton from "./CheckoutButton";
 import CountdownBar from "./CountdownBar";
 import FaqAccordion from "./FaqAccordion";
+import { headers } from "next/headers";
+import { currencyForCountry, currencySymbol } from "../lib/pricing";
 
 export const metadata: Metadata = {
   title: "Shibori: Learn The 1,300-Year Old Japanese Art Of Hand-Dyeing Fabric",
@@ -10,7 +12,11 @@ export const metadata: Metadata = {
     "Learn the ancient Japanese art of shibori hand-dyeing at home with no experience. Create beautiful indigo fabric patterns in under 2 hours.",
 };
 
-export default function Home() {
+export default async function Home() {
+  // Match the checkout currency: EUR for most of the world, USD for the Americas + AU/NZ.
+  const sym = currencySymbol(
+    currencyForCountry((await headers()).get("x-vercel-ip-country"))
+  );
   return (
     <main className="overflow-hidden">
       <CountdownBar />
@@ -286,7 +292,7 @@ export default function Home() {
                 <div style={{ display: 'flex', alignItems: 'flex-start', gap: 16 }}>
                   <span style={{ color: 'var(--accent)', marginTop: 4, flexShrink: 0 }}>&#8594;</span>
                   <p style={{ margin: 0 }}>
-                    <strong style={{ color: 'var(--accent)' }}>make handmade pieces that cost under $5 in materials</strong> but look like they came from a Japanese artisan shop.
+                    <strong style={{ color: 'var(--accent)' }}>make handmade pieces that cost under {sym}5 in materials</strong> but look like they came from a Japanese artisan shop.
                   </p>
                 </div>
               </div>
@@ -303,7 +309,7 @@ export default function Home() {
           <section style={{ padding: '48px 0 32px' }}>
             <h2 className="bonsai-center" style={{ marginBottom: 44 }}>Here&apos;s what most people don&apos;t realize.</h2>
             <p><strong>The most beautiful shibori patterns come from the simplest techniques.</strong></p>
-            <p>A fold, a few rubber bands, and a dip in indigo. $30 of materials. That&apos;s all it takes to create something breathtaking.</p>
+            <p>A fold, a few rubber bands, and a dip in indigo. {sym}30 of materials. That&apos;s all it takes to create something breathtaking.</p>
             <p>As long as the folding is right and the dye is prepared correctly, <strong>the fabric reveals its own beauty.</strong></p>
             <p>You bind the fabric. You dip it. You unfold it. And suddenly, you&apos;re holding a piece of art.</p>
           </section>
@@ -441,11 +447,11 @@ export default function Home() {
             <div className="module-card">
               <div className="module-label">Module 2</div>
               <h3><span style={{ color: 'var(--accent)' }}>Your Shibori Toolkit</span> (Materials &amp; Setup)</h3>
-              <div className="module-sub">Your complete shopping list and workspace setup for under $30.</div>
+              <div className="module-sub">Your complete shopping list and workspace setup for under {sym}30.</div>
               <div className="module-body">
                 <div className="module-img"><Image src="/module2.webp" alt="Module 2 - Your Shibori Toolkit" fill style={{ objectFit: 'cover' }} /></div>
                 <ul>
-                  <li>&#10022; The <strong>$30 shopping list</strong> with exact product links that gives you everything you need for your first 10+ pieces</li>
+                  <li>&#10022; The <strong>{sym}30 shopping list</strong> with exact product links that gives you everything you need for your first 10+ pieces</li>
                   <li>&#10022; The <strong>best fabrics for beginners</strong> and why cotton is your secret weapon</li>
                   <li>&#10022; <strong>Pre-reduced vs natural indigo:</strong> which one to start with and why</li>
                   <li>&#10022; How to <strong>set up your dye station</strong> in any kitchen or bathroom in 10 minutes</li>
@@ -504,15 +510,15 @@ export default function Home() {
           <section style={{ padding: '56px 0' }}>
             <div className="bonsai-center" style={{ marginBottom: 32 }}>
               <p style={{ maxWidth: 720, textAlign: 'left', fontSize: 24, margin: '0 auto 20px' }}>You&apos;ve seen what&apos;s inside. Five modules. A complete system for learning, creating, and mastering shibori at home.</p>
-              <p style={{ maxWidth: 720, textAlign: 'left', fontSize: 24, margin: '0 auto 20px' }}>The full price for this course is <strong><s>$97</s></strong>.</p>
+              <p style={{ maxWidth: 720, textAlign: 'left', fontSize: 24, margin: '0 auto 20px' }}>The full price for this course is <strong><s>{sym}97</s></strong>.</p>
               <p style={{ maxWidth: 720, textAlign: 'left', fontSize: 24, margin: '0 auto 20px' }}>You&apos;re not going to pay that today. And the reason is simple.</p>
               <p style={{ maxWidth: 720, textAlign: 'left', fontSize: 24, margin: '0 auto 20px' }}>This is the first time I&apos;ve offered this course to the public. I want <strong>50 people</strong> to go through it. I want to read your emails, see your pieces, find out where you get stuck and where you surprise yourself.</p>
               <p style={{ maxWidth: 720, textAlign: 'left', fontSize: 24, margin: '0 auto 20px' }}>That feedback is worth more to me right now than charging full price. Honestly, I also need to find out if I can handle 50 support inboxes without accidentally dyeing my laptop indigo.</p>
               <p style={{ maxWidth: 720, textAlign: 'left', fontSize: 24, margin: '0 auto 20px' }}>So for this first group, the price is <strong>dramatically lower</strong>. Once those 50 spots fill, this page comes down and the full price goes live.</p>
             </div>
             <div className="checkout-box" style={{ maxWidth: 520, margin: '0 auto', padding: '40px 44px', borderRadius: 14, border: '2px solid rgba(45,74,143,0.25)', background: '#ffffff', boxShadow: '0 4px 24px rgba(0,0,0,0.06)', textAlign: 'center' }}>
-              <div className="price-old">Normally $97</div>
-              <p id="get-access" className="now-only" style={{ fontSize: 44, color: 'var(--ink)', fontWeight: 700, marginBottom: 8 }}>Now Only <span style={{ color: '#2d4a8f' }}>$47</span></p>
+              <div className="price-old">Normally {sym}97</div>
+              <p id="get-access" className="now-only" style={{ fontSize: 44, color: 'var(--ink)', fontWeight: 700, marginBottom: 8 }}>Now Only <span style={{ color: '#2d4a8f' }}>{sym}47</span></p>
               <div className="price-note">One time payment. <span className="lifetime-break" />Lifetime access.</div>
               <div style={{ marginTop: 20 }}><CheckoutButton /></div>
               <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginTop: 20 }}>
@@ -548,14 +554,14 @@ export default function Home() {
             <h2 className="bonsai-center" style={{ marginBottom: 24 }}>Order today and you also get:</h2>
 
             <div className="bonus-card">
-              <div className="bonus-header"><div className="bonus-label">Bonus 1</div><div className="bonus-value">$47 value</div></div>
+              <div className="bonus-header"><div className="bonus-label">Bonus 1</div><div className="bonus-value">{sym}47 value</div></div>
               <h3><span style={{ color: 'var(--accent)' }}>The Fabric Guide:</span> Which Fabrics Produce The Best Results</h3>
               <div className="bonus-desc">The same fold looks completely different on cotton, silk, linen, and rayon. This guide shows you exactly what to expect from each.</div>
               <div className="bonus-body">
                 <div className="bonus-img"><Image src="/bonus1.webp" alt="Bonus 1 - The Fabric Guide" fill style={{ objectFit: 'cover' }} /></div>
                 <ul>
                   <li>&#10022; <strong>Cotton, silk, linen, and rayon compared</strong> side by side with the same technique so you see exactly how each one takes the dye</li>
-                  <li>&#10022; <strong>Where to source the best fabrics</strong> for under $5 a yard, online and locally</li>
+                  <li>&#10022; <strong>Where to source the best fabrics</strong> for under {sym}5 a yard, online and locally</li>
                   <li>&#10022; <strong>How to prep each fabric type</strong> so the dye bonds evenly and the pattern comes through crisp</li>
                   <li>&#10022; <strong>The best fabric for each technique</strong> so you always get the strongest, most vivid result</li>
                 </ul>
@@ -563,7 +569,7 @@ export default function Home() {
             </div>
 
             <div className="bonus-card">
-              <div className="bonus-header"><div className="bonus-label">Bonus 2</div><div className="bonus-value">$37 value</div></div>
+              <div className="bonus-header"><div className="bonus-label">Bonus 2</div><div className="bonus-value">{sym}37 value</div></div>
               <h3>The <span style={{ color: 'var(--accent)' }}>Mindful Practice Guide:</span> Shibori As Meditation</h3>
               <div className="bonus-desc">Turn every dyeing session into a screen-free ritual that quiets your mind and restores your focus.</div>
               <div className="bonus-body">
@@ -578,7 +584,7 @@ export default function Home() {
             </div>
 
             <div className="bonus-card">
-              <div className="bonus-header"><div className="bonus-label">Bonus 3</div><div className="bonus-value">$27 value</div></div>
+              <div className="bonus-header"><div className="bonus-label">Bonus 3</div><div className="bonus-value">{sym}27 value</div></div>
               <h3>The <span style={{ color: 'var(--accent)' }}>Project Lookbook</span></h3>
               <div className="bonus-desc">Turn your dyed fabric into finished pieces: scarves, wall art, cushion covers, and more.</div>
               <div className="bonus-body">
@@ -596,16 +602,16 @@ export default function Home() {
           {/* FIRST STACK + CTA */}
           <section style={{ padding: '36px 0' }} id="pricing">
             <h2 className="bonsai-center" style={{ marginBottom: 18 }}>Here&apos;s everything you get:</h2>
-            <div className="stack-row stack-total"><span className="label">&#10003; 5 Core Modules</span><span className="val">$139</span></div>
-            <div className="stack-row"><span className="label">&#10003; The Fabric Guide</span><span className="val">$47</span></div>
-            <div className="stack-row"><span className="label">&#10003; The Mindful Practice Guide</span><span className="val">$37</span></div>
-            <div className="stack-row"><span className="label">&#10003; The Project Lookbook</span><span className="val">$27</span></div>
-            <div className="stack-row" style={{ borderBottom: 'none' }}><span className="label" style={{ fontWeight: 700, color: 'var(--ink)' }}>Total Value</span><span className="val" style={{ fontSize: 16 }}>$250</span></div>
+            <div className="stack-row stack-total"><span className="label">&#10003; 5 Core Modules</span><span className="val">{sym}139</span></div>
+            <div className="stack-row"><span className="label">&#10003; The Fabric Guide</span><span className="val">{sym}47</span></div>
+            <div className="stack-row"><span className="label">&#10003; The Mindful Practice Guide</span><span className="val">{sym}37</span></div>
+            <div className="stack-row"><span className="label">&#10003; The Project Lookbook</span><span className="val">{sym}27</span></div>
+            <div className="stack-row" style={{ borderBottom: 'none' }}><span className="label" style={{ fontWeight: 700, color: 'var(--ink)' }}>Total Value</span><span className="val" style={{ fontSize: 16 }}>{sym}250</span></div>
           </section>
 
           <div className="checkout-box" style={{ maxWidth: 520, margin: '0 auto', padding: '40px 44px', borderRadius: 14, border: '2px solid rgba(45,74,143,0.25)', background: '#ffffff', boxShadow: '0 4px 24px rgba(0,0,0,0.06)', textAlign: 'center' }}>
-            <div className="price-old">Normally $97</div>
-            <p className="now-only" style={{ fontSize: 44, color: 'var(--ink)', fontWeight: 700, marginBottom: 8 }}>Now Only <span style={{ color: '#2d4a8f' }}>$47</span></p>
+            <div className="price-old">Normally {sym}97</div>
+            <p className="now-only" style={{ fontSize: 44, color: 'var(--ink)', fontWeight: 700, marginBottom: 8 }}>Now Only <span style={{ color: '#2d4a8f' }}>{sym}47</span></p>
             <div className="price-note">One time payment. <span className="lifetime-break" />Lifetime access.</div>
             <div style={{ marginTop: 20 }}><CheckoutButton /></div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginTop: 20 }}>
@@ -631,7 +637,7 @@ export default function Home() {
             <h2 className="bonsai-center" style={{ marginBottom: 18 }}>Order today and you also get:</h2>
 
             <div className="bonus-card mega">
-              <div className="bonus-header"><div className="bonus-label">Mega Bonus</div><div className="bonus-value">$79 value</div></div>
+              <div className="bonus-header"><div className="bonus-label">Mega Bonus</div><div className="bonus-value">{sym}79 value</div></div>
               <h3><span style={{ color: 'var(--accent)' }}>Pattern Library:</span> 8 Traditional Shibori Designs</h3>
               <div className="bonus-desc">A visual reference guide with step-by-step folding diagrams for 8 authentic patterns.</div>
               <div className="bonus-body">
@@ -660,17 +666,17 @@ export default function Home() {
           {/* SECOND STACK + CTA */}
           <section style={{ padding: '36px 0' }}>
             <h2 className="bonsai-center" style={{ marginBottom: 18 }}>Here&apos;s everything you get:</h2>
-            <div className="stack-row stack-total"><span className="label">&#10003; 5 Core Modules</span><span className="val">$139</span></div>
-            <div className="stack-row"><span className="label">&#10003; The Fabric Guide</span><span className="val">$47</span></div>
-            <div className="stack-row"><span className="label">&#10003; The Mindful Practice Guide</span><span className="val">$37</span></div>
-            <div className="stack-row"><span className="label">&#10003; The Project Lookbook</span><span className="val">$27</span></div>
-            <div className="stack-row"><span className="label">&#10003; Pattern Library: 8 Designs</span><span className="val">$79</span></div>
-            <div className="stack-row" style={{ borderBottom: 'none' }}><span className="label" style={{ fontWeight: 700, color: 'var(--ink)' }}>Total Value</span><span className="val" style={{ fontSize: 16 }}>$329</span></div>
+            <div className="stack-row stack-total"><span className="label">&#10003; 5 Core Modules</span><span className="val">{sym}139</span></div>
+            <div className="stack-row"><span className="label">&#10003; The Fabric Guide</span><span className="val">{sym}47</span></div>
+            <div className="stack-row"><span className="label">&#10003; The Mindful Practice Guide</span><span className="val">{sym}37</span></div>
+            <div className="stack-row"><span className="label">&#10003; The Project Lookbook</span><span className="val">{sym}27</span></div>
+            <div className="stack-row"><span className="label">&#10003; Pattern Library: 8 Designs</span><span className="val">{sym}79</span></div>
+            <div className="stack-row" style={{ borderBottom: 'none' }}><span className="label" style={{ fontWeight: 700, color: 'var(--ink)' }}>Total Value</span><span className="val" style={{ fontSize: 16 }}>{sym}329</span></div>
           </section>
 
           <div className="checkout-box" style={{ maxWidth: 520, margin: '0 auto', padding: '40px 44px', borderRadius: 14, border: '2px solid rgba(45,74,143,0.25)', background: '#ffffff', boxShadow: '0 4px 24px rgba(0,0,0,0.06)', textAlign: 'center' }}>
-            <div className="price-old">Normally $97</div>
-            <p className="now-only" style={{ fontSize: 44, color: 'var(--ink)', fontWeight: 700, marginBottom: 8 }}>Now Only <span style={{ color: '#2d4a8f' }}>$47</span></p>
+            <div className="price-old">Normally {sym}97</div>
+            <p className="now-only" style={{ fontSize: 44, color: 'var(--ink)', fontWeight: 700, marginBottom: 8 }}>Now Only <span style={{ color: '#2d4a8f' }}>{sym}47</span></p>
             <div className="price-note">One time payment. <span className="lifetime-break" />Lifetime access.</div>
             <div style={{ marginTop: 20 }}><CheckoutButton /></div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginTop: 20 }}>
