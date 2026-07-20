@@ -16,6 +16,23 @@ export async function POST(request: Request) {
     );
     const price = product.default_price as Stripe.Price;
 
+    // Buyer location for the VAT counter (additive metadata; absent in local dev).
+    const metadata: Record<string, string> = {
+      product_id: product.id,
+      product_name: product.name,
+    };
+    const ipCountry = request.headers.get('x-vercel-ip-country');
+    const ipRegion = request.headers.get('x-vercel-ip-country-region');
+    const ipCityRaw = request.headers.get('x-vercel-ip-city');
+    const ipAddress =
+      request.headers.get('x-real-ip') ||
+      request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+      '';
+    if (ipCountry) metadata.ip_country = ipCountry;
+    if (ipRegion) metadata.ip_region = ipRegion;
+    if (ipCityRaw) metadata.ip_city = decodeURIComponent(ipCityRaw);
+    if (ipAddress) metadata.ip_address = ipAddress;
+
     const paymentIntent = await stripe.paymentIntents.create({
       amount: price.unit_amount!,
       currency: price.currency,
@@ -23,10 +40,7 @@ export async function POST(request: Request) {
         enabled: true,
         allow_redirects: 'always',
       },
-      metadata: {
-        product_id: product.id,
-        product_name: product.name,
-      },
+      metadata,
     });
 
     return NextResponse.json({ clientSecret: paymentIntent.client_secret });
