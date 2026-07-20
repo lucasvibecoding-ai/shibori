@@ -244,14 +244,14 @@ export default function Home() {
 
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 28, gap: 12 }}>
               <div id="hero" style={{ width: '90%', maxWidth: 640, aspectRatio: '1/1', borderRadius: 16, overflow: 'hidden', position: 'relative', boxShadow: '0 12px 40px rgba(26,45,107,0.3), 0 4px 12px rgba(0,0,0,0.1)' }}>
-                <Image src="/hero.png" alt="Shibori Masterclass" fill style={{ objectFit: 'cover' }} />
+                <Image src="/hero2.webp" alt="Shibori Masterclass" fill style={{ objectFit: 'cover' }} />
               </div>
               <div className="below-hero-row" style={{ display: 'flex', gap: 12, width: '90%', maxWidth: 640 }}>
                 <div style={{ flex: 1, aspectRatio: '1/1', borderRadius: 12, overflow: 'hidden', position: 'relative', boxShadow: '0 6px 20px rgba(26,45,107,0.2)' }}>
-                  <Image src="/below_hero1.png" alt="Shibori example" fill style={{ objectFit: 'cover' }} />
+                  <Image src="/below_hero1.webp" alt="Shibori example" fill style={{ objectFit: 'cover' }} />
                 </div>
                 <div style={{ flex: 1, aspectRatio: '1/1', borderRadius: 12, overflow: 'hidden', position: 'relative', boxShadow: '0 6px 20px rgba(26,45,107,0.2)' }}>
-                  <Image src="/below_hero2.png" alt="Shibori example" fill style={{ objectFit: 'cover' }} />
+                  <Image src="/below_hero2.webp" alt="Shibori example" fill style={{ objectFit: 'cover' }} />
                 </div>
               </div>
             </div>
@@ -310,28 +310,28 @@ export default function Home() {
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 12, marginBottom: 40 }} className="fillpic-grid">
             <div style={{ borderRadius: 10, overflow: 'hidden', aspectRatio: '1/1', position: 'relative' }}>
-              <Image src="/fill_pic1.png" alt="Shibori example 1" fill style={{ objectFit: 'cover' }} />
+              <Image src="/fill_pic1.webp" alt="Shibori example 1" fill style={{ objectFit: 'cover' }} />
             </div>
             <div style={{ borderRadius: 10, overflow: 'hidden', aspectRatio: '1/1', position: 'relative' }}>
-              <Image src="/fill_pic2.jpg" alt="Shibori example 2" fill style={{ objectFit: 'cover' }} />
+              <Image src="/fill_pic2.webp" alt="Shibori example 2" fill style={{ objectFit: 'cover' }} />
             </div>
             <div style={{ borderRadius: 10, overflow: 'hidden', aspectRatio: '1/1', position: 'relative' }}>
-              <Image src="/fill_pic3.jpg" alt="Shibori example 3" fill style={{ objectFit: 'cover' }} />
+              <Image src="/fill_pic3.webp" alt="Shibori example 3" fill style={{ objectFit: 'cover' }} />
             </div>
             <div style={{ borderRadius: 10, overflow: 'hidden', aspectRatio: '1/1', position: 'relative' }}>
-              <Image src="/fill_pic4.png" alt="Shibori example 4" fill style={{ objectFit: 'cover' }} />
+              <Image src="/fill_pic4.webp" alt="Shibori example 4" fill style={{ objectFit: 'cover' }} />
             </div>
             <div style={{ borderRadius: 10, overflow: 'hidden', aspectRatio: '1/1', position: 'relative' }}>
-              <Image src="/fill_pic5.png" alt="Shibori example 5" fill style={{ objectFit: 'cover' }} />
+              <Image src="/fill_pic5.webp" alt="Shibori example 5" fill style={{ objectFit: 'cover' }} />
             </div>
             <div style={{ borderRadius: 10, overflow: 'hidden', aspectRatio: '1/1', position: 'relative' }}>
-              <Image src="/fill_pic6.jpg" alt="Shibori example 6" fill style={{ objectFit: 'cover' }} />
+              <Image src="/fill_pic6.webp" alt="Shibori example 6" fill style={{ objectFit: 'cover' }} />
             </div>
             <div style={{ borderRadius: 10, overflow: 'hidden', aspectRatio: '1/1', position: 'relative' }}>
-              <Image src="/fill_pic7.png" alt="Shibori example 7" fill style={{ objectFit: 'cover' }} />
+              <Image src="/fill_pic7.webp" alt="Shibori example 7" fill style={{ objectFit: 'cover' }} />
             </div>
             <div style={{ borderRadius: 10, overflow: 'hidden', aspectRatio: '1/1', position: 'relative' }}>
-              <Image src="/fill_pic8.jpg" alt="Shibori example 8" fill style={{ objectFit: 'cover' }} />
+              <Image src="/fill_pic8.webp" alt="Shibori example 8" fill style={{ objectFit: 'cover' }} />
             </div>
           </div>
 
@@ -392,7 +392,7 @@ export default function Home() {
           <section className="instructor">
             <div className="instructor-img">
               <div style={{ width: '100%', aspectRatio: '4/5', borderRadius: 16, overflow: 'hidden', position: 'relative' }}>
-                <Image src="/creator.jpg" alt="Aiko Mori" fill style={{ objectFit: 'cover' }} />
+                <Image src="/creator.webp" alt="Aiko Mori" fill style={{ objectFit: 'cover' }} />
               </div>
             </div>
             <div className="instructor-text">
@@ -411,10 +411,10 @@ export default function Home() {
           {/* HERESWHATYOUGET IMAGE */}
           <div className="bonsai-center" style={{ marginBottom: 32 }}>
             <div className="hereswhatyouget-desktop" style={{ position: 'relative', width: '100%', maxWidth: 700, margin: '0 auto' }}>
-              <Image src="/hereswhatyouget.png" alt="Everything included in the course" width={700} height={500} style={{ width: '100%', height: 'auto', borderRadius: 12 }} />
+              <Image src="/hereswhatyouget.webp" alt="Everything included in the course" width={700} height={500} style={{ width: '100%', height: 'auto', borderRadius: 12 }} />
             </div>
             <div className="hereswhatyouget-mobile" style={{ position: 'relative', width: '100%', margin: '0 auto' }}>
-              <Image src="/hereswhatyouget_mobile.png" alt="Everything included in the course" width={400} height={600} style={{ width: '100%', height: 'auto', borderRadius: 12 }} />
+              <Image src="/hereswhatyouget_mobile.webp" alt="Everything included in the course" width={400} height={600} style={{ width: '100%', height: 'auto', borderRadius: 12 }} />
             </div>
             <p style={{ margin: '20px auto 0', fontSize: 18, color: 'var(--ink-muted)' }}><strong style={{ color: 'var(--ink)' }}>2+ hours of step-by-step videos</strong> across 15+ lessons</p>
           </div>
@@ -428,7 +428,7 @@ export default function Home() {
               <h3><span style={{ color: 'var(--accent)' }}>The Living Tradition</span> (Understanding Shibori)</h3>
               <div className="module-sub">The history, philosophy, and principles behind every beautiful shibori piece.</div>
               <div className="module-body">
-                <div className="module-img"><Image src="/module1.png" alt="Module 1 - The Living Tradition" fill style={{ objectFit: 'cover' }} /></div>
+                <div className="module-img"><Image src="/module1.webp" alt="Module 1 - The Living Tradition" fill style={{ objectFit: 'cover' }} /></div>
                 <ul>
                   <li>&#10022; The <strong>1,300-year history of shibori</strong> and why this art form has endured across centuries</li>
                   <li>&#10022; The <strong>6 traditional shibori techniques</strong> and which ones create the most striking results for beginners</li>
@@ -443,7 +443,7 @@ export default function Home() {
               <h3><span style={{ color: 'var(--accent)' }}>Your Shibori Toolkit</span> (Materials &amp; Setup)</h3>
               <div className="module-sub">Your complete shopping list and workspace setup for under $30.</div>
               <div className="module-body">
-                <div className="module-img"><Image src="/module2.png" alt="Module 2 - Your Shibori Toolkit" fill style={{ objectFit: 'cover' }} /></div>
+                <div className="module-img"><Image src="/module2.webp" alt="Module 2 - Your Shibori Toolkit" fill style={{ objectFit: 'cover' }} /></div>
                 <ul>
                   <li>&#10022; The <strong>$30 shopping list</strong> with exact product links that gives you everything you need for your first 10+ pieces</li>
                   <li>&#10022; The <strong>best fabrics for beginners</strong> and why cotton is your secret weapon</li>
@@ -458,7 +458,7 @@ export default function Home() {
               <h3><span style={{ color: 'var(--accent)' }}>Core Techniques:</span> Kanoko, Kumo &amp; Nui Shibori</h3>
               <div className="module-sub">This is where plain fabric becomes art. The moment that hooks you forever.</div>
               <div className="module-body">
-                <div className="module-img"><Image src="/module3.png" alt="Module 3 - Core Techniques" fill style={{ objectFit: 'cover' }} /></div>
+                <div className="module-img"><Image src="/module3.webp" alt="Module 3 - Core Techniques" fill style={{ objectFit: 'cover' }} /></div>
                 <ul>
                   <li>&#10022; <strong>Kanoko shibori:</strong> the binding technique that creates those iconic circular resist patterns</li>
                   <li>&#10022; <strong>Kumo shibori:</strong> the pleating method that produces intricate spider-web designs</li>
@@ -473,7 +473,7 @@ export default function Home() {
               <h3><span style={{ color: 'var(--accent)' }}>The Indigo Vat:</span> Dyeing Your First Piece</h3>
               <div className="module-sub">Where bound fabric meets deep indigo and magic happens before your eyes.</div>
               <div className="module-body">
-                <div className="module-img"><Image src="/module4.png" alt="Module 4 - The Indigo Vat" fill style={{ objectFit: 'cover' }} /></div>
+                <div className="module-img"><Image src="/module4.webp" alt="Module 4 - The Indigo Vat" fill style={{ objectFit: 'cover' }} /></div>
                 <ul>
                   <li>&#10022; How to <strong>prepare your indigo vat</strong> step by step for perfect, consistent color</li>
                   <li>&#10022; <strong>Dip timing and layering:</strong> how to control the depth and richness of your blue</li>
@@ -488,7 +488,7 @@ export default function Home() {
               <h3><span style={{ color: 'var(--accent)' }}>Finishing, Setting &amp; Caring For Your Fabric</span></h3>
               <div className="module-sub">How to finish your piece so the color stays vibrant and beautiful for years.</div>
               <div className="module-body">
-                <div className="module-img"><Image src="/module5.png" alt="Module 5 - Finishing, Setting & Caring" fill style={{ objectFit: 'cover' }} /></div>
+                <div className="module-img"><Image src="/module5.webp" alt="Module 5 - Finishing, Setting & Caring" fill style={{ objectFit: 'cover' }} /></div>
                 <ul>
                   <li>&#10022; <strong>How to rinse and wash</strong> your finished piece without losing color or pattern definition</li>
                   <li>&#10022; The <strong>heat-setting process</strong> that locks in your indigo permanently</li>
@@ -552,7 +552,7 @@ export default function Home() {
               <h3><span style={{ color: 'var(--accent)' }}>The Fabric Guide:</span> Which Fabrics Produce The Best Results</h3>
               <div className="bonus-desc">The same fold looks completely different on cotton, silk, linen, and rayon. This guide shows you exactly what to expect from each.</div>
               <div className="bonus-body">
-                <div className="bonus-img"><Image src="/bonus1.png" alt="Bonus 1 - The Fabric Guide" fill style={{ objectFit: 'cover' }} /></div>
+                <div className="bonus-img"><Image src="/bonus1.webp" alt="Bonus 1 - The Fabric Guide" fill style={{ objectFit: 'cover' }} /></div>
                 <ul>
                   <li>&#10022; <strong>Cotton, silk, linen, and rayon compared</strong> side by side with the same technique so you see exactly how each one takes the dye</li>
                   <li>&#10022; <strong>Where to source the best fabrics</strong> for under $5 a yard, online and locally</li>
@@ -567,7 +567,7 @@ export default function Home() {
               <h3>The <span style={{ color: 'var(--accent)' }}>Mindful Practice Guide:</span> Shibori As Meditation</h3>
               <div className="bonus-desc">Turn every dyeing session into a screen-free ritual that quiets your mind and restores your focus.</div>
               <div className="bonus-body">
-                <div className="bonus-img"><Image src="/bonus2.png" alt="Bonus 2 - The Mindful Practice Guide" fill style={{ objectFit: 'cover' }} /></div>
+                <div className="bonus-img"><Image src="/bonus2.webp" alt="Bonus 2 - The Mindful Practice Guide" fill style={{ objectFit: 'cover' }} /></div>
                 <ul>
                   <li>&#10022; <strong>Simple breathwork techniques</strong> to pair with folding and binding for deep calm</li>
                   <li>&#10022; How to <strong>enter a flow state</strong> through the repetitive, rhythmic motions of shibori</li>
@@ -582,7 +582,7 @@ export default function Home() {
               <h3>The <span style={{ color: 'var(--accent)' }}>Project Lookbook</span></h3>
               <div className="bonus-desc">Turn your dyed fabric into finished pieces: scarves, wall art, cushion covers, and more.</div>
               <div className="bonus-body">
-                <div className="bonus-img"><Image src="/bonus3.png" alt="Bonus 3 - The Project Lookbook" fill style={{ objectFit: 'cover' }} /></div>
+                <div className="bonus-img"><Image src="/bonus3.webp" alt="Bonus 3 - The Project Lookbook" fill style={{ objectFit: 'cover' }} /></div>
                 <ul>
                   <li>&#10022; <strong>12 finished project ideas</strong> with full instructions from fabric to final piece</li>
                   <li>&#10022; How to <strong>frame shibori as wall art</strong> that looks like it belongs in a gallery</li>
@@ -635,7 +635,7 @@ export default function Home() {
               <h3><span style={{ color: 'var(--accent)' }}>Pattern Library:</span> 8 Traditional Shibori Designs</h3>
               <div className="bonus-desc">A visual reference guide with step-by-step folding diagrams for 8 authentic patterns.</div>
               <div className="bonus-body">
-                <div className="bonus-img"><Image src="/megabonus.png" alt="Mega Bonus - Pattern Library: 8 Designs" fill style={{ objectFit: 'cover' }} /></div>
+                <div className="bonus-img"><Image src="/megabonus.webp" alt="Mega Bonus - Pattern Library: 8 Designs" fill style={{ objectFit: 'cover' }} /></div>
                 <ul>
                   <li>&#10022; <strong>8 patterns ranked by difficulty</strong> so you start with the ones you can nail on your first try</li>
                   <li>&#10022; <strong>Step-by-step folding diagrams</strong> for each pattern so you never have to guess</li>
