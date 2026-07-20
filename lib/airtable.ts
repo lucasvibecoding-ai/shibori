@@ -93,6 +93,7 @@ interface RecordPurchaseInput {
   provider: 'Stripe' | 'PayPal';
   email: string;
   firstName?: string;
+  currency?: string;
 }
 
 export async function recordPurchase(input: RecordPurchaseInput): Promise<void> {
@@ -121,6 +122,7 @@ export async function recordPurchase(input: RecordPurchaseInput): Promise<void> 
           'Payment Provider': input.provider,
           Project: [config.projectId],
           Customer: [customerId],
+          Currency: (input.currency || 'usd').toLowerCase(),
         },
       }),
     });
