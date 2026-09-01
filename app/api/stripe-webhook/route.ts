@@ -28,6 +28,7 @@ const resend = new Resend(process.env.RESEND_API_KEY!);
 // email. Idempotent (also called by the /success page and the PayPal capture route).
 async function grantCourseAccess(
   email: string | null,
+  suppressReminders = false,
 ): Promise<{ setupUrl?: string; loginUrl?: string }> {
   if (!process.env.COURSE_PLATFORM_URL || !process.env.COURSE_PLATFORM_SECRET || !email) {
     return {};
@@ -47,6 +48,7 @@ async function grantCourseAccess(
       body: JSON.stringify({
         email,
         courseSlug: 'shibori-masterclass',
+        ...(suppressReminders ? { suppressReminders: true } : {}),
       }),
     });
     if (grantRes.ok) {
@@ -130,9 +132,17 @@ export async function POST(request: Request) {
         // The charge's timestamp is when the money actually moved; the PI can be days
         // older if the buyer left checkout open, which would misdate the Airtable row.
         let chargeCreated: number | null = null;
+        let payMethod = 'Card';
         if (paymentIntent.latest_charge) {
           const charge = await stripe.charges.retrieve(paymentIntent.latest_charge as string);
           chargeCreated = charge.created;
+          const wallet = charge.payment_method_details?.card?.wallet?.type;
+          payMethod =
+            charge.payment_method_details?.type === 'paypal' ? 'PayPal'
+            : charge.payment_method_details?.type === 'link' ? 'Link'
+            : wallet === 'apple_pay' ? 'Apple Pay'
+            : wallet === 'google_pay' ? 'Google Pay'
+            : 'Card';
           customerEmail = customerEmail || charge.billing_details?.email || null;
           customerName = charge.billing_details?.name || null;
           cardCountry = charge.payment_method_details?.card?.country ?? null;
@@ -149,14 +159,32 @@ export async function POST(request: Request) {
           };
         }
 
-        const toEmail = customerEmail || 'hello@shiboriclass.com';
+        // The address the buyer TYPED at checkout, stashed on the PI while they typed.
+        // On PayPal, customerEmail above is the PayPal account address instead, and the
+        // two are often different people's inboxes: one they read, one that proves
+        // delivery in a dispute. Treat the typed one as primary and invite both.
+        const typedEmailRaw =
+          typeof paymentIntent.metadata?.buyer_email === 'string'
+            ? paymentIntent.metadata.buyer_email.trim().toLowerCase()
+            : '';
+        const typedEmail = typedEmailRaw.includes('@') ? typedEmailRaw : null;
+        const payerEmail = customerEmail ? customerEmail.trim().toLowerCase() : null;
+        const primaryEmail = typedEmail || payerEmail;
+        // Only the primary is nudged by the platform's reminder cron (user, 2026-09-01).
+        const secondaryEmail =
+          primaryEmail && payerEmail && payerEmail !== primaryEmail ? payerEmail : null;
+
+        const toEmail = primaryEmail || 'hello@shiboriclass.com';
         const firstName = customerName?.split(' ')[0];
 
         // Grant access and create the fiscal invoice in parallel. The invoice call retries
         // until it succeeds or the deadline, so the email waits for the invoice (up to
         // ~30s) but never longer, and never goes out before the invoice attempt resolves.
-        const [access, invoice] = await Promise.all([
-          grantCourseAccess(customerEmail),
+        const [access, secondaryAccess, invoice] = await Promise.all([
+          grantCourseAccess(primaryEmail),
+          secondaryEmail
+            ? grantCourseAccess(secondaryEmail, true)
+            : Promise.resolve(null),
           createFiscalInvoiceWithin(
             {
               apiTransactionId: paymentIntent.id,
@@ -174,26 +202,42 @@ export async function POST(request: Request) {
           }),
         ]);
 
-        try {
-          const html = await render(
-            OrderConfirmation({
-              customerEmail: toEmail,
-              setupUrl: access.setupUrl,
-              loginUrl: access.loginUrl,
-              invoiceUrl: invoice?.publicUrl,
-            }),
-          );
-          const subject = 'Your Shibori Course is ready!';
-          const emailResult = await resend.emails.send({
-            from: 'Aiko Mori <hello@shiboriclass.com>',
-            to: toEmail,
-            replyTo: 'hello@shiboriclass.com',
-            subject,
-            html,
-          });
-          console.log(`Email sent successfully to ${toEmail}:`, emailResult);
-        } catch (emailErr) {
-          console.error(`Failed to send email to ${toEmail}:`, emailErr);
+        // One confirmation per address, each carrying its own access link, so either
+        // inbox is a complete route into the course. Sent one at a time: a failure on
+        // the second address must never lose the first.
+        const recipients: { email: string; access: { setupUrl?: string; loginUrl?: string } }[] = [
+          { email: toEmail, access },
+          ...(secondaryEmail && secondaryAccess
+            ? [{ email: secondaryEmail, access: secondaryAccess }]
+            : []),
+        ];
+        for (const recipient of recipients) {
+          // The fiscal invoice is made out to the PAYER, so its link only ever goes
+          // to that address (user, 2026-09-01). The other inbox gets access, not
+          // someone else's receipt.
+          const invoiceForThisRecipient =
+            !payerEmail || recipient.email === payerEmail ? invoice?.publicUrl : undefined;
+          try {
+            const html = await render(
+              OrderConfirmation({
+                customerEmail: recipient.email,
+                setupUrl: recipient.access.setupUrl,
+                loginUrl: recipient.access.loginUrl,
+                invoiceUrl: invoiceForThisRecipient,
+              }),
+            );
+            const subject = 'Your Shibori Course is ready!';
+            const emailResult = await resend.emails.send({
+              from: 'Aiko Mori <hello@shiboriclass.com>',
+              to: recipient.email,
+              replyTo: 'hello@shiboriclass.com',
+              subject,
+              html,
+            });
+            console.log(`Email sent successfully to ${recipient.email}:`, emailResult);
+          } catch (emailErr) {
+            console.error(`Failed to send email to ${recipient.email}:`, emailErr);
+          }
         }
 
         if (customerEmail) {
@@ -202,9 +246,12 @@ export async function POST(request: Request) {
             date: new Date((chargeCreated ?? paymentIntent.created) * 1000),
             amount: paymentIntent.amount / 100,
             currency: paymentIntent.currency,
-            provider: 'Stripe',
+            provider: payMethod,
             email: customerEmail,
             firstName,
+            // Customer stays the payer; the address they typed at checkout is kept
+            // alongside it so support can find this purchase by either one.
+            secondEmail: secondaryEmail ? primaryEmail : null,
           });
         }
 

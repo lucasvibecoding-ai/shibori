@@ -59,7 +59,7 @@ async function createCustomer(
   if (firstName) fields['First Name'] = firstName;
   const data = (await airtableFetch(config, 'Customers', {
     method: 'POST',
-    body: JSON.stringify({ fields }),
+    body: JSON.stringify({ fields, typecast: true }),
   })) as { id: string };
   return data.id;
 }
@@ -90,10 +90,13 @@ interface RecordPurchaseInput {
   transactionId: string;
   date: Date;
   amount: number;
-  provider: 'Stripe' | 'PayPal';
+  /** How they paid: Card, Apple Pay, Google Pay, PayPal, Link */
+  provider: string;
   email: string;
   firstName?: string;
   currency?: string;
+  /** The buyer's other address when checkout and PayPal disagree (see below). */
+  secondEmail?: string | null;
 }
 
 export async function recordPurchase(input: RecordPurchaseInput): Promise<void> {
@@ -111,21 +114,41 @@ export async function recordPurchase(input: RecordPurchaseInput): Promise<void> 
 
     const customerId = await upsertCustomer(config, input.email, input.firstName);
 
-    await airtableFetch(config, 'Purchases', {
-      method: 'POST',
-      body: JSON.stringify({
-        fields: {
-          'Transaction ID': input.transactionId,
-          Date: input.date.toISOString(),
-          Amount: input.amount,
-          Status: 'Paid',
-          'Payment Provider': input.provider,
-          Project: [config.projectId],
-          Customer: [customerId],
-          Currency: (input.currency || 'usd').toLowerCase(),
-        },
-      }),
-    });
+    const fields: Record<string, unknown> = {
+        'Transaction ID': input.transactionId,
+        Date: input.date.toISOString(),
+        Amount: input.amount,
+        Status: 'Paid',
+        'Payment Provider': input.provider,
+        Project: [config.projectId],
+        Customer: [customerId],
+        Currency: (input.currency || 'usd').toLowerCase(),
+    };
+    // The Customer link stays the PAYER's address so accounting and the fiscal
+    // invoice keep matching. When the buyer typed a different address at checkout,
+    // that one goes here so support can find them by either.
+    if (input.secondEmail) {
+      fields['Second Email'] = input.secondEmail;
+    }
+    // The column may not exist in the shared base yet; if Airtable rejects it
+    // as unknown, record the purchase without it rather than lose the row.
+    try {
+      await airtableFetch(config, 'Purchases', {
+        method: 'POST',
+        body: JSON.stringify({ fields, typecast: true }),
+      });
+    } catch (err) {
+      if ('Second Email' in fields && /UNKNOWN_FIELD_NAME|Second Email/i.test(String(err))) {
+        delete fields['Second Email'];
+        await airtableFetch(config, 'Purchases', {
+          method: 'POST',
+          body: JSON.stringify({ fields, typecast: true }),
+        });
+        console.warn('Airtable: "Second Email" field missing — recorded purchase without it');
+      } else {
+        throw err;
+      }
+    }
 
     console.log(`Airtable: recorded purchase ${input.transactionId} for ${input.email}`);
   } catch (err) {
