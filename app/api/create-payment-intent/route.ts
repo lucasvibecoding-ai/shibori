@@ -55,7 +55,18 @@ export async function POST(request: Request) {
       metadata,
     });
 
-    return NextResponse.json({ clientSecret: paymentIntent.client_secret, currency });
+    let paypalDown = false;
+    try {
+      const st = await fetch('https://course-business-admin.vercel.app/api/paypal-status', {
+        signal: AbortSignal.timeout(1500),
+        cache: 'no-store',
+      });
+      paypalDown = (await st.json()).down === true;
+    } catch {
+      // status unreachable: fail open
+    }
+
+    return NextResponse.json({ clientSecret: paymentIntent.client_secret, currency, paypalDown });
   } catch (error) {
     console.error('Payment intent error:', error);
     return NextResponse.json(
