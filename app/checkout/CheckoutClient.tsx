@@ -62,6 +62,25 @@ export default function CheckoutClient() {
   }, []);
 
   const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  // pi_xxx_secret_yyy: the id is everything before the separator. Derived so
+  // the bump-less sites need no change to the create-payment-intent route.
+  const paymentIntentId = clientSecret ? clientSecret.split('_secret_')[0] : '';
+
+  // Stash the typed email on the PaymentIntent as soon as it looks like an address.
+  // PayPal replaces billing_details.email with the PayPal account address, so this is
+  // the only record of what the buyer actually typed, and the webhook needs both to
+  // invite them at both. Debounced so it is one write per pause in typing, not per key.
+  useEffect(() => {
+    if (!paymentIntentId || !emailValid) return;
+    const t = setTimeout(() => {
+      fetch('/api/update-payment-intent', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ paymentIntentId, email }),
+      }).catch((err) => console.error('Failed to stash buyer email:', err));
+    }, 600);
+    return () => clearTimeout(t);
+  }, [paymentIntentId, email, emailValid]);
   const showExpressEmailError = () =>
     setExpressError('Please enter a valid email address above to continue.');
 
