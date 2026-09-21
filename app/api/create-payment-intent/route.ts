@@ -49,7 +49,7 @@ export async function POST(request: Request) {
       // buyer sees. Unique suffix in case duplicate-invoice blocking is on.
       payment_method_options: {
         paypal: {
-          reference: `Shibori Masterclass #${Date.now().toString(36)}`,
+          reference: `Shibori #${Date.now().toString(36)}`,
         },
       },
       metadata,
