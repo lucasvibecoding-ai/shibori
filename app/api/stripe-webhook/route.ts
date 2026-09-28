@@ -4,6 +4,7 @@ import { Resend } from 'resend';
 import { render } from '@react-email/render';
 import { createHash } from 'crypto';
 import OrderConfirmation from '../../../emails/OrderConfirmation';
+import { PROOF_SITE, redactLinks, sendProof, type ProofEvent } from '../../../lib/proof';
 import { recordPurchase } from '../../../lib/airtable';
 import { createFiscalInvoiceWithin } from '../../../lib/eracuni';
 import { resolveBuyerCountry } from '../../../lib/vat-country';
@@ -30,6 +31,7 @@ const resend = new Resend(process.env.RESEND_API_KEY!);
 async function grantCourseAccess(
   email: string | null,
   suppressReminders = false,
+  proof?: { orderId: string; role: string },
 ): Promise<{ setupUrl?: string; loginUrl?: string }> {
   if (!process.env.COURSE_PLATFORM_URL || !process.env.COURSE_PLATFORM_SECRET || !email) {
     return {};
@@ -49,13 +51,21 @@ async function grantCourseAccess(
       body: JSON.stringify({
         email,
         courseSlug: 'shibori-masterclass',
+        // Proof of delivery: ties this grant and its logged link to the order.
+        ...(proof ? { orderId: proof.orderId, site: PROOF_SITE, role: proof.role, via: 'email' } : {}),
         ...(suppressReminders ? { suppressReminders: true } : {}),
       }),
     });
     if (grantRes.ok) {
-      const data = (await grantRes.json()) as { actionUrl?: string; isNewUser?: boolean };
-      if (data.actionUrl) {
-        return data.isNewUser ? { setupUrl: data.actionUrl } : { loginUrl: data.actionUrl };
+      const data = (await grantRes.json()) as {
+        actionUrl?: string;
+        trackedUrl?: string | null;
+        isNewUser?: boolean;
+      };
+      // trackedUrl is the platform's logged version of the link (proof of delivery).
+      const link = data.trackedUrl || data.actionUrl;
+      if (link) {
+        return data.isNewUser ? { setupUrl: link } : { loginUrl: link };
       }
     } else {
       console.error('grant-access failed:', grantRes.status, await grantRes.text());
@@ -134,11 +144,24 @@ export async function POST(request: Request) {
         // older if the buyer left checkout open, which would misdate the Airtable row.
         let chargeCreated: number | null = null;
         let payMethod = 'Stripe';
+        let paypal: {
+          payer_email?: string | null;
+          payer_id?: string | null;
+          transaction_id?: string | null;
+          seller_protection?: { status?: string | null } | null;
+        } | null = null;
         if (paymentIntent.latest_charge) {
           const charge = await stripe.charges.retrieve(paymentIntent.latest_charge as string);
           chargeCreated = charge.created;
           payMethod = charge.payment_method_details?.type === 'paypal' ? 'PayPal' : 'Stripe';
-          customerEmail = customerEmail || charge.billing_details?.email || null;
+          paypal =
+            charge.payment_method_details?.type === 'paypal'
+              ? (charge.payment_method_details.paypal ?? null)
+              : null;
+          // The PayPal account's own address, straight from PayPal: it is the address
+          // PayPal knows, so it must always get an invitation (proof of delivery).
+          customerEmail =
+            customerEmail || paypal?.payer_email || charge.billing_details?.email || null;
           customerName = charge.billing_details?.name || null;
           cardCountry = charge.payment_method_details?.card?.country ?? null;
           billingCountry = charge.billing_details?.address?.country ?? null;
@@ -186,10 +209,22 @@ export async function POST(request: Request) {
           cardCountry,
         });
 
+        // Proof of delivery: which inbox each invitation goes to. The PayPal account's
+        // address is the one that counts in a PayPal dispute.
+        const paypalEmail = paypal?.payer_email ? paypal.payer_email.trim().toLowerCase() : null;
+        const roleOf = (email: string | null) =>
+          paypalEmail && email === paypalEmail
+            ? 'paypal'
+            : email && email === typedEmail
+              ? 'typed'
+              : 'billing';
+        const proofFor = (email: string | null) => ({ orderId: paymentIntent.id, role: roleOf(email) });
+        const proofEmails: ProofEvent[] = [];
+
         const [access, secondaryAccess, invoice] = await Promise.all([
-          grantCourseAccess(primaryEmail),
+          grantCourseAccess(primaryEmail, false, proofFor(primaryEmail)),
           secondaryEmail
-            ? grantCourseAccess(secondaryEmail, true)
+            ? grantCourseAccess(secondaryEmail, true, proofFor(secondaryEmail))
             : Promise.resolve(null),
           createFiscalInvoiceWithin(
             {
@@ -242,10 +277,81 @@ export async function POST(request: Request) {
               html,
             });
             console.log(`Email sent successfully to ${recipient.email}:`, emailResult);
+            proofEmails.push(
+              emailResult.error
+                ? {
+                    eventId: `email-failed:${paymentIntent.id}:${recipient.email}:${Date.now()}`,
+                    kind: 'email.failed',
+                    orderId: paymentIntent.id,
+                    courseSlug: 'shibori-masterclass',
+                    email: recipient.email,
+                    data: { role: roleOf(recipient.email), subject, error: emailResult.error.message },
+                  }
+                : {
+                    eventId: `email:${paymentIntent.id}:${recipient.email}`,
+                    kind: 'email.sent',
+                    orderId: paymentIntent.id,
+                    courseSlug: 'shibori-masterclass',
+                    email: recipient.email,
+                    data: {
+                      resendId: emailResult.data?.id ?? null,
+                      subject,
+                      role: roleOf(recipient.email),
+                      template: access.setupUrl || access.loginUrl ? 'ready' : 'holding',
+                      html: redactLinks(html, [recipient.access.setupUrl, recipient.access.loginUrl]),
+                    },
+                  },
+            );
           } catch (emailErr) {
             console.error(`Failed to send email to ${recipient.email}:`, emailErr);
+            proofEmails.push({
+              eventId: `email-failed:${paymentIntent.id}:${recipient.email}:${Date.now()}`,
+              kind: 'email.failed',
+              orderId: paymentIntent.id,
+              courseSlug: 'shibori-masterclass',
+              email: recipient.email,
+              data: {
+                role: roleOf(recipient.email),
+                error: emailErr instanceof Error ? emailErr.message : String(emailErr),
+              },
+            });
           }
         }
+
+        // Proof of delivery: the payment, then every access email with its copy. Two
+        // requests, so a problem with an email copy can never cost the payment record.
+        const meta = (key: string) =>
+          typeof paymentIntent.metadata?.[key] === 'string' ? paymentIntent.metadata[key] : null;
+        await sendProof([
+          {
+            eventId: `paid:${paymentIntent.id}`,
+            kind: 'order.paid',
+            occurredAt: new Date((chargeCreated ?? paymentIntent.created) * 1000).toISOString(),
+            orderId: paymentIntent.id,
+            courseSlug: 'shibori-masterclass',
+            email: paypalEmail || payerEmail || primaryEmail,
+            paypalTxn: paypal?.transaction_id ?? null,
+            ip: meta('ip_address'),
+            userAgent: meta('user_agent'),
+            country: meta('ip_country'),
+            city: meta('ip_city'),
+            data: {
+              amount: paymentIntent.amount / 100,
+              currency: (paymentIntent.currency || '').toUpperCase(),
+              method: payMethod === 'PayPal' ? 'paypal' : (stripeProof?.paymentType ?? 'card'),
+              paypalEmail,
+              paypalPayerId: paypal?.payer_id ?? null,
+              sellerProtection: paypal?.seller_protection?.status ?? null,
+              typedEmail,
+              payerEmail,
+              payerName: customerName,
+              product: 'Shibori Masterclass',
+              chargeId: stripeProof?.chargeId ?? null,
+              receiptUrl: stripeProof?.receiptUrl ?? null,
+            },
+          },
+        ]);
+        await sendProof(proofEmails);
 
         if (customerEmail) {
           await recordPurchase({
