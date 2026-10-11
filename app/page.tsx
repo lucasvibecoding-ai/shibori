@@ -398,11 +398,11 @@ export default async function Home() {
           <section className="instructor">
             <div className="instructor-img">
               <div style={{ width: '100%', aspectRatio: '4/5', borderRadius: 16, overflow: 'hidden', position: 'relative' }}>
-                <Image src="/creator.webp" alt="Aiko Mori" fill style={{ objectFit: 'cover' }} />
+                <Image src="/creator.webp" alt="Aiko" fill style={{ objectFit: 'cover' }} />
               </div>
             </div>
             <div className="instructor-text">
-              <h2>My name is Aiko Mori.</h2>
+              <h2>My name is Aiko.</h2>
               <p><strong>15+ years practicing and teaching shibori.</strong> From traditional indigo to modern botanical dyes. From scarves to wall hangings to full garments.<br /><br />Over <strong>200 original shibori designs</strong> created. Taught <strong>500+ students</strong> in workshops across three countries to create their first shibori piece from scratch.</p>
               <p>I picked up shibori feeling burned out and creatively empty. Within a week I was dyeing every piece of white fabric in my house. <strong>That obsession never left.</strong> I just learned to channel it.</p>
             </div>
