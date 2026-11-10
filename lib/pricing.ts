@@ -9,6 +9,20 @@
 // Stripe product so the page, the checkout total and the actual charge can never disagree.
 export const COURSE_PRICE_CENTS = 4999;
 
+// Checkout upsell (owner 2026-11-10): a second course for 29.99, same number in USD and EUR.
+// This site has no pack, so the upsell course is the only checkout extra.
+export const UPSELL_COURSE_CENTS = 2999;
+
+/** Cents added on top of the course when the upsell course box is ticked. */
+export function extrasCents(course: boolean): number {
+  return course ? UPSELL_COURSE_CENTS : 0;
+}
+
+// The course offered as the checkout upsell: its course-platform slug (for the access grant) and
+// the name the buyer sees in the checkout and the confirmation email.
+export const UPSELL_COURSE_SLUG = 'suminagashi-masterclass';
+export const UPSELL_COURSE_NAME = 'Suminagashi Masterclass';
+
 export const USD_COUNTRIES = new Set([
   // North America + US territories
   'US', 'CA', 'MX', 'PR', 'VI', 'GU', 'AS', 'MP',

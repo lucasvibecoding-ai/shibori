@@ -21,9 +21,12 @@ export const PAYPAL_PRODUCT = {
   /** What the buyer sees on PayPal's approval page and receipt (owner, 2026-10-25). */
   name: 'Online Art Learning Platform Access: Shibori Fabric Dyeing',
   addonName: '',
-  /** Same numbers as the card checkout: $49.99 / €49.99 by buyer IP (this site has no pack). */
+  /** Same numbers as the card checkout: $49.99 / €49.99 by buyer IP, the upsell course +29.99
+   *  (lib/pricing.ts). This site has no pack. */
   price: '49.99',
   addonPrice: '17.00',
+  upsellName: 'Online Art Learning Platform Access: Suminagashi Masterclass',
+  upsellPrice: '29.99',
 };
 
 export async function paypalAccessToken(): Promise<string> {

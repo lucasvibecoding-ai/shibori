@@ -4,14 +4,15 @@ import { PAYPAL_API, PAYPAL_DIRECT, PAYPAL_PRODUCT, paypalAccessToken, paypalDir
 
 // Direct PayPal (lib/paypal-direct.ts): creates the PayPal order the SDK button opens;
 // /api/paypal/capture-order finishes it and fulfils the sale. The amounts mirror the card
-// checkout: the course at $49.99 / €49.99 by buyer IP, plus the pack when its box is ticked.
+// checkout: the course at $49.99 / €49.99 by buyer IP, plus the upsell course (+29.99) when its
+// box is ticked. This site has no pack.
 
 export async function POST(request: Request) {
   if (!PAYPAL_DIRECT) return NextResponse.json({ error: 'PayPal is not enabled' }, { status: 404 });
   // Today's PayPal limit is reached: the button hides, and a stale button can't open PayPal.
   if (!(await paypalDirectOpen())) return NextResponse.json({ error: 'PayPal is closed for today' }, { status: 403 });
   try {
-    const body = (await request.json().catch(() => ({}))) as { currency?: unknown; includeAddon?: unknown };
+    const body = (await request.json().catch(() => ({}))) as { currency?: unknown; includeAddon?: unknown; includeCourse?: unknown };
 
     // €49.99 / $49.99 by buyer IP (lib/pricing.ts), the same rule the Stripe charge uses. PayPal
     // rejects an order whose currency differs from the SDK context, so the button's
@@ -23,14 +24,15 @@ export async function POST(request: Request) {
     }
     const currency = locked;
     const withAddon = body.includeAddon === true;
+    const withCourse = body.includeCourse === true;
 
+    const item = (name: string, value: string) => ({ name, quantity: '1', category: 'DIGITAL_GOODS', unit_amount: { currency_code: currency, value } });
     const items = [
-      { name: PAYPAL_PRODUCT.name, quantity: '1', category: 'DIGITAL_GOODS', unit_amount: { currency_code: currency, value: PAYPAL_PRODUCT.price } },
-      ...(withAddon
-        ? [{ name: PAYPAL_PRODUCT.addonName, quantity: '1', category: 'DIGITAL_GOODS', unit_amount: { currency_code: currency, value: PAYPAL_PRODUCT.addonPrice } }]
-        : []),
+      item(PAYPAL_PRODUCT.name, PAYPAL_PRODUCT.price),
+      ...(withAddon ? [item(PAYPAL_PRODUCT.addonName, PAYPAL_PRODUCT.addonPrice)] : []),
+      ...(withCourse ? [item(PAYPAL_PRODUCT.upsellName, PAYPAL_PRODUCT.upsellPrice)] : []),
     ];
-    const total = (Number(PAYPAL_PRODUCT.price) + (withAddon ? Number(PAYPAL_PRODUCT.addonPrice) : 0)).toFixed(2);
+    const total = items.reduce((sum, i) => sum + Number(i.unit_amount.value), 0).toFixed(2);
 
     const res = await fetch(`${PAYPAL_API}/v2/checkout/orders`, {
       method: 'POST',
@@ -40,8 +42,8 @@ export async function POST(request: Request) {
         purchase_units: [
           {
             description: PAYPAL_PRODUCT.name,
-            // Read back by capture-order to grant the pack too.
-            custom_id: withAddon ? `addon:${PAYPAL_PRODUCT.addonSlug}` : 'course',
+            // Read back by capture-order to grant the upsell course too.
+            custom_id: withCourse ? 'extras:course' : withAddon ? `addon:${PAYPAL_PRODUCT.addonSlug}` : 'course',
             amount: { currency_code: currency, value: total, breakdown: { item_total: { currency_code: currency, value: total } } },
             items,
           },

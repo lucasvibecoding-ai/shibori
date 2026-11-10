@@ -12,19 +12,27 @@ import PayPalForm from './PayPalForm';
 // Direct PayPal switch (lib/paypal-direct.ts); read here so the server-only PayPal code stays out of the browser.
 const PAYPAL_DIRECT = process.env.NEXT_PUBLIC_PAYPAL_DIRECT === '1';
 import MobileCardForm from './MobileCardForm';
+import { UPSELL_COURSE_NAME } from '../../lib/pricing';
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
 );
+
+const BASE_PRICE = 49.99;
+// Second course offered at checkout (owner 2026-11-10) for 29.99. The server charges the same
+// number (lib/pricing.ts extrasCents).
+const UPSELL_PRICE = 29.99;
 
 export default function CheckoutClient() {
   const [clientSecret, setClientSecret] = useState('');
   const [paypalDown, setPaypalDown] = useState(false);
   const [visible, setVisible] = useState(false);
   const [email, setEmail] = useState('');
+  const [courseSelected, setCourseSelected] = useState(false);
   const [currency, setCurrency] = useState('usd');
   const [expressError, setExpressError] = useState('');
   const [isMobile, setIsMobile] = useState(false);
   const fetched = useRef(false);
+  const firstUpdate = useRef(true);
 
   useEffect(() => {
     if (fetched.current) return;
@@ -48,9 +56,12 @@ export default function CheckoutClient() {
       });
   }, []);
 
+  const total = BASE_PRICE + (courseSelected ? UPSELL_PRICE : 0);
   const symbol = currency === 'eur' ? '€' : '$';
   const code = currency === 'eur' ? 'EUR' : 'USD';
-  const priceLabel = `${symbol}49.99`;
+  const fmt = (n: number) => `${symbol}${n.toFixed(2)}`;
+  const priceLabel = fmt(BASE_PRICE);
+  const totalFormatted = fmt(total);
 
   useEffect(() => {
     // Apple touch devices (iPhone/iPad — incl. tablet/desktop view, which masquerades as
@@ -71,6 +82,24 @@ export default function CheckoutClient() {
   // the bump-less sites need no change to the create-payment-intent route.
   const paymentIntentId = clientSecret ? clientSecret.split('_secret_')[0] : '';
 
+  // Re-sync the PaymentIntent's amount + metadata on the server whenever the upsell box
+  // toggles so Express Checkout and the final charge see the right total. Skip the very
+  // first run (the PI is created at 49.99 with no upsell).
+  useEffect(() => {
+    if (!paymentIntentId) return;
+    if (firstUpdate.current) {
+      firstUpdate.current = false;
+      return;
+    }
+    fetch('/api/update-payment-intent', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ paymentIntentId, includeCourse: courseSelected }),
+    }).catch((err) =>
+      console.error('Failed to update PaymentIntent for upsell toggle:', err)
+    );
+  }, [paymentIntentId, courseSelected]);
+
   // Stash the typed email on the PaymentIntent as soon as it looks like an address.
   // PayPal replaces billing_details.email with the PayPal account address, so this is
   // the only record of what the buyer actually typed, and the webhook needs both to
@@ -88,6 +117,20 @@ export default function CheckoutClient() {
   }, [paymentIntentId, email, emailValid]);
   const showExpressEmailError = () =>
     setExpressError('Please enter a valid email address above to continue.');
+
+  // Force the PaymentIntent amount/metadata to match the upsell box right before any confirm.
+  const ensurePIAmountSynced = async () => {
+    if (!paymentIntentId) return;
+    try {
+      await fetch('/api/update-payment-intent', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ paymentIntentId, includeCourse: courseSelected }),
+      });
+    } catch (err) {
+      console.error('ensurePIAmountSynced failed:', err);
+    }
+  };
 
   const appearance = {
     theme: 'stripe' as const,
@@ -299,6 +342,106 @@ export default function CheckoutClient() {
           height: 1px;
           background: #e5e7eb;
           margin: 24px 0;
+        }
+
+        .order-bump {
+          display: grid;
+          grid-template-columns: auto auto 1fr;
+          grid-template-areas:
+            "check image headline"
+            "check image sub";
+          column-gap: 14px;
+          row-gap: 4px;
+          padding: 16px;
+          border: 2px dashed #d4a72c;
+          background: #fffbeb;
+          border-radius: 8px;
+          cursor: pointer;
+          transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
+          align-items: start;
+        }
+
+        .order-bump:hover {
+          background: #fef3c7;
+        }
+
+        .order-bump.is-selected {
+          background: #fef3c7;
+          border-color: #b97c0e;
+          box-shadow: 0 0 0 3px rgba(217,167,44,0.25);
+        }
+
+        .order-bump input[type="checkbox"] {
+          grid-area: check;
+          width: 20px;
+          height: 20px;
+          margin-top: 2px;
+          accent-color: #b97c0e;
+          cursor: pointer;
+        }
+
+        .order-bump .bump-image {
+          grid-area: image;
+          width: 84px;
+          height: 84px;
+          object-fit: cover;
+          border-radius: 6px;
+          background: #ffffff;
+          border: 1px solid rgba(0,0,0,0.06);
+          align-self: center;
+        }
+
+        .order-bump .bump-headline {
+          grid-area: headline;
+          font-size: 15px;
+          font-weight: 600;
+          color: #1a2e1a;
+          line-height: 1.4;
+        }
+
+        .order-bump .bump-yes {
+          color: #b97c0e;
+          font-weight: 700;
+        }
+
+        .order-bump .bump-sub {
+          grid-area: sub;
+          font-size: 13px;
+          color: #6b7c93;
+          line-height: 1.5;
+          margin-top: 2px;
+        }
+
+        @media (max-width: 768px) {
+          .order-bump {
+            grid-template-columns: auto 1fr auto;
+            grid-template-areas:
+              "check headline image"
+              "sub   sub      sub";
+            row-gap: 10px;
+          }
+          .order-bump .bump-image {
+            width: 84px;
+            height: 84px;
+            justify-self: end;
+            align-self: center;
+          }
+          .order-bump .bump-sub {
+            margin-top: 0;
+          }
+        }
+
+        .order-bump .bump-was {
+          color: #9a9689;
+          font-weight: 400;
+          text-decoration: line-through;
+          margin-left: 4px;
+        }
+
+        .bump-line-item .item-name,
+        .bump-line-item .item-price {
+          color: #e8d5a0 !important;
+          font-weight: 600 !important;
         }
 
         .payment-methods {
@@ -597,9 +740,16 @@ export default function CheckoutClient() {
               <span className="item-price">FREE</span>
             </div>
 
+            {courseSelected && (
+              <div className="line-item bump-line-item">
+                <span className="item-name">{UPSELL_COURSE_NAME}</span>
+                <span className="item-price">{fmt(UPSELL_PRICE)}</span>
+              </div>
+            )}
+
             <div className="total-row">
               <span className="total-label">Total due today</span>
-              <span className="total-amount">{priceLabel}</span>
+              <span className="total-amount">{totalFormatted}</span>
             </div>
 
             <div className="next-steps">
@@ -635,6 +785,28 @@ export default function CheckoutClient() {
               />
               <div className="form-divider" />
 
+              <label className={`order-bump ${courseSelected ? 'is-selected' : ''}`}>
+                <input
+                  type="checkbox"
+                  checked={courseSelected}
+                  onChange={(e) => setCourseSelected(e.target.checked)}
+                />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/upsell-course.jpg"
+                  alt=""
+                  className="bump-image"
+                />
+                <div className="bump-headline">
+                  <span className="bump-yes">YES!</span> Add the {UPSELL_COURSE_NAME} for just {fmt(UPSELL_PRICE)} <span className="bump-was">{fmt(BASE_PRICE)}</span>
+                </div>
+                <div className="bump-sub">
+                  A second full course: 5 modules of Japanese ink marbling, floating ink on still water and lifting the pattern onto paper. Lifetime access.
+                </div>
+              </label>
+
+              <div className="form-divider" />
+
               <div className="section-title">Express checkout</div>
 
               <div className="payment-form-area">
@@ -656,6 +828,7 @@ export default function CheckoutClient() {
                           <WalletExpress
                             emailValid={emailValid}
                             onEmailError={showExpressEmailError}
+                            ensurePIAmountSynced={ensurePIAmountSynced}
                             onError={setExpressError}
                           />
                         </Elements>
@@ -669,6 +842,7 @@ export default function CheckoutClient() {
                                 emailValid={emailValid}
                                 currency={currency}
                                 includeAddon={false}
+                                includeCourse={courseSelected}
                                 onEmailError={showExpressEmailError}
                                 onError={setExpressError}
                               />
@@ -679,6 +853,7 @@ export default function CheckoutClient() {
                               email={email}
                               emailValid={emailValid}
                               clientSecret={clientSecret}
+                              ensurePIAmountSynced={ensurePIAmountSynced}
                               onEmailError={showExpressEmailError}
                               onError={setExpressError}
                             />
@@ -695,7 +870,8 @@ export default function CheckoutClient() {
                             email={email}
                             emailValid={emailValid}
                             clientSecret={clientSecret}
-                            totalLabel={priceLabel}
+                            ensurePIAmountSynced={ensurePIAmountSynced}
+                            totalLabel={totalFormatted}
                           />
                         </Elements>
                       </>
@@ -708,6 +884,7 @@ export default function CheckoutClient() {
                           <WalletExpress
                             emailValid={emailValid}
                             onEmailError={showExpressEmailError}
+                            ensurePIAmountSynced={ensurePIAmountSynced}
                             onError={setExpressError}
                           />
                         </Elements>
@@ -721,6 +898,7 @@ export default function CheckoutClient() {
                                 emailValid={emailValid}
                                 currency={currency}
                                 includeAddon={false}
+                                includeCourse={courseSelected}
                                 onEmailError={showExpressEmailError}
                                 onError={setExpressError}
                               />
@@ -730,6 +908,7 @@ export default function CheckoutClient() {
                             <PayPalExpress
                               emailValid={emailValid}
                               onEmailError={showExpressEmailError}
+                              ensurePIAmountSynced={ensurePIAmountSynced}
                               onError={setExpressError}
                             />
                           </div>
@@ -744,7 +923,8 @@ export default function CheckoutClient() {
                           <CardForm
                             email={email}
                             emailValid={emailValid}
-                            totalLabel={priceLabel}
+                            ensurePIAmountSynced={ensurePIAmountSynced}
+                            totalLabel={totalFormatted}
                           />
                         </Elements>
                       </>

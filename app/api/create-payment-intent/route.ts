@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
-import { COURSE_PRICE_CENTS, currencyForCountry } from '../../../lib/pricing';
+import { COURSE_PRICE_CENTS, UPSELL_COURSE_SLUG, currencyForCountry, extrasCents } from '../../../lib/pricing';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2026-02-25.clover',
@@ -8,16 +8,23 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 
 export async function POST(request: Request) {
   try {
-    await request.json().catch(() => ({}));
+    const body = (await request.json().catch(() => ({}))) as {
+      includeCourse?: boolean;
+    };
+    const includeCourse = body.includeCourse === true;
     const productId = process.env.STRIPE_PRODUCT_ID!;
 
     const product = await stripe.products.retrieve(productId);
+    const amount = COURSE_PRICE_CENTS + extrasCents(includeCourse);
 
     // Buyer location for the VAT counter (additive metadata; absent in local dev).
     const metadata: Record<string, string> = {
       product_id: product.id,
       product_name: product.name,
     };
+    if (includeCourse) {
+      metadata.includes_course = UPSELL_COURSE_SLUG;
+    }
     const ipCountry = request.headers.get('x-vercel-ip-country');
     const ipRegion = request.headers.get('x-vercel-ip-country-region');
     const ipCityRaw = request.headers.get('x-vercel-ip-city');
@@ -37,7 +44,7 @@ export async function POST(request: Request) {
     const currency = currencyForCountry(ipCountry);
 
     const paymentIntent = await stripe.paymentIntents.create({
-      amount: COURSE_PRICE_CENTS,
+      amount,
       currency,
       automatic_payment_methods: {
         enabled: true,
