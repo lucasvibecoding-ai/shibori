@@ -167,7 +167,7 @@ export default function CheckoutClient() {
 
         .checkout-container {
           width: 100%;
-          max-width: 960px;
+          max-width: 1040px;
           display: flex;
           border-radius: 12px;
           overflow: hidden;
@@ -370,6 +370,7 @@ export default function CheckoutClient() {
           grid-template-areas:
             "check image headline"
             "check image sub";
+          grid-template-rows: auto 1fr;
           column-gap: 14px;
           row-gap: 4px;
           padding: 16px;
@@ -402,8 +403,8 @@ export default function CheckoutClient() {
 
         .order-bump .bump-image {
           grid-area: image;
-          width: 84px;
-          height: 84px;
+          width: 116px;
+          height: 116px;
           object-fit: cover;
           border-radius: 6px;
           background: #ffffff;
@@ -438,11 +439,12 @@ export default function CheckoutClient() {
             grid-template-areas:
               "check headline image"
               "sub   sub      sub";
+            grid-template-rows: auto auto;
             row-gap: 10px;
           }
           .order-bump .bump-image {
-            width: 84px;
-            height: 84px;
+            width: 100px;
+            height: 100px;
             justify-self: end;
             align-self: center;
           }
@@ -456,6 +458,45 @@ export default function CheckoutClient() {
           font-weight: 400;
           text-decoration: line-through;
           margin-left: 4px;
+        }
+
+        .order-bump.bundle-bump {
+          border-color: #16a34a;
+          background: #f0fdf4;
+        }
+
+        .order-bump.bundle-bump:hover,
+        .order-bump.bundle-bump.is-selected {
+          background: #dcfce7;
+          border-color: #15803d;
+          box-shadow: 0 0 0 3px rgba(22,163,74,0.2);
+        }
+
+        .order-bump.bundle-bump input[type="checkbox"] {
+          accent-color: #15803d;
+        }
+
+        .order-bump.bundle-bump .bump-yes {
+          color: #15803d;
+        }
+
+        .order-bump .bundle-badge {
+          grid-area: image;
+          align-self: center;
+          justify-self: center;
+          width: 116px;
+          padding: 10px 0;
+          border-radius: 6px;
+          background: #16a34a;
+          color: #ffffff;
+          font-size: 15px;
+          font-weight: 800;
+          text-align: center;
+          line-height: 1.2;
+        }
+
+        @media (max-width: 768px) {
+          .order-bump .bundle-badge { width: 100px; }
         }
 
         .bump-line-item .item-name,
