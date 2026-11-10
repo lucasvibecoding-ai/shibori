@@ -50,7 +50,7 @@ export default function CheckoutClient() {
 
   const symbol = currency === 'eur' ? '€' : '$';
   const code = currency === 'eur' ? 'EUR' : 'USD';
-  const priceLabel = `${symbol}47.00`;
+  const priceLabel = `${symbol}49.99`;
 
   useEffect(() => {
     // Apple touch devices (iPhone/iPad — incl. tablet/desktop view, which masquerades as

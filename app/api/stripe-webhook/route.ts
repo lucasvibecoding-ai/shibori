@@ -390,7 +390,7 @@ export async function POST(request: Request) {
                       em: [sha256(toEmail)],
                     },
                     custom_data: {
-                      value: 47.0,
+                      value: 49.99,
                       currency: 'USD',
                       content_name: 'Shibori Masterclass',
                       content_type: 'product',
